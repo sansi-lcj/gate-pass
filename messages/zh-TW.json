@@ -1,7 +1,7 @@
 {
   "Invitation": {
     "greeting": "親愛的 {name}，",
-    "title": "如視海外 2025 龐加萊內購會",
+    "title": "如視 2025 龐加萊線上內購會",
     "subtitle": "專屬邀請 | 限時優惠 | 新品體驗",
     "event_time_label": "活動時間",
     "event_time_local": "(您當地時間)",
@@ -23,7 +23,7 @@
     "declined_miss": "您將錯過：獨家龐加萊產品體驗、特惠價格、產品專家直接互動",
     "reconsider_btn": "重新考慮？",
     "event_ended": "本次活動已結束。",
-    "footer": "如視海外科技"
+    "footer": "如視科技"
   },
   "Dashboard": {
     "title": "儀表板",

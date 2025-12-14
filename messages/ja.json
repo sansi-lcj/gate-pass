@@ -1,7 +1,7 @@
 {
   "Invitation": {
     "greeting": "{name} 様",
-    "title": "Realsee海外 2025年ポンカレオンライン内覧会",
+    "title": "Realsee 2025年ポンカレオンライン内覧会",
     "subtitle": "特別ご招待 | 期間限定特典 | 新製品体験",
     "event_time_label": "開催日時",
     "event_time_local": "（現地時間）",
@@ -23,7 +23,7 @@
     "declined_miss": "お見逃しになるもの：ポンカレシリーズ限定体験、特別価格、製品専門家との交流",
     "reconsider_btn": "再考しますか？",
     "event_ended": "このイベントは終了しました。",
-    "footer": "Realsee海外テクノロジー"
+    "footer": "Realsee テクノロジー"
   },
   "Dashboard": {
     "title": "ダッシュボード",
