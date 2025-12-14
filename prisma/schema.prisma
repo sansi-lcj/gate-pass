@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Prisma 7: Generator with required output path
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Prisma 7: URL moved to prisma.config.ts (Override for Vercel/Postgres)
+datasource db {
+  provider = "postgresql"
+}
+
+
+// Sales User (Internal Staff)
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique // Sales Code (e.g., "S001")
+  name      String?  // Display name (e.g., "张三")
+  password  String   // Hashed password (bcrypt)
+  role      String   @default("SALES") // "ADMIN" or "SALES"
+  wechatId  String?  // Enterprise WeChat ID for @mention
+  isActive  Boolean  @default(true) // Can be disabled by Admin
+  createdAt DateTime @default(now())
+  
+  invitations Invitation[]
+}
+
+// Invitation Style Template
+model Style {
+  id          String   @id @default(uuid())
+  name        String   // Display name: "Tech Future", "Elegant"
+  component   String   // React component name, e.g. "TechFuture"
+  previewUrl  String?  // URL for a thumbnail image
+  isActive    Boolean  @default(true) // Can be disabled by Admin
+  
+  invitations Invitation[]
+}
+
+// The Guest Invitation
+model Invitation {
+  id             String   @id @default(uuid())
+  guestName      String
+  uniqueToken    String   @unique // nanoid(12) for URL: /invite/[uniqueToken]
+  discountCode   String?  // Generated code, e.g. "RS-2025-ABCDEF"
+  status         String   @default("PENDING") // PENDING, OPENED, ACCEPTED, DECLINED
+  
+  // Customization
+  language       String   @default("en") // en, zh-CN, zh-TW, ja, ko, ar, etc.
+  salesNote      String?  // Internal note for sales (only visible to creator)
+  
+  // Analytics & feedback
+  visitCount     Int      @default(0)
+  openedAt       DateTime?
+  acceptedAt     DateTime?
+  declinedAt     DateTime?
+  
+  // Audit
+  userAgent      String?  // User Agent of the visitor
+  deviceInfo     String?  // Parsed device info if needed
+  
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  
+  // Relations
+  createdBy      User     @relation(fields: [userId], references: [id])
+  userId         String
+  
+  style          Style    @relation(fields: [styleId], references: [id])
+  styleId        String
+}
+
+// Global System Configuration (singleton pattern, id = "global")
+model SystemConfig {
+  id             String   @id @default("global")
+  eventTime      String?  // ISO 8601 Beijing Time: "2025-06-15T14:30:00+08:00"
+  eventEndTime   String?  // When event ends (for post-event handling)
+  meetingLink    String?  // Zoom/Teams URL
+  wecomWebhook   String?  // WeCom Robot Webhook URL
+  updatedAt      DateTime @updatedAt
+}
+
+// WeCom Notification Log for tracking failures
+model NotificationLog {
+  id           String   @id @default(uuid())
+  guestName    String
+  status       String   // ACCEPTED or DECLINED
+  success      Boolean
+  errorMessage String?
+  httpStatus   Int?
+  createdAt    DateTime @default(now())
+  
+  // Relations
+  invitationId String
+}

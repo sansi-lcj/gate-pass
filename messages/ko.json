@@ -1,0 +1,39 @@
+{
+  "Invitation": {
+    "greeting": "{name}님께",
+    "title": "Realsee 해외 2025년 푸앵카레 온라인 내부 구매 미팅",
+    "subtitle": "특별 초대 | 한정 혜택 | 신제품 체험",
+    "event_time_label": "행사 시간",
+    "event_time_local": "(현지 시간)",
+    "highlights": {
+      "item1": "푸앵카레 시리즈 신제품 최초 내부 구매 체험",
+      "item2": "특별 내부 구매 가격",
+      "item3": "제품 전문가 라이브 데모"
+    },
+    "benefits_title": "특별 혜택",
+    "benefits_desc": "초대를 수락하여 할인 코드를 받으세요",
+    "accept_btn": "초대 수락",
+    "decline_btn": "참석 불가",
+    "accepted_title": "확인해 주셔서 감사합니다!",
+    "accepted_desc": "전용 초대 코드가 생성되었습니다.",
+    "code_label": "할인 코드",
+    "meeting_link_label": "미팅 참여",
+    "declined_title": "응답해 주셔서 감사합니다",
+    "declined_desc": "이번에 참석하지 못해 아쉽습니다.",
+    "declined_miss": "놓치게 될 것: 푸앵카레 독점 체험, 특별 가격, 제품 전문가와의 직접 소통",
+    "reconsider_btn": "다시 생각하시겠습니까?",
+    "event_ended": "이 이벤트는 종료되었습니다.",
+    "footer": "Realsee Overseas Technology"
+  },
+  "Dashboard": {
+    "title": "대시보드",
+    "overview": "개요",
+    "my_invitations": "내 초대장",
+    "create_invite": "초대장 만들기",
+    "total": "전체",
+    "accepted": "수락됨",
+    "pending": "대기중",
+    "declined": "거절됨",
+    "opened": "열람됨"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "Invitation": {
+    "greeting": "Yang Mulia {name},",
+    "title": "Realsee Overseas 2025 Poincaré Internal Purchase Meeting",
+    "subtitle": "Jemputan Eksklusif | Tawaran Terhad | Pengalaman Produk Baharu",
+    "event_time_label": "Masa Acara",
+    "event_time_local": "(Waktu Tempatan Anda)",
+    "highlights": {
+      "item1": "Pengalaman Pembelian Dalaman Pertama Siri Poincaré",
+      "item2": "Harga Eksklusif Pembelian Dalaman",
+      "item3": "Demonstrasi Pakar Produk Secara Langsung"
+    },
+    "benefits_title": "Manfaat Eksklusif",
+    "benefits_desc": "Terima jemputan untuk membuka kod diskaun eksklusif anda",
+    "accept_btn": "Terima Jemputan",
+    "decline_btn": "Tidak Dapat Hadir",
+    "accepted_title": "Terima Kasih Atas Pengesahan!",
+    "accepted_desc": "Kod jemputan eksklusif anda telah dijana.",
+    "code_label": "Kod Diskaun Anda",
+    "meeting_link_label": "Sertai Mesyuarat",
+    "declined_title": "Terima Kasih Atas Maklum Balas",
+    "declined_desc": "Kami kesal anda tidak dapat hadir kali ini.",
+    "declined_miss": "Anda akan terlepas: Pengalaman produk Poincaré eksklusif, Harga istimewa, Interaksi terus dengan pakar",
+    "reconsider_btn": "Pertimbang Semula?",
+    "event_ended": "Acara ini telah berakhir.",
+    "footer": "Realsee Overseas Technology"
+  },
+  "Dashboard": {
+    "title": "Papan Pemuka",
+    "overview": "Gambaran Keseluruhan",
+    "my_invitations": "Jemputan Saya",
+    "create_invite": "Cipta Jemputan",
+    "total": "Jumlah",
+    "accepted": "Diterima",
+    "pending": "Menunggu",
+    "declined": "Ditolak",
+    "opened": "Dibuka"
+  }
+}

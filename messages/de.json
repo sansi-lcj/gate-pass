@@ -1,0 +1,39 @@
+{
+  "Invitation": {
+    "greeting": "Sehr geehrte(r) {name},",
+    "title": "Realsee Overseas 2025 Poincaré Interne Kaufveranstaltung",
+    "subtitle": "Exklusive Einladung | Zeitlich Begrenztes Angebot | Neues Produkterlebnis",
+    "event_time_label": "Veranstaltungszeit",
+    "event_time_local": "(Ihre Ortszeit)",
+    "highlights": {
+      "item1": "Erstes internes Kauferlebnis der Poincaré-Serie",
+      "item2": "Exklusive interne Einkaufspreise",
+      "item3": "Live-Produktexpertendemonstration"
+    },
+    "benefits_title": "Exklusive Vorteile",
+    "benefits_desc": "Nehmen Sie die Einladung an, um Ihren exklusiven Rabattcode freizuschalten",
+    "accept_btn": "Einladung Annehmen",
+    "decline_btn": "Kann Nicht Teilnehmen",
+    "accepted_title": "Vielen Dank für Ihre Bestätigung!",
+    "accepted_desc": "Ihr exklusiver Einladungscode wurde generiert.",
+    "code_label": "Ihr Rabattcode",
+    "meeting_link_label": "Meeting Beitreten",
+    "declined_title": "Vielen Dank für Ihre Rückmeldung",
+    "declined_desc": "Es tut uns leid, dass Sie diesmal nicht dabei sein können.",
+    "declined_miss": "Sie verpassen: Exklusives Poincaré-Produkterlebnis, Sonderpreise, Direkte Interaktion mit Experten",
+    "reconsider_btn": "Nochmal Überlegen?",
+    "event_ended": "Diese Veranstaltung ist beendet.",
+    "footer": "Realsee Overseas Technology"
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "overview": "Übersicht",
+    "my_invitations": "Meine Einladungen",
+    "create_invite": "Einladung Erstellen",
+    "total": "Gesamt",
+    "accepted": "Akzeptiert",
+    "pending": "Ausstehend",
+    "declined": "Abgelehnt",
+    "opened": "Geöffnet"
+  }
+}

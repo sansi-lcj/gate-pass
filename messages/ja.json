@@ -1,0 +1,39 @@
+{
+  "Invitation": {
+    "greeting": "{name} 様",
+    "title": "Realsee海外 2025年ポンカレオンライン内覧会",
+    "subtitle": "特別ご招待 | 期間限定特典 | 新製品体験",
+    "event_time_label": "開催日時",
+    "event_time_local": "（現地時間）",
+    "highlights": {
+      "item1": "ポンカレシリーズ新製品初公開",
+      "item2": "特別内覧価格でご案内",
+      "item3": "製品エキスパートによるライブデモ"
+    },
+    "benefits_title": "特典",
+    "benefits_desc": "ご招待を承諾して特別割引コードを取得",
+    "accept_btn": "招待を受ける",
+    "decline_btn": "参加できません",
+    "accepted_title": "ご確認ありがとうございます！",
+    "accepted_desc": "お客様専用の招待コードが発行されました。",
+    "code_label": "割引コード",
+    "meeting_link_label": "会議に参加",
+    "declined_title": "ご返答ありがとうございます",
+    "declined_desc": "今回ご参加いただけず残念です。",
+    "declined_miss": "お見逃しになるもの：ポンカレシリーズ限定体験、特別価格、製品専門家との交流",
+    "reconsider_btn": "再考しますか？",
+    "event_ended": "このイベントは終了しました。",
+    "footer": "Realsee海外テクノロジー"
+  },
+  "Dashboard": {
+    "title": "ダッシュボード",
+    "overview": "概要",
+    "my_invitations": "招待状",
+    "create_invite": "招待を作成",
+    "total": "合計",
+    "accepted": "承諾済み",
+    "pending": "保留中",
+    "declined": "辞退済み",
+    "opened": "開封済み"
+  }
+}

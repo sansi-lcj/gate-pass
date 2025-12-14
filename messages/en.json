@@ -1,0 +1,39 @@
+{
+  "Invitation": {
+    "greeting": "Dear {name},",
+    "title": "Realsee Overseas 2025 Poincaré Internal Purchase Meeting",
+    "subtitle": "Exclusive Invitation | Limited Time Offer | New Product Experience",
+    "event_time_label": "Event Time",
+    "event_time_local": "(Your Local Time)",
+    "highlights": {
+      "item1": "First Internal Purchase Experience of Poincaré Series",
+      "item2": "Exclusive Internal Purchase Pricing",
+      "item3": "Live Product Expert Demonstration"
+    },
+    "benefits_title": "Exclusive Benefits",
+    "benefits_desc": "Accept the invitation to unlock your exclusive discount code",
+    "accept_btn": "Accept Invitation",
+    "decline_btn": "Unable to Attend",
+    "accepted_title": "Thank You for Confirming!",
+    "accepted_desc": "Your exclusive invitation code has been generated.",
+    "code_label": "Your Discount Code",
+    "meeting_link_label": "Join Meeting",
+    "declined_title": "Thank You for Your Response",
+    "declined_desc": "We're sorry you can't make it this time.",
+    "declined_miss": "You'll miss: Exclusive Poincaré product experience, Special pricing, Direct interaction with product experts",
+    "reconsider_btn": "Reconsider?",
+    "event_ended": "This event has concluded.",
+    "footer": "Realsee Overseas Technology"
+  },
+  "Dashboard": {
+    "title": "Dashboard",
+    "overview": "Overview",
+    "my_invitations": "My Invitations",
+    "create_invite": "Create Invite",
+    "total": "Total",
+    "accepted": "Accepted",
+    "pending": "Pending",
+    "declined": "Declined",
+    "opened": "Opened"
+  }
+}

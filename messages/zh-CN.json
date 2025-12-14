@@ -1,0 +1,39 @@
+{
+  "Invitation": {
+    "greeting": "尊敬的 {name} 先生/女士，",
+    "title": "如视海外2025年庞加莱线上内购会",
+    "subtitle": "专属邀请 | 限时特惠 | 新品体验",
+    "event_time_label": "活动时间",
+    "event_time_local": "（您的当地时间）",
+    "highlights": {
+      "item1": "庞加莱系列新品首次内购体验",
+      "item2": "专属内购价格",
+      "item3": "产品专家在线演示"
+    },
+    "benefits_title": "专属福利",
+    "benefits_desc": "接受邀请即可解锁您的专属折扣码",
+    "accept_btn": "接受邀请",
+    "decline_btn": "暂时无法参加",
+    "accepted_title": "感谢您的确认！",
+    "accepted_desc": "您的专属邀请码已生成。",
+    "code_label": "专属折扣码",
+    "meeting_link_label": "进入会议",
+    "declined_title": "感谢您的回复",
+    "declined_desc": "很遗憾您此次无法参与。",
+    "declined_miss": "您将错过：庞加莱系列新品专属体验、内购会专属优惠价格、与产品专家直接交流的机会",
+    "reconsider_btn": "重新考虑？",
+    "event_ended": "本次活动已结束。",
+    "footer": "如视海外科技"
+  },
+  "Dashboard": {
+    "title": "控制台",
+    "overview": "概览",
+    "my_invitations": "我的邀请",
+    "create_invite": "创建邀请",
+    "total": "总数",
+    "accepted": "已接受",
+    "pending": "待处理",
+    "declined": "已拒绝",
+    "opened": "已打开"
+  }
+}

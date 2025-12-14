@@ -1,0 +1,6 @@
+- [x] Design and implement `not-found.tsx` page <!-- id: 1 -->
+- [x] Design and implement `error.tsx` page <!-- id: 2 -->
+- [x] Verify 404 page by visiting a non-existent route <!-- id: 3 -->
+- [x] Verify error page by simulating an exception <!-- id: 4 -->
+- [x] Create `e2e/error-pages.spec.ts` and implement 404/500 test scenarios <!-- id: 5 -->
+- [x] Verify E2E tests pass for error pages <!-- id: 6 -->

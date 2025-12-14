@@ -1,0 +1,39 @@
+{
+  "Invitation": {
+    "greeting": "{name} היקר/ה,",
+    "title": "Realsee Overseas 2025 פגישת רכישה פנימית Poincaré",
+    "subtitle": "הזמנה בלעדית | הצעה מוגבלת | חוויית מוצר חדש",
+    "event_time_label": "זמן האירוע",
+    "event_time_local": "(השעה המקומית שלך)",
+    "highlights": {
+      "item1": "חוויית רכישה פנימית ראשונה של סדרת Poincaré",
+      "item2": "מחירי רכישה פנימית בלעדיים",
+      "item3": "הדגמה חיה של מומחה מוצר"
+    },
+    "benefits_title": "הטבות בלעדיות",
+    "benefits_desc": "קבל את ההזמנה כדי לפתוח את קוד ההנחה הבלעדי שלך",
+    "accept_btn": "קבל הזמנה",
+    "decline_btn": "לא יכול להשתתף",
+    "accepted_title": "תודה על האישור!",
+    "accepted_desc": "קוד ההזמנה הבלעדי שלך נוצר.",
+    "code_label": "קוד ההנחה שלך",
+    "meeting_link_label": "הצטרף לפגישה",
+    "declined_title": "תודה על התגובה",
+    "declined_desc": "אנחנו מצטערים שאתה לא יכול להשתתף הפעם.",
+    "declined_miss": "תפספס: חוויית מוצר Poincaré בלעדית, מחירים מיוחדים, אינטראקציה ישירה עם מומחים",
+    "reconsider_btn": "לשקול מחדש?",
+    "event_ended": "אירוע זה הסתיים.",
+    "footer": "Realsee Overseas Technology"
+  },
+  "Dashboard": {
+    "title": "לוח בקרה",
+    "overview": "סקירה",
+    "my_invitations": "ההזמנות שלי",
+    "create_invite": "צור הזמנה",
+    "total": "סה\"כ",
+    "accepted": "התקבלו",
+    "pending": "ממתין",
+    "declined": "נדחו",
+    "opened": "נפתחו"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "Invitation": {
+    "greeting": "عزيزي {name}،",
+    "title": "اجتماع الشراء الداخلي لـ Poincaré 2025",
+    "subtitle": "دعوة حصرية | عرض محدود | تجربة المنتج الجديد",
+    "event_time_label": "وقت الحدث",
+    "event_time_local": "(التوقيت المحلي)",
+    "highlights": {
+      "item1": "أول تجربة شراء داخلية لسلسلة Poincaré",
+      "item2": "أسعار شراء داخلية حصرية",
+      "item3": "عرض مباشر من خبراء المنتج"
+    },
+    "benefits_title": "المزايا الحصرية",
+    "benefits_desc": "اقبل الدعوة للحصول على رمز الخصم الخاص بك",
+    "accept_btn": "قبول الدعوة",
+    "decline_btn": "لا أستطيع الحضور",
+    "accepted_title": "شكراً لتأكيدك!",
+    "accepted_desc": "تم إنشاء رمز الدعوة الخاص بك.",
+    "code_label": "رمز الخصم",
+    "meeting_link_label": "انضم للاجتماع",
+    "declined_title": "شكراً لردك",
+    "declined_desc": "نأسف لعدم تمكنك من الحضور.",
+    "declined_miss": "ستفوتك: تجربة حصرية لـ Poincaré، أسعار خاصة، تواصل مباشر مع الخبراء",
+    "reconsider_btn": "إعادة النظر؟",
+    "event_ended": "انتهى هذا الحدث.",
+    "footer": "Realsee Overseas Technology"
+  },
+  "Dashboard": {
+    "title": "لوحة القيادة",
+    "overview": "نظرة عامة",
+    "my_invitations": "دعواتي",
+    "create_invite": "إنشاء دعوة",
+    "total": "المجموع",
+    "accepted": "مقبول",
+    "pending": "قيد الانتظار",
+    "declined": "مرفوض",
+    "opened": "تم الفتح"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "Invitation": {
+    "greeting": "Yth. {name},",
+    "title": "Rapat Pembelian Internal Poincaré 2025 Realsee",
+    "subtitle": "Undangan Eksklusif | Penawaran Terbatas | Pengalaman Produk Baru",
+    "event_time_label": "Waktu Acara",
+    "event_time_local": "(Waktu Lokal Anda)",
+    "highlights": {
+      "item1": "Pengalaman Pembelian Internal Pertama Seri Poincaré",
+      "item2": "Harga Pembelian Internal Eksklusif",
+      "item3": "Demo Langsung dari Pakar Produk"
+    },
+    "benefits_title": "Manfaat Eksklusif",
+    "benefits_desc": "Terima undangan untuk mendapatkan kode diskon eksklusif Anda",
+    "accept_btn": "Terima Undangan",
+    "decline_btn": "Tidak Bisa Hadir",
+    "accepted_title": "Terima Kasih atas Konfirmasi Anda!",
+    "accepted_desc": "Kode undangan eksklusif Anda telah dibuat.",
+    "code_label": "Kode Diskon",
+    "meeting_link_label": "Gabung Rapat",
+    "declined_title": "Terima Kasih atas Respons Anda",
+    "declined_desc": "Sayang sekali Anda tidak bisa hadir kali ini.",
+    "declined_miss": "Anda akan melewatkan: Pengalaman eksklusif Poincaré, Harga khusus, Interaksi langsung dengan pakar",
+    "reconsider_btn": "Pertimbangkan Lagi?",
+    "event_ended": "Acara ini telah berakhir.",
+    "footer": "Realsee Overseas Technology"
+  },
+  "Dashboard": {
+    "title": "Dasbor",
+    "overview": "Ringkasan",
+    "my_invitations": "Undangan Saya",
+    "create_invite": "Buat Undangan",
+    "total": "Total",
+    "accepted": "Diterima",
+    "pending": "Tertunda",
+    "declined": "Ditolak",
+    "opened": "Dibuka"
+  }
+}
