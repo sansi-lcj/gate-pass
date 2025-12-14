@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../prisma/generated/prisma/client';
 import { PrismaNeon } from '@prisma/adapter-neon';
 
 // Prevent multiple instances in development with hot reloading

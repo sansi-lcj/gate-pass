@@ -3,7 +3,8 @@
 
 // Prisma 7: Generator with required output path
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "./generated/prisma"
 }
 
 // Prisma 7: URL moved to prisma.config.ts (Override for Vercel/Postgres)
