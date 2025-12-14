@@ -149,41 +149,6 @@ export async function resetPasswordAction(userId: string) {
   return { success: true, password: randomPassword };
 }
 
-// Get all styles for template management
-export async function getStyles() {
-  return prisma.style.findMany({
-    select: {
-      id: true,
-      name: true,
-      component: true,
-      isActive: true,
-      _count: { select: { invitations: true } },
-    },
-    orderBy: { name: 'asc' },
-  });
-}
-
-// Toggle style active status
-export async function toggleStyleActiveAction(styleId: string) {
-  const session = await getSession();
-  if (!session?.user?.role || session.user.role !== 'ADMIN') {
-    return { error: 'Unauthorized' };
-  }
-
-  const style = await prisma.style.findUnique({ where: { id: styleId } });
-  if (!style) {
-    return { error: 'Style not found' };
-  }
-
-  await prisma.style.update({
-    where: { id: styleId },
-    data: { isActive: !style.isActive },
-  });
-
-  revalidatePath('/admin/templates');
-  return { success: true };
-}
-
 // Export accepted guests as CSV
 export async function exportAcceptedGuestsCSV() {
   const session = await getSession();

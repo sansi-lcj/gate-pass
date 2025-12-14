@@ -2,7 +2,7 @@
 
 import { useActionState, useState, useEffect } from 'react';
 import { createInvitationAction } from './action';
-import { getTemplate } from '@/components/templates/registry';
+import { getTemplate, StyleConfig } from '@/components/templates/registry';
 import type { InvitationProps } from '@/components/templates/types';
 import I18nProvider from '@/components/providers/I18nProvider';
 
@@ -36,16 +36,16 @@ const previewMessages = {
   }
 };
 
-export default function CreateForm({ styles }: { styles: { id: string; name: string; component: string }[] }) {
+export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
   const [state, action, isPending] = useActionState(createInvitationAction, null);
-  const [selectedStyleId, setSelectedStyleId] = useState(styles[0]?.id);
+  const [selectedStyleKey, setSelectedStyleKey] = useState(styles[0]?.key);
   const [formData, setFormData] = useState({
     guestName: '嘉宾姓名',
     language: 'zh-CN',
   });
 
-  const selectedStyle = styles.find(s => s.id === selectedStyleId);
-  const PreviewComponent = selectedStyle ? getTemplate(selectedStyle.component) : null;
+  const selectedStyle = styles.find(s => s.key === selectedStyleKey);
+  const PreviewComponent = selectedStyle ? getTemplate(selectedStyle.key) : null;
 
   const handleValuesChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -79,16 +79,16 @@ export default function CreateForm({ styles }: { styles: { id: string; name: str
              <div className="grid grid-cols-2 gap-4 max-h-64 overflow-y-auto">
                {styles.map((style) => (
                  <div 
-                   key={style.id}
-                   onClick={() => setSelectedStyleId(style.id)}
-                   className={`cursor-pointer border-2 rounded-lg p-2 transition-all ${selectedStyleId === style.id ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-gray-200 dark:border-gray-800 hover:border-gray-300'}`}
+                   key={style.key}
+                   onClick={() => setSelectedStyleKey(style.key)}
+                   className={`cursor-pointer border-2 rounded-lg p-2 transition-all ${selectedStyleKey === style.key ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-gray-200 dark:border-gray-800 hover:border-gray-300'}`}
                  >
                     <div className="h-16 bg-gray-200 dark:bg-gray-800 rounded-md mb-2"></div>
                     <p className="text-xs font-medium dark:text-gray-300 truncate">{style.name}</p>
                  </div>
                ))}
              </div>
-             <input type="hidden" name="styleId" value={selectedStyleId} />
+             <input type="hidden" name="styleKey" value={selectedStyleKey} />
            </div>
 
            {/* Guest Info */}

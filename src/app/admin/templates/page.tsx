@@ -1,9 +1,6 @@
-import { prisma } from '@/lib/prisma';
 import { getSession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
-import TemplatesClient from './TemplatesClient';
-
-export const dynamic = 'force-dynamic';
+import { getAllStyles } from '@/components/templates/registry';
 
 export default async function AdminTemplatesPage() {
   const session = await getSession();
@@ -12,16 +9,7 @@ export default async function AdminTemplatesPage() {
     redirect('/login');
   }
 
-  const styles = await prisma.style.findMany({
-    select: {
-      id: true,
-      name: true,
-      component: true,
-      isActive: true,
-      _count: { select: { invitations: true } },
-    },
-    orderBy: { name: 'asc' },
-  });
+  const styles = getAllStyles();
 
   return (
     <div className="min-h-screen bg-gray-950 text-white p-8">
@@ -31,7 +19,24 @@ export default async function AdminTemplatesPage() {
           <a href="/admin" className="text-blue-400 hover:text-blue-300">← 返回管理后台</a>
         </div>
 
-        <TemplatesClient styles={styles} />
+        <p className="text-gray-400 mb-6">
+          邀请函模板现已内置于代码中。如需修改模板，请联系开发人员。
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {styles.map(style => (
+            <div
+              key={style.key}
+              className="bg-gray-900 rounded-lg p-4 border border-gray-700"
+            >
+              <div className="h-32 bg-gray-800 rounded-md mb-4 flex items-center justify-center">
+                <span className="text-gray-500 text-sm">{style.key}</span>
+              </div>
+              <h3 className="font-bold">{style.name}</h3>
+              <p className="text-sm text-gray-400">{style.previewUrl}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

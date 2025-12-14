@@ -13,33 +13,6 @@ async function main() {
   // Clean up
   await prisma.invitation.deleteMany()
   await prisma.user.deleteMany()
-  await prisma.style.deleteMany()
-
-  // Create 12 Styles (matching design.md)
-  const stylesData = [
-    // Tech Series (1-3)
-    { name: 'Tech Future', component: 'TechFuture', previewUrl: '/styles/tech-future.png' },
-    { name: 'Cyber Grid', component: 'CyberGrid', previewUrl: '/styles/cyber-grid.png' },
-    { name: 'Digital Wave', component: 'DigitalWave', previewUrl: '/styles/digital-wave.png' },
-    // Business Series (4-6)
-    { name: 'Executive', component: 'Executive', previewUrl: '/styles/executive.png' },
-    { name: 'Corporate Blue', component: 'CorporateBlue', previewUrl: '/styles/corporate-blue.png' },
-    { name: 'Minimal White', component: 'MinimalWhite', previewUrl: '/styles/minimal-white.png' },
-    // Creative Series (7-8)
-    { name: 'Luxury Gold', component: 'LuxuryGold', previewUrl: '/styles/luxury-gold.png' },
-    { name: 'Abstract Art', component: 'AbstractArt', previewUrl: '/styles/abstract-art.png' },
-    // Regional Series (9-10)
-    { name: 'Oriental Ink', component: 'OrientalInk', previewUrl: '/styles/oriental-ink.png' },
-    { name: 'Arabic Geometry', component: 'ArabicGeometry', previewUrl: '/styles/arabic-geometry.png' },
-    // Other Series (11-12)
-    { name: 'Nature Green', component: 'NatureGreen', previewUrl: '/styles/nature-green.png' },
-    { name: 'Dark Matter', component: 'DarkMatter', previewUrl: '/styles/dark-matter.png' },
-  ]
-
-  for (const style of stylesData) {
-    await prisma.style.create({ data: style })
-  }
-  console.log(`✅ Created ${stylesData.length} styles`)
 
   // Create Users
   const passwordHash = await bcrypt.hash('123456', 10)
@@ -92,6 +65,7 @@ async function main() {
     }
   })
   console.log('✅ Created SystemConfig with default event time')
+  console.log('ℹ️  Invitation styles are now hardcoded in the codebase - no seeding required')
 }
 
 main()

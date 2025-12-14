@@ -1,10 +1,8 @@
-import { prisma } from '@/lib/prisma';
+import { getAllStyles } from '@/components/templates/registry';
 import CreateForm from './CreateForm';
 
-export const dynamic = 'force-dynamic';
-
-export default async function CreatePage() {
-  const styles = await prisma.style.findMany();
+export default function CreatePage() {
+  const styles = getAllStyles();
 
   return (
     <div className="h-full">

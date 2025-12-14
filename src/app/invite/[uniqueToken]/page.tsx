@@ -54,7 +54,6 @@ export default async function InvitationPage({ params }: { params: Promise<{ uni
 
   const invitation = await prisma.invitation.findUnique({
     where: { uniqueToken },
-    include: { style: true },
   });
 
   if (!invitation) return notFound();
@@ -71,7 +70,7 @@ export default async function InvitationPage({ params }: { params: Promise<{ uni
   const allMessages = await getMessages(invitation.language);
   const messages = allMessages; // Pass all messages including "Invitation" namespace
 
-  const TemplateComponent = getTemplate(invitation.style.component);
+  const TemplateComponent = getTemplate(invitation.styleKey);
 
   // Prepare data for template
   const templateData = {

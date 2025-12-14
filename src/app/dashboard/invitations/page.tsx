@@ -11,7 +11,6 @@ export default async function InvitationsPage() {
 
   const invitations = await prisma.invitation.findMany({
     where: { userId: session.user.id },
-    include: { style: true },
     orderBy: { createdAt: 'desc' },
   });
 

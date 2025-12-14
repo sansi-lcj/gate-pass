@@ -385,7 +385,6 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
-  Style: 'Style',
   Invitation: 'Invitation',
   SystemConfig: 'SystemConfig',
   NotificationLog: 'NotificationLog'
@@ -404,7 +403,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "style" | "invitation" | "systemConfig" | "notificationLog"
+    modelProps: "user" | "invitation" | "systemConfig" | "notificationLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -479,80 +478,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.UserCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.UserCountAggregateOutputType> | number
-        }
-      }
-    }
-    Style: {
-      payload: Prisma.$StylePayload<ExtArgs>
-      fields: Prisma.StyleFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.StyleFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StylePayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.StyleFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StylePayload>
-        }
-        findFirst: {
-          args: Prisma.StyleFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StylePayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.StyleFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StylePayload>
-        }
-        findMany: {
-          args: Prisma.StyleFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StylePayload>[]
-        }
-        create: {
-          args: Prisma.StyleCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StylePayload>
-        }
-        createMany: {
-          args: Prisma.StyleCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.StyleCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StylePayload>[]
-        }
-        delete: {
-          args: Prisma.StyleDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StylePayload>
-        }
-        update: {
-          args: Prisma.StyleUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StylePayload>
-        }
-        deleteMany: {
-          args: Prisma.StyleDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.StyleUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.StyleUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StylePayload>[]
-        }
-        upsert: {
-          args: Prisma.StyleUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$StylePayload>
-        }
-        aggregate: {
-          args: Prisma.StyleAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateStyle>
-        }
-        groupBy: {
-          args: Prisma.StyleGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.StyleGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.StyleCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.StyleCountAggregateOutputType> | number
         }
       }
     }
@@ -831,17 +756,6 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const StyleScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  component: 'component',
-  previewUrl: 'previewUrl',
-  isActive: 'isActive'
-} as const
-
-export type StyleScalarFieldEnum = (typeof StyleScalarFieldEnum)[keyof typeof StyleScalarFieldEnum]
-
-
 export const InvitationScalarFieldEnum = {
   id: 'id',
   guestName: 'guestName',
@@ -859,7 +773,7 @@ export const InvitationScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',
-  styleId: 'styleId'
+  styleKey: 'styleKey'
 } as const
 
 export type InvitationScalarFieldEnum = (typeof InvitationScalarFieldEnum)[keyof typeof InvitationScalarFieldEnum]
@@ -1079,7 +993,6 @@ export type PrismaClientOptions = ({
 }
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
-  style?: Prisma.StyleOmit
   invitation?: Prisma.InvitationOmit
   systemConfig?: Prisma.SystemConfigOmit
   notificationLog?: Prisma.NotificationLogOmit

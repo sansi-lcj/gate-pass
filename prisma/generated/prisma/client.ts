@@ -45,11 +45,6 @@ export { Prisma }
  */
 export type User = Prisma.UserModel
 /**
- * Model Style
- * 
- */
-export type Style = Prisma.StyleModel
-/**
  * Model Invitation
  * 
  */

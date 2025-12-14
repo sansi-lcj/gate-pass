@@ -52,7 +52,6 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Style: 'Style',
   Invitation: 'Invitation',
   SystemConfig: 'SystemConfig',
   NotificationLog: 'NotificationLog'
@@ -88,17 +87,6 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
-export const StyleScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  component: 'component',
-  previewUrl: 'previewUrl',
-  isActive: 'isActive'
-} as const
-
-export type StyleScalarFieldEnum = (typeof StyleScalarFieldEnum)[keyof typeof StyleScalarFieldEnum]
-
-
 export const InvitationScalarFieldEnum = {
   id: 'id',
   guestName: 'guestName',
@@ -116,7 +104,7 @@ export const InvitationScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId',
-  styleId: 'styleId'
+  styleKey: 'styleKey'
 } as const
 
 export type InvitationScalarFieldEnum = (typeof InvitationScalarFieldEnum)[keyof typeof InvitationScalarFieldEnum]

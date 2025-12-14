@@ -9,7 +9,6 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User'
-export type * from './models/Style'
 export type * from './models/Invitation'
 export type * from './models/SystemConfig'
 export type * from './models/NotificationLog'

@@ -12,11 +12,11 @@ export async function createInvitationAction(prevState: any, formData: FormData)
   }
 
   const guestName = formData.get('guestName') as string;
-  const styleId = formData.get('styleId') as string;
+  const styleKey = formData.get('styleKey') as string;
   const language = formData.get('language') as string || 'en';
   const salesNote = formData.get('salesNote') as string;
 
-  if (!guestName || !styleId) {
+  if (!guestName || !styleKey) {
     return { error: 'Missing required fields' };
   }
 
@@ -31,7 +31,7 @@ export async function createInvitationAction(prevState: any, formData: FormData)
     await prisma.invitation.create({
       data: {
         guestName,
-        styleId,
+        styleKey,
         language,
         salesNote,
         userId: user.id,
