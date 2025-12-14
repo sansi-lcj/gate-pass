@@ -1,7 +1,7 @@
 # Change: Implement Poincaré Invitation System
 
 ## Why
-The "Realsee Overseas 2025 Poincaré Device Internal Purchase Meeting" requires a dedicated system for managing and sending invitations. Currently, there is a lack of a structured way for sales representatives to generate personalized invitations with unique discount codes and track them.
+The "Realsee 2025 Poincaré Device Purchase Meeting" requires a dedicated system for managing and sending invitations. Currently, there is a lack of a structured way for sales representatives to generate personalized invitations with unique discount codes and track them.
 
 ## What Changes
 - Implement a multilingual invitation creation flow for sales representatives (8 languages + RTL).

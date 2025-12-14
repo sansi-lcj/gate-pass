@@ -17,7 +17,7 @@ test.describe('Poincaré Invitation System - Strict E2E Tests', () => {
       
       // Verify all login elements (Chinese UI)
       await expect(page.locator('h1')).toContainText('邀请函系统');
-      await expect(page.locator('text=销售代码')).toBeVisible();
+      await expect(page.locator('text=用户编码')).toBeVisible();
       await expect(page.locator('text=密码')).toBeVisible();
       await expect(page.locator('input[name="salesCode"]')).toBeVisible();
       await expect(page.locator('input[name="password"]')).toBeVisible();

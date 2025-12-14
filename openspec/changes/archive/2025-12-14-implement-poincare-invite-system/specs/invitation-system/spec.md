@@ -199,7 +199,7 @@ All templates SHALL display a standardized content structure.
 #### Scenario: Content Sections
 - **WHEN** a guest views an invitation
 - **THEN** it SHALL display the following sections in order:
-  1. Brand Logo (Realsee Overseas + Poincaré Series)
+  1. Brand Logo (Realsee + Poincaré Series)
   2. Personalized Greeting (e.g., "Dear [Guest Name],")
   3. Event Title & Subtitle
   4. Event Time (localized)

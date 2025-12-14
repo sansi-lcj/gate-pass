@@ -1,13 +1,13 @@
 {
   "Invitation": {
     "greeting": "Yth. {name},",
-    "title": "Rapat Pembelian Internal Poincaré 2025 Realsee",
+    "title": "Rapat Pembelian Poincaré 2025 Realsee",
     "subtitle": "Undangan Eksklusif | Penawaran Terbatas | Pengalaman Produk Baru",
     "event_time_label": "Waktu Acara",
     "event_time_local": "(Waktu Lokal Anda)",
     "highlights": {
-      "item1": "Pengalaman Pembelian Internal Pertama Seri Poincaré",
-      "item2": "Harga Pembelian Internal Eksklusif",
+      "item1": "Pengalaman Pembelian Pertama Seri Poincaré",
+      "item2": "Harga Pembelian Eksklusif",
       "item3": "Demo Langsung dari Pakar Produk"
     },
     "benefits_title": "Manfaat Eksklusif",
@@ -23,7 +23,7 @@
     "declined_miss": "Anda akan melewatkan: Pengalaman eksklusif Poincaré, Harga khusus, Interaksi langsung dengan pakar",
     "reconsider_btn": "Pertimbangkan Lagi?",
     "event_ended": "Acara ini telah berakhir.",
-    "footer": "Realsee Overseas Technology"
+    "footer": "Realsee Technology"
   },
   "Dashboard": {
     "title": "Dasbor",

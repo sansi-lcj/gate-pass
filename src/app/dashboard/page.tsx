@@ -1,6 +1,8 @@
 import { getSession } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardPage() {
   const session = await getSession();
   if (!session?.user) return null;
@@ -31,7 +33,7 @@ export default async function DashboardPage() {
         <StatCard label="已接受" value={accepted} color="green" />
         <StatCard label="已查看" value={opened} color="blue" />
         <StatCard label="已拒绝" value={declined} color="red" />
-        <StatCard label="接受率" value={`${acceptanceRate}%`} color="purple" />
+        <StatCard label="接受率" value={`${acceptanceRate}%`} color="brand" />
       </div>
       
       {total === 0 && (
@@ -60,14 +62,14 @@ function StatCard({ label, value, color = 'gray' }: { label: string; value: stri
     green: 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
     blue: 'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
     red: 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800',
-    purple: 'bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800',
+    brand: 'bg-brand/10 dark:bg-brand/20 border-brand/30 dark:border-brand/40',
   };
   const textColorMap: Record<string, string> = {
     gray: 'text-gray-900 dark:text-white',
     green: 'text-green-600 dark:text-green-400',
     blue: 'text-blue-600 dark:text-blue-400',
     red: 'text-red-600 dark:text-red-400',
-    purple: 'text-purple-600 dark:text-purple-400',
+    brand: 'text-brand dark:text-brand-light',
   };
 
   return (

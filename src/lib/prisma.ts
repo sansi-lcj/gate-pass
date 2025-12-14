@@ -1,42 +1,44 @@
 import { PrismaClient } from '@prisma/client';
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
-import path from 'node:path';
+import { PrismaNeon } from '@prisma/adapter-neon';
 
-// Prisma 7: Use adapter for database connection
-// Prisma 7: Use adapter for database connection
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
+// Prevent multiple instances in development with hot reloading
+const globalForPrisma = global as unknown as { prisma: PrismaClient | undefined };
 
-export let prisma: PrismaClient;
-
-if (process.env.POSTGRES_PRISMA_URL) {
-  // Production / Vercel Postgres
-  prisma =
-    globalForPrisma.prisma ||
-    new PrismaClient({
-      datasources: {
-        db: {
-          url: process.env.POSTGRES_PRISMA_URL,
-        },
-      },
-      log: process.env.NODE_ENV === 'development' ? ['query'] : [],
-    });
-} else {
-  // Local Development (SQLite)
-  // Dynamically require adapter to avoid build changes for Vercel if separate deps are managed or optimization needed
-  const { PrismaBetterSqlite3 } = require('@prisma/adapter-better-sqlite3');
+function createPrismaClient(): PrismaClient {
+  const connectionString = process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL;
   
-  const dbPath = path.join(process.cwd(), 'prisma', 'dev.db');
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const adapter = new PrismaBetterSqlite3({ url: dbPath }) as any;
-
-  prisma =
-    globalForPrisma.prisma ||
-    new PrismaClient({
-      adapter,
-      log: process.env.NODE_ENV === 'development' ? ['query'] : [],
-    });
+  if (!connectionString) {
+    throw new Error('Database connection string not found. Set POSTGRES_PRISMA_URL or DATABASE_URL environment variable.');
+  }
+  
+  // Use Neon adapter for Vercel Postgres (powered by Neon)
+  const adapter = new PrismaNeon({ connectionString });
+  
+  return new PrismaClient({
+    adapter,
+    log: process.env.NODE_ENV === 'development' ? ['query'] : [],
+  });
 }
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+// Lazy initialization to avoid errors during build/prerender
+function getPrismaClient(): PrismaClient {
+  if (globalForPrisma.prisma) {
+    return globalForPrisma.prisma;
+  }
+  
+  const client = createPrismaClient();
+  
+  if (process.env.NODE_ENV !== 'production') {
+    globalForPrisma.prisma = client;
+  }
+  
+  return client;
+}
 
-
+// Export a getter function for lazy initialization
+export const prisma = new Proxy({} as PrismaClient, {
+  get(target, prop) {
+    const client = getPrismaClient();
+    return Reflect.get(client, prop);
+  },
+});

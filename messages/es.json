@@ -1,7 +1,7 @@
 {
   "Invitation": {
     "greeting": "Estimado/a {name},",
-    "title": "Realsee Overseas 2025 Reunión de Compra Interna Poincaré",
+    "title": "Realsee 2025 Reunión de Compra Interna Poincaré",
     "subtitle": "Invitación Exclusiva | Oferta Limitada | Experiencia de Nuevo Producto",
     "event_time_label": "Hora del Evento",
     "event_time_local": "(Su Hora Local)",
@@ -23,7 +23,7 @@
     "declined_miss": "Se perderá: Experiencia exclusiva de producto Poincaré, Precios especiales, Interacción directa con expertos",
     "reconsider_btn": "¿Reconsiderar?",
     "event_ended": "Este evento ha concluido.",
-    "footer": "Realsee Overseas Technology"
+    "footer": "Realsee Technology"
   },
   "Dashboard": {
     "title": "Panel",

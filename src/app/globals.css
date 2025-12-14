@@ -3,11 +3,24 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Brand Colors */
+  --brand: #3366ff;
+  --brand-light: #5588ff;
+  --brand-dark: #2855e0;
+  --brand-glow: rgba(51, 102, 255, 0.5);
+  
+  /* Gradient Secondary */
+  --brand-secondary: #0ea5e9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand: var(--brand);
+  --color-brand-light: var(--brand-light);
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-secondary: var(--brand-secondary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -24,3 +37,4 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+

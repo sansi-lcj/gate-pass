@@ -10,13 +10,13 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-950 text-white relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-purple-600 rounded-full blur-[120px] opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-blue-600 rounded-full blur-[120px] opacity-20 animate-pulse delay-1000"></div>
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-brand rounded-full blur-[120px] opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-brand-secondary rounded-full blur-[120px] opacity-20 animate-pulse delay-1000"></div>
       </div>
 
       <div className="relative z-10 w-full max-w-md p-8 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-brand-light to-brand-secondary bg-clip-text text-transparent">
             邀请函系统
           </h1>
           <p className="text-gray-400 text-sm mt-2">如影随形 Poincaré 内购会</p>
@@ -24,13 +24,13 @@ export default function LoginPage() {
 
         <form action={action} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">销售代码</label>
+            <label className="block text-sm font-medium text-gray-300 mb-1">用户编码</label>
             <input
               name="salesCode"
               type="text"
               required
               placeholder="例如 S001"
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-500 transition-all"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-brand text-white placeholder-gray-500 transition-all"
             />
           </div>
 
@@ -41,7 +41,7 @@ export default function LoginPage() {
               type="password"
               required
               placeholder="••••••••"
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-500 transition-all"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-brand text-white placeholder-gray-500 transition-all"
             />
           </div>
 
@@ -54,14 +54,14 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={isPending}
-            className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-medium rounded-md shadow-lg shadow-blue-500/20 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-3 px-4 bg-gradient-to-r from-brand to-brand-secondary hover:from-brand-light hover:to-brand-secondary text-white font-medium rounded-md shadow-lg shadow-brand/20 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isPending ? '登录中...' : '登录'}
           </button>
         </form>
 
         <div className="mt-6 text-center text-xs text-gray-500">
-          Realsee Overseas &copy; 2025
+          Realsee &copy; 2025
         </div>
       </div>
     </div>

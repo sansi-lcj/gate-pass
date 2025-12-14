@@ -113,15 +113,11 @@ The system SHALL use a custom form-based login with simple credentials.
 ### Requirement: Privacy & Security
 The system SHALL implement measures to protect guest privacy and prevent unauthorized access.
 
-#### Scenario: Search Indexing Protection
-- **WHEN** any authenticated or invitation page is served
-- **THEN** it must include `X-Robots-Tag: noindex` header (or equivalent meta tag)
-- **AND** a `<meta name="robots" content="noindex">` tag
-- **AND** `robots.txt` SHALL allow crawling of these pages (to enable metadata scraping by social bots).
-
-#### Scenario: Rate Limiting
-- **WHEN** a single IP attempts to access >100 invalid tokens within 1 minute
-- **THEN** the system blocks requests from that IP for 1 hour.
+#### Scenario: Search Indexing
+- **WHEN** an invitation page is served
+- **THEN** it SHALL be indexable by search engines (`index, follow`)
+- **AND** authenticated pages (Dashboard, Admin) SHALL remain `noindex`.
+- **AND** `robots.txt` SHALL allow crawling.
 
 ### Requirement: Post-Event Handling
 The system SHALL handle access to invitations after the event has concluded.
@@ -203,7 +199,7 @@ All templates SHALL display a standardized content structure.
 #### Scenario: Content Sections
 - **WHEN** a guest views an invitation
 - **THEN** it SHALL display the following sections in order:
-  1. Brand Logo (Realsee Overseas + Poincaré Series)
+  1. Brand Logo (Realsee + Poincaré Series)
   2. Personalized Greeting (e.g., "Dear [Guest Name],")
   3. Event Title & Subtitle
   4. Event Time (localized)

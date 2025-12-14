@@ -1,13 +1,13 @@
 {
   "Invitation": {
     "greeting": "Dear {name},",
-    "title": "Realsee Overseas 2025 Poincaré Internal Purchase Meeting",
+    "title": "Realsee 2025 Poincaré Purchase Meeting",
     "subtitle": "Exclusive Invitation | Limited Time Offer | New Product Experience",
     "event_time_label": "Event Time",
     "event_time_local": "(Your Local Time)",
     "highlights": {
-      "item1": "First Internal Purchase Experience of Poincaré Series",
-      "item2": "Exclusive Internal Purchase Pricing",
+      "item1": "First Purchase Experience of Poincaré Series",
+      "item2": "Exclusive Purchase Pricing",
       "item3": "Live Product Expert Demonstration"
     },
     "benefits_title": "Exclusive Benefits",
@@ -23,7 +23,7 @@
     "declined_miss": "You'll miss: Exclusive Poincaré product experience, Special pricing, Direct interaction with product experts",
     "reconsider_btn": "Reconsider?",
     "event_ended": "This event has concluded.",
-    "footer": "Realsee Overseas Technology"
+    "footer": "Realsee Technology"
   },
   "Dashboard": {
     "title": "Dashboard",

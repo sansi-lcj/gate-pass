@@ -11,7 +11,7 @@ export default function DashboardLayout({
       {/* Sidebar */}
       <aside className="w-64 bg-white dark:bg-black border-r border-gray-200 dark:border-gray-800 hidden md:flex flex-col">
         <div className="p-6">
-          <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="text-xl font-bold bg-gradient-to-r from-brand to-brand-secondary bg-clip-text text-transparent">
             邀请函管理
           </h1>
         </div>

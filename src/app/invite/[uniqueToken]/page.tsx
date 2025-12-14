@@ -7,6 +7,8 @@ import { trackVisit } from './action';
 import { isRtl } from '@/components/templates/types';
 import I18nProvider from '@/components/providers/I18nProvider';
 
+export const dynamic = 'force-dynamic';
+
 // Prevent search engine indexing
 // Prevent search engine indexing but allow social previews
 export async function generateMetadata({ params }: { params: Promise<{ uniqueToken: string }> }): Promise<Metadata> {
@@ -25,14 +27,14 @@ export async function generateMetadata({ params }: { params: Promise<{ uniqueTok
 
   return {
     title: `Invitation for ${invitation.guestName} | Realsee Overseas`,
-    description: `You are cordially invited to the Realsee Overseas 2025 Poincaré Device Internal Purchase Meeting.`,
+    description: `You are cordially invited to the Realsee 2025 Poincaré Device Purchase Meeting.`,
     robots: {
       index: true,
       follow: true, 
     },
     openGraph: {
       title: `Invitation for ${invitation.guestName}`,
-      description: 'Realsee Overseas 2025 Poincaré Device Internal Purchase Meeting',
+      description: 'Realsee 2025 Poincaré Device Purchase Meeting',
       // images: ['/assets/event-cover.png'], // TODO: Add actual image URL
     },
   };

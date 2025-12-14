@@ -3,6 +3,8 @@ import { prisma } from '@/lib/prisma';
 import Link from 'next/link';
 import InvitationRow from './InvitationRow';
 
+export const dynamic = 'force-dynamic';
+
 export default async function InvitationsPage() {
   const session = await getSession();
   if (!session?.user) return null;

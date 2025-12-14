@@ -1,7 +1,7 @@
 {
   "Invitation": {
     "greeting": "Yang Mulia {name},",
-    "title": "Realsee Overseas 2025 Poincaré Internal Purchase Meeting",
+    "title": "Realsee 2025 Poincaré Purchase Meeting",
     "subtitle": "Jemputan Eksklusif | Tawaran Terhad | Pengalaman Produk Baharu",
     "event_time_label": "Masa Acara",
     "event_time_local": "(Waktu Tempatan Anda)",
@@ -23,7 +23,7 @@
     "declined_miss": "Anda akan terlepas: Pengalaman produk Poincaré eksklusif, Harga istimewa, Interaksi terus dengan pakar",
     "reconsider_btn": "Pertimbang Semula?",
     "event_ended": "Acara ini telah berakhir.",
-    "footer": "Realsee Overseas Technology"
+    "footer": "Realsee Technology"
   },
   "Dashboard": {
     "title": "Papan Pemuka",

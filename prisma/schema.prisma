@@ -12,7 +12,7 @@ datasource db {
 }
 
 
-// Sales User (Internal Staff)
+// Sales User (Staff)
 model User {
   id        String   @id @default(uuid())
   username  String   @unique // Sales Code (e.g., "S001")
@@ -47,7 +47,7 @@ model Invitation {
   
   // Customization
   language       String   @default("en") // en, zh-CN, zh-TW, ja, ko, ar, etc.
-  salesNote      String?  // Internal note for sales (only visible to creator)
+  salesNote      String?  // note for sales (only visible to creator)
   
   // Analytics & feedback
   visitCount     Int      @default(0)

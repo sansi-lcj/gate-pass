@@ -1,7 +1,7 @@
 # Design: Poincaré Promotional Homepage
 
 ## 1. Visual Style
-- **Theme**: "Tech Future" / Poincaré Internal aesthetics (Dark mode, Purple/Blue gradients, Neon accents).
+- **Theme**: "Tech Future" / Poincaré aesthetics (Dark mode, Purple/Blue gradients, Neon accents).
 - **Assets**:
     - Hero Background: `/images/poincare/hero.jpg` (with overlay/blur).
     - Detail Image: `/images/poincare/detail_1.jpg`.
@@ -16,9 +16,9 @@ A single-page, full-screen landing layout.
 |                                                       |
 |          [Poincaré Logo / Detail Image]               |
 |                                                       |
-|       Realsee Overseas 2025 (Small extended text)      |
+|       Realsee 2025 (Small extended text)      |
 |                                                       |
-|      POINCARÉ INTERNAL PURCHASE (Large Title)         |
+|      POINCARÉ PURCHASE (Large Title)         |
 |                                                       |
 |    "Please contact your business partner to get       |
 |     an exclusive invitation link."                    |

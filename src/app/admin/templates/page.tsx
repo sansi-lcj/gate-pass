@@ -3,6 +3,8 @@ import { getSession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import TemplatesClient from './TemplatesClient';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminTemplatesPage() {
   const session = await getSession();
   

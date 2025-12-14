@@ -3,6 +3,8 @@ import { getSession } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 import AdminConfigForm from './AdminConfigForm';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminPage() {
   const session = await getSession();
   
@@ -36,7 +38,7 @@ export default async function AdminPage() {
           <StatCard label="已接受" value={acceptedCount} color="green" />
           <StatCard label="已查看" value={openedCount} color="blue" />
           <StatCard label="已拒绝" value={declinedCount} color="red" />
-          <StatCard label="接受率" value={`${acceptanceRate}%`} color="purple" />
+          <StatCard label="接受率" value={`${acceptanceRate}%`} color="brand" />
         </div>
 
         {/* Navigation */}
@@ -63,7 +65,7 @@ function StatCard({ label, value, color = 'gray' }: { label: string; value: stri
     green: 'bg-green-900/50 border-green-500',
     blue: 'bg-blue-900/50 border-blue-500',
     red: 'bg-red-900/50 border-red-500',
-    purple: 'bg-purple-900/50 border-purple-500',
+    brand: 'bg-brand/20 border-brand/50',
   };
 
   return (

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Realsee Overseas 2025 Poincaré Device Internal Purchase Meeting",
+  title: "Realsee 2025 Poincaré Device Purchase Meeting",
   description: "Please contact your business partner to get an exclusive invitation link.",
   robots: {
     index: false, // Default to noindex for safety, override in specific pages if needed (though we want all private mostly)
