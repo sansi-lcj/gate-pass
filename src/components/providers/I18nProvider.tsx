@@ -1,42 +1,48 @@
-'use client';
+"use client";
 
-import { I18nextProvider } from 'react-i18next';
-import i18next from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import resourcesToBackend from 'i18next-resources-to-backend';
-import { useMemo } from 'react';
+import { I18nextProvider } from "react-i18next";
+import i18next from "i18next";
+import { initReactI18next } from "react-i18next";
+import resourcesToBackend from "i18next-resources-to-backend";
+import { useMemo } from "react";
 
 type I18nProviderProps = {
   children: React.ReactNode;
   locale: string;
-  resources: Record<string, any>;
+  resources: Record<string, unknown>;
 };
 
-export default function I18nProvider({ children, locale, resources }: I18nProviderProps) {
+export default function I18nProvider({
+  children,
+  locale,
+  resources,
+}: I18nProviderProps) {
   const i18n = useMemo(() => {
     const instance = i18next.createInstance();
-    
+
     instance
       .use(initReactI18next)
-      .use(resourcesToBackend((language: string, namespace: string) => {
-        // This is primarily for lazy loading if needed, but we hydration with resources
-        return import(`../../../messages/${language}.json`);
-      }))
+      .use(
+        resourcesToBackend((language: string, _namespace: string) => {
+          // This is primarily for lazy loading if needed, but we hydration with resources
+          return import(`../../../messages/${language}.json`);
+        })
+      )
       .init({
         lng: locale,
         resources: {
           [locale]: {
-            translation: resources // 'translation' is default namespace
-          }
+            translation: resources, // 'translation' is default namespace
+          },
         },
-        fallbackLng: 'en',
+        fallbackLng: "en",
         interpolation: {
           escapeValue: false, // React already safes from xss
-          prefix: '{',
-          suffix: '}'
-        }
+          prefix: "{",
+          suffix: "}",
+        },
       });
-      
+
     return instance;
   }, [locale, resources]);
 

@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import { useActionState } from 'react';
-import { loginAction } from './action';
+import { useActionState } from "react";
+import { loginAction } from "./action";
 
 export default function LoginPage() {
   const [state, action, isPending] = useActionState(loginAction, null);
@@ -19,12 +19,14 @@ export default function LoginPage() {
           <h1 className="text-3xl font-bold bg-gradient-to-r from-brand-light to-brand-secondary bg-clip-text text-transparent">
             邀请函系统
           </h1>
-          <p className="text-gray-400 text-sm mt-2">如影随形 Poincaré 内购会</p>
+          <p className="text-gray-400 text-sm mt-2">如视科技 Poincaré 内购会</p>
         </div>
 
         <form action={action} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">用户编码</label>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              用户编码
+            </label>
             <input
               name="salesCode"
               type="text"
@@ -35,7 +37,9 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">密码</label>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              密码
+            </label>
             <input
               name="password"
               type="password"
@@ -56,7 +60,7 @@ export default function LoginPage() {
             disabled={isPending}
             className="w-full py-3 px-4 bg-gradient-to-r from-brand to-brand-secondary hover:from-brand-light hover:to-brand-secondary text-white font-medium rounded-md shadow-lg shadow-brand/20 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isPending ? '登录中...' : '登录'}
+            {isPending ? "登录中..." : "登录"}
           </button>
         </form>
 
@@ -67,4 +71,3 @@ export default function LoginPage() {
     </div>
   );
 }
-

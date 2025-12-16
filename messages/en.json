@@ -1,7 +1,7 @@
 {
   "Invitation": {
     "greeting": "Dear {name},",
-    "title": "Realsee 2025 Poincaré Purchase Meeting",
+    "title": "Realsee Insider Access - Poincare Premiere",
     "subtitle": "Exclusive Invitation | Limited Time Offer | New Product Experience",
     "event_time_label": "Event Time",
     "event_time_local": "(Your Local Time)",
@@ -11,10 +11,10 @@
       "item3": "Live Product Expert Demonstration"
     },
     "benefits_title": "Exclusive Benefits",
-    "benefits_desc": "Accept the invitation to unlock your exclusive discount code",
-    "accept_btn": "Accept Invitation",
+    "benefits_desc": "Claim your spot to unlock your exclusive discount code",
+    "accept_btn": "Claim My Spot Now",
     "decline_btn": "Unable to Attend",
-    "accepted_title": "Thank You for Confirming!",
+    "accepted_title": "Spot Confirmed!",
     "accepted_desc": "Your exclusive invitation code has been generated.",
     "code_label": "Your Discount Code",
     "meeting_link_label": "Join Meeting",

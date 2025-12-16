@@ -4,7 +4,7 @@ export interface InvitationData {
   guestName: string;
   uniqueToken: string;
   discountCode: string | null;
-  status: 'PENDING' | 'OPENED' | 'ACCEPTED' | 'DECLINED';
+  status: "PENDING" | "OPENED" | "ACCEPTED" | "DECLINED";
   language: string;
   eventTime: string; // ISO 8601
   eventEndTime?: string | null;
@@ -12,8 +12,10 @@ export interface InvitationData {
 }
 
 // RTL support
-export const rtlLocales = ['ar', 'he'] as const;
-export const isRtl = (locale: string) => rtlLocales.includes(locale as any);
+export const rtlLocales = ["ar", "he"] as const;
+type RtlLocale = (typeof rtlLocales)[number];
+export const isRtl = (locale: string) =>
+  rtlLocales.includes(locale as RtlLocale);
 
 export interface InvitationProps {
   data: InvitationData;
@@ -30,20 +32,20 @@ export function isEventEnded(eventEndTime: string | null | undefined): boolean {
 export function formatLocalTime(isoTime: string, locale: string): string {
   try {
     const localeMap: Record<string, string> = {
-      'en': 'en-US',
-      'zh-CN': 'zh-CN',
-      'zh-TW': 'zh-TW',
-      'ja': 'ja-JP',
-      'ko': 'ko-KR',
-      'ar': 'ar-SA',
-      'id': 'id-ID',
-      'th': 'th-TH',
-      'vi': 'vi-VN',
+      en: "en-US",
+      "zh-CN": "zh-CN",
+      "zh-TW": "zh-TW",
+      ja: "ja-JP",
+      ko: "ko-KR",
+      ar: "ar-SA",
+      id: "id-ID",
+      th: "th-TH",
+      vi: "vi-VN",
     };
-    const dateLocale = localeMap[locale] || 'en-US';
+    const dateLocale = localeMap[locale] || "en-US";
     return new Intl.DateTimeFormat(dateLocale, {
-      dateStyle: 'full',
-      timeStyle: 'short',
+      dateStyle: "full",
+      timeStyle: "short",
     }).format(new Date(isoTime));
   } catch {
     return isoTime; // Fallback to raw string

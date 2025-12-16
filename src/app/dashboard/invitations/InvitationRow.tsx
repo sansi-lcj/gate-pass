@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 interface Invitation {
   id: string;
@@ -11,17 +11,22 @@ interface Invitation {
   language: string;
   visitCount: number;
   createdAt: Date;
-  style: { name: string };
+  styleKey: string;
 }
 
 const statusColors: Record<string, string> = {
-  PENDING: 'bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400',
-  OPENED: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-  ACCEPTED: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
-  DECLINED: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400',
+  PENDING: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400",
+  OPENED: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+  ACCEPTED:
+    "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+  DECLINED: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
 };
 
-export default function InvitationRow({ invitation: inv }: { invitation: Invitation }) {
+export default function InvitationRow({
+  invitation: inv,
+}: {
+  invitation: Invitation;
+}) {
   const [showQR, setShowQR] = useState(false);
   const [qrDataUrl, setQrDataUrl] = useState<string | null>(null);
 
@@ -30,14 +35,14 @@ export default function InvitationRow({ invitation: inv }: { invitation: Invitat
       setShowQR(false);
       return;
     }
-    
+
     try {
       const res = await fetch(`/api/qr/${inv.uniqueToken}`);
       const data = await res.json();
       setQrDataUrl(data.qrCode);
       setShowQR(true);
-    } catch (error) {
-      console.error('Failed to load QR code');
+    } catch (_error) {
+      console.error("Failed to load QR code");
     }
   };
 
@@ -48,7 +53,11 @@ export default function InvitationRow({ invitation: inv }: { invitation: Invitat
           <span className="font-medium">{inv.guestName}</span>
         </td>
         <td className="px-4 py-3">
-          <span className={`inline-flex px-2 py-0.5 text-xs rounded-full font-medium ${statusColors[inv.status] || statusColors.PENDING}`}>
+          <span
+            className={`inline-flex px-2 py-0.5 text-xs rounded-full font-medium ${
+              statusColors[inv.status] || statusColors.PENDING
+            }`}
+          >
             {inv.status}
           </span>
         </td>
@@ -59,13 +68,13 @@ export default function InvitationRow({ invitation: inv }: { invitation: Invitat
           {inv.language}
         </td>
         <td className="px-4 py-3 text-xs font-mono text-gray-500">
-          {inv.discountCode || '-'}
+          {inv.discountCode || "-"}
         </td>
         <td className="px-4 py-3 text-sm">
           <div className="flex items-center gap-2">
-            <a 
-              href={`/invite/${inv.uniqueToken}`} 
-              target="_blank" 
+            <a
+              href={`/invite/${inv.uniqueToken}`}
+              target="_blank"
               className="text-blue-500 hover:underline text-xs"
             >
               Open
@@ -77,7 +86,11 @@ export default function InvitationRow({ invitation: inv }: { invitation: Invitat
               QR
             </button>
             <button
-              onClick={() => navigator.clipboard.writeText(`${window.location.origin}/invite/${inv.uniqueToken}`)}
+              onClick={() =>
+                navigator.clipboard.writeText(
+                  `${window.location.origin}/invite/${inv.uniqueToken}`
+                )
+              }
               className="text-xs px-2 py-0.5 bg-gray-200 dark:bg-gray-700 rounded hover:bg-gray-300 dark:hover:bg-gray-600"
             >
               Copy
@@ -92,10 +105,16 @@ export default function InvitationRow({ invitation: inv }: { invitation: Invitat
         <tr>
           <td colSpan={7} className="bg-gray-50 dark:bg-gray-900 p-4">
             <div className="flex items-center gap-4">
-              <img src={qrDataUrl} alt="QR Code" className="w-32 h-32 border rounded" />
+              <img
+                src={qrDataUrl}
+                alt="QR Code"
+                className="w-32 h-32 border rounded"
+              />
               <div className="text-sm text-gray-600 dark:text-gray-400">
                 <p>Scan to open invitation</p>
-                <p className="font-mono text-xs mt-2">{window.location.origin}/invite/{inv.uniqueToken}</p>
+                <p className="font-mono text-xs mt-2">
+                  {window.location.origin}/invite/{inv.uniqueToken}
+                </p>
               </div>
             </div>
           </td>

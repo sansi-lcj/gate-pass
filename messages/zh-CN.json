@@ -1,20 +1,20 @@
 {
   "Invitation": {
     "greeting": "尊敬的 {name} 先生/女士，",
-    "title": "如视海外2025年庞加莱线上内购会",
-    "subtitle": "专属邀请 | 限时特惠 | 新品体验",
+    "title": "Realsee 内部通道 - Poincaré 首发",
+    "subtitle": "专属邀请 | 限时特惠 | 新品抢鲜",
     "event_time_label": "活动时间",
     "event_time_local": "（您的当地时间）",
     "highlights": {
-      "item1": "庞加莱系列新品首次内购体验",
+      "item1": "Poincaré 系列新品首次内购",
       "item2": "专属内购价格",
       "item3": "产品专家在线演示"
     },
-    "benefits_title": "专属福利",
-    "benefits_desc": "接受邀请即可解锁您的专属折扣码",
-    "accept_btn": "接受邀请",
+    "benefits_title": "专属权益",
+    "benefits_desc": "立即抢占名额，解锁您的专属折扣码",
+    "accept_btn": "立即抢占名额",
     "decline_btn": "暂时无法参加",
-    "accepted_title": "感谢您的确认！",
+    "accepted_title": "名额已确认！",
     "accepted_desc": "您的专属邀请码已生成。",
     "code_label": "专属折扣码",
     "meeting_link_label": "进入会议",
