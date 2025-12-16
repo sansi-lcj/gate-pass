@@ -74,7 +74,7 @@ export default function DarkMatter({ data }: InvitationProps) {
             className="h-6 w-auto"
           />
           <span className="text-gray-400 text-xs tracking-[0.3em]">
-            POINCARÉ
+            POINCARE
           </span>
         </div>
 

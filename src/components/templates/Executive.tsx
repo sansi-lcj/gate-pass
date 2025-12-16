@@ -43,9 +43,9 @@ export default function Executive({ data }: InvitationProps) {
               height={32}
               className="h-6 w-auto"
             />
-            <div className="h-4 w-px bg-slate-600"></div>
-            <span className="text-slate-400 text-xs tracking-[0.2em]">
-              POINCARÉ
+            <div className="h-4 w-px bg-slate-600 mx-4"></div>
+            <span className="text-slate-400 text-xs tracking-[0.2em] text-end">
+              POINCARE
             </span>
           </div>
 

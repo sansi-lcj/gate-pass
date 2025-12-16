@@ -62,7 +62,7 @@ export default function TechFuture({ data }: InvitationProps) {
             className="h-8 w-auto"
           />
           <span className="text-blue-400 text-sm border border-blue-400 px-2 py-1">
-            POINCARÉ
+            POINCARE
           </span>
         </div>
 
@@ -117,7 +117,7 @@ export default function TechFuture({ data }: InvitationProps) {
         </div>
 
         {/* [4] Event Details */}
-        <div className="text-left border-l-2 border-blue-500 pl-6 my-8">
+        <div className="text-start border-l-2 border-blue-500 pl-6 my-8 rtl:border-l-0 rtl:border-r-2 rtl:pl-0 rtl:pr-6">
           <p className="text-gray-500 text-sm uppercase">
             {t("Invitation.event_time_label")}
           </p>

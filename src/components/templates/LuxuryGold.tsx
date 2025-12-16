@@ -53,7 +53,7 @@ export default function LuxuryGold({ data }: InvitationProps) {
             className="h-8 w-auto mx-auto"
           />
           <p className="text-amber-400 text-xs tracking-[0.5em] mt-4 font-light">
-            POINCARÉ COLLECTION
+            POINCARE COLLECTION
           </p>
         </div>
 

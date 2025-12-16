@@ -50,7 +50,7 @@ export default function AbstractArt({ data }: InvitationProps) {
             className="h-8 w-auto"
           />
           <span className="text-violet-600 text-xs bg-violet-100 px-3 py-1 rounded-full">
-            POINCARÉ
+            POINCARE
           </span>
         </div>
 

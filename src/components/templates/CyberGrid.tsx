@@ -62,7 +62,7 @@ export default function CyberGrid({ data }: InvitationProps) {
             className="h-8 w-auto"
           />
           <span className="text-purple-400 text-sm border border-purple-400/50 px-3 py-1 rounded-full">
-            POINCARÉ
+            POINCARE
           </span>
         </div>
 
@@ -137,7 +137,7 @@ export default function CyberGrid({ data }: InvitationProps) {
           <p className="text-2xl text-white font-bold mb-1 font-mono">
             {localTime || "Calculating..."}
           </p>
-          <p className="text-purple-400 text-xs text-right">
+          <p className="text-purple-400 text-xs text-end">
             {t("Invitation.event_time_local")}
           </p>
 

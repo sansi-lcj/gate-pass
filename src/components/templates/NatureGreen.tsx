@@ -62,7 +62,7 @@ export default function NatureGreen({ data }: InvitationProps) {
             className="h-6 w-auto"
           />
           <span className="text-green-600 bg-green-100 px-3 py-1 rounded-full text-xs">
-            🌿 POINCARÉ
+            🌿 POINCARE
           </span>
         </div>
 

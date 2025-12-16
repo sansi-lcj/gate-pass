@@ -64,48 +64,73 @@ function getCategoryColor(key: string) {
 // Step indicator component
 function StepIndicator({ currentStep }: { currentStep: number }) {
   const steps = [
-    { num: 1, label: "选择模板", desc: "选择适合主题的风格" },
-    { num: 2, label: "填写信息", desc: "输入嘉宾与活动详情" },
-    { num: 3, label: "确认生成", desc: "最后确认并发送" },
+    { num: 1, label: "选择模板", desc: "Select Template" },
+    { num: 2, label: "填写信息", desc: "Enter Details" },
+    { num: 3, label: "确认生成", desc: "Confirmation" },
   ];
 
   return (
-    <div className="flex items-center justify-center gap-4 mb-8">
-      {steps.map((step, i) => (
-        <div key={step.num} className="flex items-center">
-          <div className="flex flex-col items-center">
-            <div className="flex items-center gap-2">
-              <div
-                className={`flex items-center justify-center w-8 h-8 rounded-full font-bold transition-all ${
-                  currentStep >= step.num
-                    ? "bg-blue-600 text-white"
-                    : "bg-gray-200 dark:bg-gray-700 text-gray-500"
-                }`}
-              >
-                {currentStep > step.num ? "✓" : step.num}
-              </div>
-              <span
-                className={`text-sm font-medium ${
-                  currentStep >= step.num
-                    ? "text-blue-600 dark:text-blue-400"
-                    : "text-gray-400"
-                }`}
-              >
-                {step.label}
-              </span>
-            </div>
-          </div>
-          {i < steps.length - 1 && (
+    <div className="flex items-center justify-center w-full max-w-4xl mx-auto mb-12 relative px-4">
+      {/* Background Line */}
+      <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-200 dark:bg-gray-800 -z-10 rounded-full" />
+
+      {/* Active Line Progress */}
+      <div
+        className="absolute top-1/2 left-0 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 -z-10 rounded-full transition-all duration-500 ease-out"
+        style={{ width: `${((currentStep - 1) / (steps.length - 1)) * 100}%` }}
+      />
+
+      <div className="flex justify-between w-full">
+        {steps.map((step) => {
+          const isActive = currentStep >= step.num;
+          const isCompleted = currentStep > step.num;
+
+          return (
             <div
-              className={`w-12 h-0.5 mx-2 ${
-                currentStep > step.num
-                  ? "bg-blue-600"
-                  : "bg-gray-200 dark:bg-gray-700"
-              }`}
-            />
-          )}
-        </div>
-      ))}
+              key={step.num}
+              className="flex flex-col items-center group relative"
+            >
+              <div
+                className={`w-12 h-12 rounded-full flex items-center justify-center border-4 transition-all duration-500 z-10 ${
+                  isActive
+                    ? "bg-white dark:bg-black border-blue-600 text-blue-600 shadow-[0_0_20px_rgba(37,99,235,0.3)] scale-110"
+                    : "bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-gray-400"
+                }`}
+              >
+                {isCompleted ? (
+                  <span className="text-lg font-bold">✓</span>
+                ) : (
+                  <span
+                    className={`text-lg font-bold ${
+                      isActive ? "text-blue-600" : "text-gray-400"
+                    }`}
+                  >
+                    {step.num}
+                  </span>
+                )}
+              </div>
+              <div
+                className={`mt-4 flex flex-col items-center transition-all duration-300 ${
+                  isActive
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-60 translate-y-1"
+                }`}
+              >
+                <span
+                  className={`text-sm font-bold ${
+                    isActive ? "text-gray-900 dark:text-white" : "text-gray-500"
+                  }`}
+                >
+                  {step.label}
+                </span>
+                <span className="text-[10px] text-gray-400 uppercase tracking-wide font-medium mt-1">
+                  {step.desc}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -211,65 +236,88 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
         </div>
 
         {/* Template Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto pb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl mx-auto pb-20 px-4">
           {filteredStyles.map((style) => (
             <div
               key={style.key}
-              className="group cursor-pointer flex flex-col h-full"
+              className="group cursor-pointer flex flex-col h-full perspective-1000"
             >
               <div
                 onClick={() => handleSelectTemplate(style.key)}
-                className="relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 flex-1"
+                className="relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-all duration-500 transform hover:-translate-y-2 flex-1 border border-gray-100 dark:border-gray-800 group-hover:border-blue-500/30"
               >
                 {/* Recommended Badge */}
                 {RECOMMENDED_TEMPLATES.includes(style.key) && (
-                  <div className="absolute top-3 left-3 z-20 bg-yellow-400 text-yellow-950 text-xs font-bold px-2 py-1 rounded shadow-sm">
-                    ✨ 推荐 / Recommended
+                  <div className="absolute top-0 right-0 z-20">
+                    <div className="bg-gradient-to-l from-yellow-400 to-amber-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-lg flex items-center gap-1">
+                      ✨ 推荐 / NEW
+                    </div>
                   </div>
                 )}
 
                 {/* Template Preview Card */}
                 <div
-                  className={`h-48 bg-gradient-to-br ${getCategoryColor(
+                  className={`h-64 bg-gradient-to-br ${getCategoryColor(
                     style.key
                   )} relative overflow-hidden`}
                 >
+                  {/* Decorative glass effect overlay */}
+                  <div className="absolute inset-0 bg-white/5 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
                   {/* Decorative pattern */}
-                  <div className="absolute inset-0 opacity-20">
-                    <div className="absolute top-4 right-4 w-32 h-32 border-2 border-white rounded-full" />
-                    <div className="absolute bottom-4 left-4 w-24 h-24 border border-white rounded-full" />
+                  <div className="absolute inset-0 opacity-20 mix-blend-overlay">
+                    <div className="absolute top-4 right-4 w-32 h-32 border-2 border-white/30 rounded-full blur-[1px]" />
+                    <div className="absolute bottom-4 left-4 w-40 h-40 border border-white/20 rounded-full blur-[1px]" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('/assets/noise.png')] opacity-30" />
                   </div>
-                  {/* Product image hint */}
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-24 opacity-40">
+
+                  {/* Product image hint - Centered and Larger */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 opacity-80 group-hover:scale-110 transition-transform duration-700 ease-out">
                     <Image
                       src="/images/poincare/poincare-transparent.png"
                       alt="Poincare"
                       fill
-                      className="object-contain"
+                      className="object-contain drop-shadow-2xl"
                     />
                   </div>
+
                   {/* Hover overlay with button */}
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-4 text-center">
-                    <p className="text-white text-sm mb-4 line-clamp-2">
-                      {getTemplateDescription(style.key)}
-                    </p>
-                    <button className="bg-white text-black text-sm font-bold py-2 px-6 rounded-full hover:bg-gray-100 transition-colors transform translate-y-4 group-hover:translate-y-0 duration-300">
-                      使用此模板
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-end pb-8 text-center backdrop-blur-[2px]">
+                    <button className="bg-white text-black text-xs font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-all transform translate-y-4 group-hover:translate-y-0 duration-300 shadow-xl uppercase tracking-wider">
+                      Select Template
                     </button>
                   </div>
                 </div>
-                {/* Template name */}
-                <div className="p-4 border-t border-gray-100 dark:border-gray-700">
-                  <div className="flex justify-between items-center mb-1">
-                    <h3 className="font-bold text-gray-800 dark:text-white">
+
+                {/* Template name & Info */}
+                <div className="p-5 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-black">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="font-bold text-gray-900 dark:text-gray-100 text-lg group-hover:text-blue-500 transition-colors">
                       {style.name}
                     </h3>
                   </div>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    {getCategory(style.key) === "tech" && "科技风格"}
-                    {getCategory(style.key) === "business" && "商务风格"}
-                    {getCategory(style.key) === "creative" && "创意风格"}
-                    {getCategory(style.key) === "regional" && "地域特色"}
+
+                  <div className="flex items-center gap-2 mb-3">
+                    <span
+                      className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
+                        getCategory(style.key) === "tech"
+                          ? "border-blue-200 text-blue-600 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-400"
+                          : getCategory(style.key) === "business"
+                          ? "border-slate-200 text-slate-600 bg-slate-50 dark:bg-slate-900/20 dark:border-slate-800 dark:text-slate-400"
+                          : getCategory(style.key) === "creative"
+                          ? "border-purple-200 text-purple-600 bg-purple-50 dark:bg-purple-900/20 dark:border-purple-800 dark:text-purple-400"
+                          : "border-amber-200 text-amber-600 bg-amber-50 dark:bg-amber-900/20 dark:border-amber-800 dark:text-amber-400"
+                      }`}
+                    >
+                      {getCategory(style.key) === "tech" && "TECH"}
+                      {getCategory(style.key) === "business" && "BUSINESS"}
+                      {getCategory(style.key) === "creative" && "CREATIVE"}
+                      {getCategory(style.key) === "regional" && "REGIONAL"}
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2 leading-relaxed">
+                    {getTemplateDescription(style.key)}
                   </p>
                 </div>
               </div>
@@ -311,96 +359,120 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
           </div>
 
           {/* Form Panel - 30% */}
-          <div className="w-96 bg-white dark:bg-black border-l border-gray-200 dark:border-gray-800 p-6 overflow-y-auto z-10 shadow-lg">
-            <div className="flex items-center justify-between mb-6">
-              <button
-                onClick={() => setStep(1)}
-                className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 flex items-center gap-1 text-sm font-medium"
-              >
-                ← 更换模板
-              </button>
-            </div>
-
-            <div className="mb-8">
-              <h2 className="text-xl font-bold mb-1 dark:text-white">
-                填写邀请信息
-              </h2>
-              <p className="text-sm text-gray-500">
-                当前选择：{selectedStyle?.name}
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  嘉宾姓名 <span className="text-red-500">*</span>
-                </label>
-                <input
-                  name="guestName"
-                  type="text"
-                  value={formData.guestName}
-                  onChange={handleValuesChange}
-                  placeholder="例如：李明 / John Doe"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-transparent dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
-                  autoFocus
-                />
+          <div className="w-full md:w-[400px] lg:w-[450px] bg-white dark:bg-black border-l border-gray-200 dark:border-gray-800 p-8 overflow-y-auto z-20 shadow-[0_0_50px_rgba(0,0,0,0.1)] flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-8">
+                <button
+                  onClick={() => setStep(1)}
+                  className="text-gray-500 hover:text-gray-900 dark:hover:text-white flex items-center gap-2 text-sm font-medium transition-colors"
+                >
+                  <span className="text-lg">←</span> 更换模板
+                </button>
+                <span className="text-xs font-mono text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                  STEP 02/03
+                </span>
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  邀请函语言
-                </label>
-                <div className="relative">
-                  <select
-                    name="language"
-                    value={formData.language}
+              <div className="mb-10">
+                <h2 className="text-3xl font-bold mb-2 dark:text-white bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">
+                  Design Invitation
+                </h2>
+                <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <span>Selected:</span>
+                  <span className="font-bold text-blue-600 dark:text-blue-400">
+                    {selectedStyle?.name}
+                  </span>
+                </div>
+              </div>
+
+              <div className="space-y-8 animate-in slide-in-from-right-4 duration-500">
+                <div className="group">
+                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 group-focus-within:text-blue-500 transition-colors">
+                    Guest Name <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    name="guestName"
+                    type="text"
+                    value={formData.guestName}
                     onChange={handleValuesChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-transparent dark:text-white focus:ring-2 focus:ring-blue-500 outline-none appearance-none"
-                  >
-                    <option value="zh-CN">🇨🇳 简体中文</option>
-                    <option value="zh-TW">🇹🇼 繁體中文</option>
-                    <option value="en">🇺🇸 English</option>
-                    <option value="ja">🇯🇵 日本語</option>
-                    <option value="ko">🇰🇷 한국어</option>
-                    <option value="ar">🇸🇦 العربية</option>
-                    <option value="id">🇮🇩 Indonesia</option>
-                    <option value="th">🇹🇭 ภาษาไทย</option>
-                    <option value="vi">🇻🇳 Tiếng Việt</option>
-                    <option value="de">🇩🇪 Deutsch</option>
-                    <option value="fr">🇫🇷 Français</option>
-                    <option value="es">🇪🇸 Español</option>
-                  </select>
-                  <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
-                    ▼
+                    placeholder="e.g. John Doe / 李明"
+                    className="w-full px-0 py-3 border-b-2 border-gray-200 dark:border-gray-800 bg-transparent text-lg dark:text-white focus:border-blue-500 focus:outline-none transition-all placeholder-gray-300 dark:placeholder-gray-700"
+                    autoFocus
+                  />
+                </div>
+
+                <div className="group">
+                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 group-focus-within:text-blue-500 transition-colors">
+                    Language
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="language"
+                      value={formData.language}
+                      onChange={handleValuesChange}
+                      className="w-full px-4 py-3 border border-gray-200 dark:border-gray-800 rounded-lg bg-gray-50 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none appearance-none transition-all hover:bg-gray-100 dark:hover:bg-gray-800"
+                    >
+                      <option value="zh-CN">
+                        🇨🇳 简体中文 (Simplified Chinese)
+                      </option>
+                      <option value="zh-TW">
+                        🇹🇼 繁體中文 (Traditional Chinese)
+                      </option>
+                      <option value="en">🇺🇸 English</option>
+                      <option value="ja">🇯🇵 日本語 (Japanese)</option>
+                      <option value="ko">🇰🇷 한국어 (Korean)</option>
+                      <option value="ar">🇸🇦 العربية (Arabic)</option>
+                      <option value="id">🇮🇩 Indonesia</option>
+                      <option value="th">🇹🇭 ภาษาไทย (Thai)</option>
+                      <option value="vi">🇻🇳 Tiếng Việt (Vietnamese)</option>
+                      <option value="de">🇩🇪 Deutsch (German)</option>
+                      <option value="fr">🇫🇷 Français (French)</option>
+                      <option value="es">🇪🇸 Español (Spanish)</option>
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
+                    </div>
                   </div>
                 </div>
-                <p className="text-xs text-gray-400 mt-1">
-                  预览将即时切换到所选语言
-                </p>
-              </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  销售备注 (仅内部可见)
-                </label>
-                <textarea
-                  name="salesNote"
-                  rows={3}
-                  value={formData.salesNote}
-                  onChange={handleValuesChange}
-                  placeholder="关于此嘉宾的职位、公司或跟进情况..."
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-transparent dark:text-white resize-none focus:ring-2 focus:ring-blue-500 outline-none"
-                />
+                <div className="group">
+                  <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 group-focus-within:text-blue-500 transition-colors">
+                    Internal Note (Private)
+                  </label>
+                  <textarea
+                    name="salesNote"
+                    rows={3}
+                    value={formData.salesNote}
+                    onChange={handleValuesChange}
+                    placeholder="Add details about the guest..."
+                    className="w-full px-4 py-3 border border-gray-200 dark:border-gray-800 rounded-lg bg-gray-50 dark:bg-gray-900 dark:text-white resize-none focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all hover:bg-gray-100 dark:hover:bg-gray-800"
+                  />
+                </div>
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800">
+            <div className="pt-8">
               <button
                 onClick={() => setStep(3)}
                 disabled={!formData.guestName.trim()}
-                className="w-full py-4 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold rounded-lg shadow-lg transition-all transform active:scale-95"
+                className="w-full py-4 bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200 disabled:bg-gray-300 dark:disabled:bg-gray-700 disabled:cursor-not-allowed font-bold text-sm uppercase tracking-widest rounded-lg transition-all transform active:scale-95 flex items-center justify-center gap-2 group"
               >
-                下一步：确认生成 →
+                Continue to Review
+                <span className="group-hover:translate-x-1 transition-transform">
+                  →
+                </span>
               </button>
             </div>
           </div>
@@ -414,124 +486,133 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
     <div className="min-h-[calc(100vh-120px)] p-6">
       <StepIndicator currentStep={3} />
 
-      <div className="max-w-2xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold dark:text-white mb-2">
-            确认邀请函信息
+      <div className="max-w-4xl mx-auto flex flex-col items-center">
+        <div className="text-center mb-12 animate-in fade-in-50 slide-in-from-bottom-4 duration-700">
+          <h1 className="text-4xl font-bold dark:text-white mb-3 tracking-tight">
+            Ready to Invite?
           </h1>
           <p className="text-gray-500 dark:text-gray-400">
-            即将生成邀请函，请最后确认一次内容
+            Review the details before generating the unique invitation link.
           </p>
         </div>
 
-        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 mb-6 border border-gray-100 dark:border-gray-800">
-          <div className="space-y-4">
-            <div className="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800 items-center">
-              <span className="text-gray-500 dark:text-gray-400">所选模板</span>
-              <div className="flex items-center gap-2">
-                <span className="font-bold dark:text-white text-lg">
+        <div className="w-full max-w-lg bg-white dark:bg-zinc-900 rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-500 border border-gray-100 dark:border-zinc-800 relative">
+          {/* Ticket Decorative Elements */}
+          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
+          <div className="absolute -left-3 top-1/3 w-6 h-6 bg-gray-50 dark:bg-black rounded-full" />
+          <div className="absolute -right-3 top-1/3 w-6 h-6 bg-gray-50 dark:bg-black rounded-full" />
+
+          {/* Perforated Line */}
+          <div className="absolute top-1/3 left-4 right-4 border-b-2 border-dashed border-gray-200 dark:border-zinc-700 opacity-50" />
+
+          <div className="p-8 pb-12">
+            <div className="flex justify-between items-start mb-8">
+              <div>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+                  Invitation For
+                </p>
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                  {formData.guestName}
+                </h2>
+              </div>
+              <div className="text-right">
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
+                  Template
+                </p>
+                <span className="inline-block px-3 py-1 bg-gray-100 dark:bg-zinc-800 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300">
                   {selectedStyle?.name}
                 </span>
-                <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded">
-                  {getCategory(selectedStyleKey || "") === "tech" && "科技"}
-                  {getCategory(selectedStyleKey || "") === "business" && "商务"}
-                  {getCategory(selectedStyleKey || "") === "creative" && "创意"}
-                  {getCategory(selectedStyleKey || "") === "regional" && "地域"}
-                </span>
               </div>
             </div>
-            <div className="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800 items-center">
-              <span className="text-gray-500 dark:text-gray-400">嘉宾姓名</span>
-              <span className="font-bold text-xl dark:text-white">
-                {formData.guestName}
-              </span>
-            </div>
-            <div className="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800 items-center">
-              <span className="text-gray-500 dark:text-gray-400">邀请语言</span>
-              <span className="font-medium dark:text-white">
-                {formData.language}
-              </span>
-            </div>
-            {formData.salesNote && (
-              <div className="flex justify-between py-3">
-                <span className="text-gray-500 dark:text-gray-400 min-w-[60px]">
-                  备注
-                </span>
-                <span className="font-medium dark:text-white text-right">
-                  {formData.salesNote}
-                </span>
+
+            <div className="grid grid-cols-2 gap-8 mb-8 mt-12">
+              <div>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
+                  Language
+                </p>
+                <p className="text-lg font-medium dark:text-white flex items-center gap-2">
+                  {/* Simple mapping for flag display could be added here */}
+                  {formData.language === "zh-CN" && "🇨🇳"}
+                  {formData.language === "en" && "🇺🇸"}
+                  {formData.language === "ja" && "🇯🇵"}
+                  {formData.language}
+                </p>
               </div>
-            )}
+              <div>
+                <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
+                  Internal Note
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 italic">
+                  {formData.salesNote || "No notes provided."}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gray-50 dark:bg-zinc-800/50 p-6 flex flex-col gap-4 border-t border-gray-100 dark:border-zinc-800">
+            <form action={action} className="w-full">
+              <input
+                type="hidden"
+                name="styleKey"
+                value={selectedStyleKey || ""}
+              />
+              <input
+                type="hidden"
+                name="guestName"
+                value={formData.guestName}
+              />
+              <input type="hidden" name="language" value={formData.language} />
+              <input
+                type="hidden"
+                name="salesNote"
+                value={formData.salesNote}
+              />
+
+              {state?.error && (
+                <div className="mb-4 p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg flex items-center gap-2 text-sm">
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  {state.error}
+                </div>
+              )}
+
+              <div className="flex gap-4">
+                <button
+                  type="button"
+                  onClick={() => setStep(2)}
+                  className="px-6 py-4 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-700 text-gray-700 dark:text-gray-300 font-bold rounded-xl transition-all"
+                >
+                  Edit
+                </button>
+                <button
+                  type="submit"
+                  disabled={isPending}
+                  className="flex-1 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-[0_10px_20px_rgba(37,99,235,0.3)] hover:shadow-[0_15px_30px_rgba(37,99,235,0.4)] transition-all transform hover:-translate-y-1 disabled:opacity-70 disabled:transform-none disabled:shadow-none relative overflow-hidden group"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    {isPending ? "Generating..." : "Generate Invitation 🚀"}
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </button>
+              </div>
+            </form>
           </div>
         </div>
 
-        <form action={action}>
-          <input type="hidden" name="styleKey" value={selectedStyleKey || ""} />
-          <input type="hidden" name="guestName" value={formData.guestName} />
-          <input type="hidden" name="language" value={formData.language} />
-          <input type="hidden" name="salesNote" value={formData.salesNote} />
-
-          {state?.error && (
-            <div className="mb-4 p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg flex items-center gap-2">
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              {state.error}
-            </div>
-          )}
-
-          <div className="flex gap-4">
-            <button
-              type="button"
-              onClick={() => setStep(2)}
-              className="flex-1 py-4 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-lg transition-all"
-            >
-              ← 返回修改
-            </button>
-            <button
-              type="submit"
-              disabled={isPending}
-              className="flex-1 py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 transform hover:-translate-y-1"
-            >
-              {isPending ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                      fill="none"
-                    />
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                    />
-                  </svg>
-                  正在从量子云生成...
-                </span>
-              ) : (
-                "🚀 生成邀请函"
-              )}
-            </button>
-          </div>
-        </form>
-
-        <p className="text-center text-gray-400 text-xs mt-6">
-          生成后可以通过链接分享给嘉宾，支持随时查看访问状态
+        <p className="text-center text-gray-400 text-xs mt-8 max-w-md mx-auto">
+          By generating this invitation, a unique access token will be created.
+          You can track the status of this invitation in your dashboard.
         </p>
       </div>
     </div>

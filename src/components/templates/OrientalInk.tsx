@@ -56,9 +56,9 @@ export default function OrientalInk({ data }: InvitationProps) {
             height={32}
             className="h-6 w-auto"
           />
-          <div className="text-right">
+          <div className="text-end">
             <span className="text-stone-500 text-xs tracking-widest">
-              POINCARÉ
+              POINCARE
             </span>
             <p className="text-stone-800 text-lg font-serif">如视科技</p>
           </div>

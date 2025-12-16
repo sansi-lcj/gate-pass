@@ -56,7 +56,7 @@ export default function ArabicGeometry({ data }: InvitationProps) {
             className="h-6 w-auto"
           />
           <span className="text-amber-400 font-serif tracking-widest">
-            POINCARÉ
+            POINCARE
           </span>
         </div>
 
