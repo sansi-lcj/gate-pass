@@ -10,10 +10,11 @@ import { InvitationProps, formatLocalTime, isEventEnded } from "./types";
 export default function ArabicGeometry({ data }: InvitationProps) {
   const { t } = useTranslation();
   const [status, setStatus] = useState(data.status);
-  const localTime = useMemo(() => { return data.eventTime ? formatLocalTime(data.eventTime, data.language) : ""; }, [data.eventTime, data.language]);
+  const localTime = useMemo(() => {
+    return data.eventTime ? formatLocalTime(data.eventTime, data.language) : "";
+  }, [data.eventTime, data.language]);
   const [loading, setLoading] = useState(false);
   const eventEnded = isEventEnded(data.eventEndTime);
-
 
   const handleAccept = async () => {
     setLoading(true);
@@ -67,14 +68,43 @@ export default function ArabicGeometry({ data }: InvitationProps) {
         </h1>
         <p className="text-emerald-400/70">{t("Invitation.subtitle")}</p>
 
-        {/* Product Image */}
-        <div className="relative w-full h-56 my-8 border border-emerald-600/30 bg-emerald-900/30 rounded-lg">
-          <Image
-            src="/images/poincare/poincare-transparent.png"
-            alt="Poincaré Device"
-            fill
-            className="object-contain p-6 hover:scale-105 transition-transform duration-700"
-          />
+        {/* Product Image - Arabic Geometric Showcase */}
+        <div className="relative w-full h-80 md:h-96 my-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-900 via-teal-900 to-emerald-900 border-2 border-emerald-600/40 rounded-lg overflow-hidden shadow-2xl">
+            {/* Geometric Pattern Background */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: `
+                  repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(16, 185, 129, 0.3) 20px, rgba(16, 185, 129, 0.3) 40px),
+                  repeating-linear-gradient(-45deg, transparent, transparent 20px, rgba(20, 184, 166, 0.3) 20px, rgba(20, 184, 166, 0.3) 40px)
+                `,
+              }}
+            />
+
+            {/* Emerald Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3 bg-emerald-500/20 blur-[100px] rounded-full animate-pulse" />
+
+            {/* Product Image */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <Image
+                src="/images/poincare/poincare-transparent.png"
+                alt="Poincare Device"
+                fill
+                className="object-contain p-12 hover:scale-110 transition-all duration-1000 drop-shadow-[0_0_40px_rgba(16,185,129,0.5)] filter brightness-110"
+                priority
+              />
+            </div>
+
+            {/* Islamic Star Corners */}
+            <div className="absolute top-6 left-6 w-12 h-12 border-2 border-emerald-400/60 transform rotate-45" />
+            <div className="absolute top-6 right-6 w-12 h-12 border-2 border-teal-400/60 transform rotate-45" />
+            <div className="absolute bottom-6 left-6 w-12 h-12 border-2 border-teal-400/60 transform rotate-45" />
+            <div className="absolute bottom-6 right-6 w-12 h-12 border-2 border-emerald-400/60 transform rotate-45" />
+          </div>
+
+          {/* Outer Geometric Border */}
+          <div className="absolute -inset-1 border border-emerald-700/30 rounded-lg -z-10" />
         </div>
 
         <div className="bg-emerald-900/50 border border-emerald-600/30 rounded-lg p-6 my-8">

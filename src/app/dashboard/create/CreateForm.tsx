@@ -243,7 +243,7 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
                   <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-24 opacity-40">
                     <Image
                       src="/images/poincare/poincare-transparent.png"
-                      alt="Poincaré"
+                      alt="Poincare"
                       fill
                       className="object-contain"
                     />

@@ -9,10 +9,11 @@ import { InvitationProps, formatLocalTime, isEventEnded } from "./types";
 export default function CorporateBlue({ data }: InvitationProps) {
   const { t } = useTranslation();
   const [status, setStatus] = useState(data.status);
-  const localTime = useMemo(() => { return data.eventTime ? formatLocalTime(data.eventTime, data.language) : ""; }, [data.eventTime, data.language]);
+  const localTime = useMemo(() => {
+    return data.eventTime ? formatLocalTime(data.eventTime, data.language) : "";
+  }, [data.eventTime, data.language]);
   const [loading, setLoading] = useState(false);
   const eventEnded = isEventEnded(data.eventEndTime);
-
 
   const handleAccept = async () => {
     setLoading(true);
@@ -55,14 +56,32 @@ export default function CorporateBlue({ data }: InvitationProps) {
           </p>
         </div>
 
-        {/* Product Image */}
-        <div className="relative w-full h-56 bg-gradient-to-b from-blue-50 to-white">
-          <Image
-            src="/images/poincare/poincare-transparent.png"
-            alt="Poincaré Device"
-            fill
-            className="object-contain p-6 hover:scale-105 transition-transform duration-700"
-          />
+        {/* Product Image - Corporate Blue Showcase */}
+        <div className="relative w-full h-80 md:h-96 my-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50 border-2 border-blue-200 shadow-xl rounded-sm overflow-hidden">
+            {/* Subtle Blue Rays */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-blue-100/30 via-transparent to-transparent" />
+
+            {/* Product Image */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <Image
+                src="/images/poincare/poincare-transparent.png"
+                alt="Poincare Device"
+                fill
+                className="object-contain p-14 hover:scale-110 transition-all duration-1000 drop-shadow-[0_10px_30px_rgba(37,99,235,0.3)]"
+                priority
+              />
+            </div>
+
+            {/* Corner Accents */}
+            <div className="absolute top-6 left-6 w-10 h-10 border-l-3 border-t-3 border-blue-400/60" />
+            <div className="absolute top-6 right-6 w-10 h-10 border-r-3 border-t-3 border-blue-400/60" />
+            <div className="absolute bottom-6 left-6 w-10 h-10 border-l-3 border-b-3 border-blue-400/60" />
+            <div className="absolute bottom-6 right-6 w-10 h-10 border-r-3 border-b-3 border-blue-400/60" />
+          </div>
+
+          {/* Outer Glow */}
+          <div className="absolute -inset-0.5 bg-blue-200/50 -z-10 blur-sm rounded-sm" />
         </div>
 
         <div className="p-8 md:p-10">

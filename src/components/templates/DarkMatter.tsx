@@ -86,14 +86,69 @@ export default function DarkMatter({ data }: InvitationProps) {
         </h1>
         <p className="text-gray-500">{t("Invitation.subtitle")}</p>
 
-        {/* Product Image */}
-        <div className="relative w-full h-56 my-8 border border-gray-800 bg-gray-900/30 rounded-sm">
-          <Image
-            src="/images/poincare/poincare-transparent.png"
-            alt="Poincaré Device"
-            fill
-            className="object-contain p-6 hover:scale-105 transition-transform duration-700 opacity-90 hover:opacity-100"
-          />
+        {/* Product Image - Cosmic Showcase */}
+        <div className="relative w-full h-72 md:h-96 my-10">
+          {/* Holographic Frame */}
+          <div className="absolute inset-0 border-2 border-gray-700 rounded-lg overflow-hidden bg-gradient-to-br from-gray-950 via-indigo-950/20 to-gray-950">
+            {/* Dynamic Nebula Background */}
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-indigo-600/20 rounded-full blur-[120px] animate-pulse" />
+            <div
+              className="absolute bottom-1/4 right-1/4 w-56 h-56 bg-violet-600/15 rounded-full blur-[100px] animate-pulse"
+              style={{ animationDelay: "0.5s" }}
+            />
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-purple-700/10 rounded-full blur-[140px] animate-pulse"
+              style={{ animationDelay: "1s" }}
+            />
+
+            {/* Scanning Grid Overlay */}
+            <div
+              className="absolute inset-0 opacity-5"
+              style={{
+                backgroundImage: `
+                  linear-gradient(rgba(147, 197, 253, 0.3) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(147, 197, 253, 0.3) 1px, transparent 1px)
+                `,
+                backgroundSize: "40px 40px",
+              }}
+            />
+
+            {/* Product Image with Holographic Glow */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <div className="relative w-full h-full">
+                <Image
+                  src="/images/poincare/poincare-transparent.png"
+                  alt="Poincare Device"
+                  fill
+                  className="object-contain p-10 hover:scale-110 transition-all duration-1000 drop-shadow-[0_0_50px_rgba(139,92,246,0.5)] filter brightness-105"
+                  priority
+                />
+              </div>
+
+              {/* Holographic Light Rays */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-1 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -rotate-45 blur-sm" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-1 bg-gradient-to-r from-transparent via-white/10 to-transparent transform rotate-45 blur-sm" />
+            </div>
+
+            {/* Floating Particles */}
+            <div className="absolute inset-0 pointer-events-none">
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white/40 rounded-full animate-float"
+                  style={{
+                    left: `${20 + i * 12}%`,
+                    top: `${30 + (i % 3) * 20}%`,
+                    animationDelay: `${i * 0.3}s`,
+                    animationDuration: `${3 + (i % 2)}s`,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Outer Glow Border */}
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-violet-600/20 via-indigo-600/20 to-purple-600/20 rounded-lg blur-sm -z-10" />
         </div>
 
         <div className="border border-gray-800 bg-gray-900/50 p-6 my-8">
@@ -192,6 +247,17 @@ export default function DarkMatter({ data }: InvitationProps) {
             opacity: 0.3;
           }
           50% {
+            opacity: 1;
+          }
+        }
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0) translateX(0);
+            opacity: 0.4;
+          }
+          50% {
+            transform: translateY(-30px) translateX(10px);
             opacity: 1;
           }
         }

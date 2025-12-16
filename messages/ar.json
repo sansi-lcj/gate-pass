@@ -1,12 +1,12 @@
 {
   "Invitation": {
     "greeting": "عزيزي {name}،",
-    "title": "اجتماع الشراء الداخلي لـ Poincaré 2025",
+    "title": "اجتماع الشراء الداخلي لـ Poincare 2025",
     "subtitle": "دعوة حصرية | عرض محدود | تجربة المنتج الجديد",
     "event_time_label": "وقت الحدث",
     "event_time_local": "(التوقيت المحلي)",
     "highlights": {
-      "item1": "أول تجربة شراء داخلية لسلسلة Poincaré",
+      "item1": "أول تجربة شراء داخلية لسلسلة Poincare",
       "item2": "أسعار شراء داخلية حصرية",
       "item3": "عرض مباشر من خبراء المنتج"
     },
@@ -20,7 +20,7 @@
     "meeting_link_label": "انضم للاجتماع",
     "declined_title": "شكراً لردك",
     "declined_desc": "نأسف لعدم تمكنك من الحضور.",
-    "declined_miss": "ستفوتك: تجربة حصرية لـ Poincaré، أسعار خاصة، تواصل مباشر مع الخبراء",
+    "declined_miss": "ستفوتك: تجربة حصرية لـ Poincare، أسعار خاصة، تواصل مباشر مع الخبراء",
     "reconsider_btn": "إعادة النظر؟",
     "event_ended": "انتهى هذا الحدث.",
     "footer": "Realsee Technology"

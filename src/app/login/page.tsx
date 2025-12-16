@@ -19,7 +19,7 @@ export default function LoginPage() {
           <h1 className="text-3xl font-bold bg-gradient-to-r from-brand-light to-brand-secondary bg-clip-text text-transparent">
             邀请函系统
           </h1>
-          <p className="text-gray-400 text-sm mt-2">如视科技 Poincaré 内购会</p>
+          <p className="text-gray-400 text-sm mt-2">如视科技 Poincare 内购会</p>
         </div>
 
         <form action={action} className="space-y-6">

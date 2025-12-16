@@ -9,10 +9,11 @@ import { InvitationProps, formatLocalTime, isEventEnded } from "./types";
 export default function LuxuryGold({ data }: InvitationProps) {
   const { t } = useTranslation();
   const [status, setStatus] = useState(data.status);
-  const localTime = useMemo(() => { return data.eventTime ? formatLocalTime(data.eventTime, data.language) : ""; }, [data.eventTime, data.language]);
+  const localTime = useMemo(() => {
+    return data.eventTime ? formatLocalTime(data.eventTime, data.language) : "";
+  }, [data.eventTime, data.language]);
   const [loading, setLoading] = useState(false);
   const eventEnded = isEventEnded(data.eventEndTime);
-
 
   const handleAccept = async () => {
     setLoading(true);
@@ -68,14 +69,54 @@ export default function LuxuryGold({ data }: InvitationProps) {
           {t("Invitation.subtitle")}
         </p>
 
-        {/* Product Image */}
-        <div className="relative w-full h-56 my-8 border-y border-amber-500/20 bg-stone-900/50">
-          <Image
-            src="/images/poincare/poincare-transparent.png"
-            alt="Poincaré Device"
-            fill
-            className="object-contain p-4 hover:scale-105 transition-transform duration-700 mixture-multiply"
-          />
+        {/* Product Image - Premium Gold Showcase */}
+        <div className="relative w-full h-72 md:h-96 my-10 group">
+          {/* Outer Gold Frame */}
+          <div className="absolute inset-0 border-4 border-amber-500/40 rounded-sm transform rotate-0 group-hover:rotate-1 transition-transform duration-700" />
+          <div className="absolute inset-2 border border-amber-400/20 rounded-sm" />
+
+          {/* Inner Display Area */}
+          <div className="absolute inset-4 bg-gradient-to-br from-stone-900 via-amber-950/30 to-stone-900 rounded-sm overflow-hidden">
+            {/* Radiant Gold Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-amber-500/15 blur-[100px] rounded-full animate-pulse" />
+
+            {/* Spotlight Effect */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-amber-400/10 via-transparent to-transparent" />
+
+            {/* Product Image */}
+            <div className="relative w-full h-full">
+              <Image
+                src="/images/poincare/poincare-transparent.png"
+                alt="Poincare Device"
+                fill
+                className="object-contain p-12 hover:scale-110 transition-all duration-1000 drop-shadow-[0_0_40px_rgba(212,175,55,0.4)] filter brightness-110"
+                priority
+              />
+            </div>
+
+            {/* Gold Particle Effect Overlay */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-30"
+              style={{
+                backgroundImage: `radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                                 radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 50%)`,
+              }}
+            />
+          </div>
+
+          {/* Corner Ornaments */}
+          <div className="absolute -top-2 -left-2 w-6 h-6">
+            <div className="w-full h-full border-t-2 border-l-2 border-amber-400/60 rounded-tl-sm" />
+          </div>
+          <div className="absolute -top-2 -right-2 w-6 h-6">
+            <div className="w-full h-full border-t-2 border-r-2 border-amber-400/60 rounded-tr-sm" />
+          </div>
+          <div className="absolute -bottom-2 -left-2 w-6 h-6">
+            <div className="w-full h-full border-b-2 border-l-2 border-amber-400/60 rounded-bl-sm" />
+          </div>
+          <div className="absolute -bottom-2 -right-2 w-6 h-6">
+            <div className="w-full h-full border-b-2 border-r-2 border-amber-400/60 rounded-br-sm" />
+          </div>
         </div>
 
         <div className="border border-amber-500/20 bg-stone-800/50 p-6 my-8 text-center">

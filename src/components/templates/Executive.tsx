@@ -9,10 +9,11 @@ import { InvitationProps, formatLocalTime, isEventEnded } from "./types";
 export default function Executive({ data }: InvitationProps) {
   const { t } = useTranslation();
   const [status, setStatus] = useState(data.status);
-  const localTime = useMemo(() => { return data.eventTime ? formatLocalTime(data.eventTime, data.language) : ""; }, [data.eventTime, data.language]);
+  const localTime = useMemo(() => {
+    return data.eventTime ? formatLocalTime(data.eventTime, data.language) : "";
+  }, [data.eventTime, data.language]);
   const [loading, setLoading] = useState(false);
   const eventEnded = isEventEnded(data.eventEndTime);
-
 
   const handleAccept = async () => {
     setLoading(true);
@@ -58,14 +59,43 @@ export default function Executive({ data }: InvitationProps) {
           </p>
         </div>
 
-        {/* Product Image */}
-        <div className="relative w-full h-64 bg-slate-50 border-b border-slate-200">
-          <Image
-            src="/images/poincare/poincare-transparent.png"
-            alt="Poincaré Device"
-            fill
-            className="object-contain p-8 hover:scale-105 transition-transform duration-700 mixture-multiply"
-          />
+        {/* Product Image - Executive Showcase */}
+        <div className="relative w-full h-80 md:h-96 my-10">
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 border-2 border-slate-300 shadow-2xl">
+            {/* Subtle Professional Grid */}
+            <div
+              className="absolute inset-0 opacity-5"
+              style={{
+                backgroundImage: `linear-gradient(rgba(51, 65, 85, 0.1) 1px, transparent 1px),
+                                 linear-gradient(90deg, rgba(51, 65, 85, 0.1) 1px, transparent 1px)`,
+                backgroundSize: "60px 60px",
+              }}
+            />
+
+            {/* Soft Gradient Overlay */}
+            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-100/50 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-100/50 to-transparent" />
+
+            {/* Product Image */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <Image
+                src="/images/poincare/poincare-transparent.png"
+                alt="Poincare Device"
+                fill
+                className="object-contain p-16 hover:scale-105 transition-all duration-700 filter drop-shadow-2xl"
+                priority
+              />
+            </div>
+
+            {/* Professional Corner Elements */}
+            <div className="absolute top-8 left-8 w-12 h-12 border-l-2 border-t-2 border-slate-400/50" />
+            <div className="absolute top-8 right-8 w-12 h-12 border-r-2 border-t-2 border-slate-400/50" />
+            <div className="absolute bottom-8 left-8 w-12 h-12 border-l-2 border-b-2 border-slate-400/50" />
+            <div className="absolute bottom-8 right-8 w-12 h-12 border-r-2 border-b-2 border-slate-400/50" />
+          </div>
+
+          {/* Outer Shadow Frame */}
+          <div className="absolute -inset-1 bg-slate-200 -z-10 blur-sm" />
         </div>
 
         {/* Content */}

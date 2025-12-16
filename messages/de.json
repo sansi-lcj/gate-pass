@@ -1,12 +1,12 @@
 {
   "Invitation": {
     "greeting": "Sehr geehrte(r) {name},",
-    "title": "Realsee 2025 Poincaré Interne Kaufveranstaltung",
+    "title": "Realsee 2025 Poincare Interne Kaufveranstaltung",
     "subtitle": "Exklusive Einladung | Zeitlich Begrenztes Angebot | Neues Produkterlebnis",
     "event_time_label": "Veranstaltungszeit",
     "event_time_local": "(Ihre Ortszeit)",
     "highlights": {
-      "item1": "Erstes internes Kauferlebnis der Poincaré-Serie",
+      "item1": "Erstes internes Kauferlebnis der Poincare-Serie",
       "item2": "Exklusive interne Einkaufspreise",
       "item3": "Live-Produktexpertendemonstration"
     },
@@ -20,7 +20,7 @@
     "meeting_link_label": "Meeting Beitreten",
     "declined_title": "Vielen Dank für Ihre Rückmeldung",
     "declined_desc": "Es tut uns leid, dass Sie diesmal nicht dabei sein können.",
-    "declined_miss": "Sie verpassen: Exklusives Poincaré-Produkterlebnis, Sonderpreise, Direkte Interaktion mit Experten",
+    "declined_miss": "Sie verpassen: Exklusives Poincare-Produkterlebnis, Sonderpreise, Direkte Interaktion mit Experten",
     "reconsider_btn": "Nochmal Überlegen?",
     "event_ended": "Diese Veranstaltung ist beendet.",
     "footer": "Realsee Technology"

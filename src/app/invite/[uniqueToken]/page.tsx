@@ -31,14 +31,14 @@ export async function generateMetadata({
 
   return {
     title: `Invitation for ${invitation.guestName} | Realsee Overseas`,
-    description: `You are cordially invited to the Realsee 2025 Poincaré Device Purchase Meeting.`,
+    description: `You are cordially invited to the Realsee 2025 Poincare Device Purchase Meeting.`,
     robots: {
       index: true,
       follow: true,
     },
     openGraph: {
       title: `Invitation for ${invitation.guestName}`,
-      description: "Realsee 2025 Poincaré Device Purchase Meeting",
+      description: "Realsee 2025 Poincare Device Purchase Meeting",
       // images: ['/assets/event-cover.png'], // TODO: Add actual image URL
     },
   };

@@ -9,10 +9,11 @@ import { InvitationProps, formatLocalTime, isEventEnded } from "./types";
 export default function CyberGrid({ data }: InvitationProps) {
   const { t } = useTranslation();
   const [status, setStatus] = useState(data.status);
-  const localTime = useMemo(() => { return data.eventTime ? formatLocalTime(data.eventTime, data.language) : ""; }, [data.eventTime, data.language]);
+  const localTime = useMemo(() => {
+    return data.eventTime ? formatLocalTime(data.eventTime, data.language) : "";
+  }, [data.eventTime, data.language]);
   const [loading, setLoading] = useState(false);
   const eventEnded = isEventEnded(data.eventEndTime);
-
 
   const handleAccept = async () => {
     setLoading(true);
@@ -74,15 +75,58 @@ export default function CyberGrid({ data }: InvitationProps) {
             ? t("Invitation.accepted_title")
             : t("Invitation.title")}
         </h1>
-        {/* Product Image */}
-        <div className="relative w-full h-48 md:h-64 mb-8 rounded-lg overflow-hidden border border-purple-500/30">
-          <Image
-            src="/images/poincare/poincare-transparent.png"
-            alt="Poincaré Device"
-            fill
-            className="object-contain hover:scale-105 transition-transform duration-700"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+        {/* Product Image - Cyberpunk Showcase */}
+        <div className="relative w-full h-72 md:h-96 mb-10">
+          <div className="absolute inset-0 border-2 border-purple-500/50 rounded-lg overflow-hidden bg-gradient-to-br from-purple-950/50 via-black to-fuchsia-950/50 shadow-[0_0_60px_rgba(168,85,247,0.4)]">
+            {/* Animated Grid */}
+            <div
+              className="absolute inset-0 opacity-20"
+              style={{
+                backgroundImage: `
+                  linear-gradient(rgba(168, 85, 247, 0.5) 2px, transparent 2px),
+                  linear-gradient(90deg, rgba(168, 85, 247, 0.5) 2px, transparent 2px)
+                `,
+                backgroundSize: "50px 50px",
+                animation: "grid-pulse 3s ease-in-out infinite",
+              }}
+            />
+
+            {/* Neon Glow Layers */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3 bg-purple-600/20 blur-[100px] rounded-full animate-pulse" />
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 h-1/2 bg-fuchsia-600/15 blur-[80px] rounded-full animate-pulse"
+              style={{ animationDelay: "0.5s" }}
+            />
+
+            {/* Product Image */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <Image
+                src="/images/poincare/poincare-transparent.png"
+                alt="Poincare Device"
+                fill
+                className="object-contain p-10 hover:scale-110 transition-all duration-700 drop-shadow-[0_0_40px_rgba(168,85,247,0.6)] filter brightness-110 contrast-110"
+                priority
+              />
+            </div>
+
+            {/* Glitch Scan Lines */}
+            <div
+              className="absolute inset-0 pointer-events-none opacity-10"
+              style={{
+                background:
+                  "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(168, 85, 247, 0.1) 2px, rgba(168, 85, 247, 0.1) 4px)",
+              }}
+            />
+
+            {/* Corner Grid Accents */}
+            <div className="absolute top-4 left-4 w-12 h-12 border-l-2 border-t-2 border-purple-400/70" />
+            <div className="absolute top-4 right-4 w-12 h-12 border-r-2 border-t-2 border-fuchsia-400/70" />
+            <div className="absolute bottom-4 left-4 w-12 h-12 border-l-2 border-b-2 border-fuchsia-400/70" />
+            <div className="absolute bottom-4 right-4 w-12 h-12 border-r-2 border-b-2 border-purple-400/70" />
+          </div>
+
+          {/* Outer Neon Glow */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-purple-600/30 via-fuchsia-600/30 to-purple-600/30 rounded-lg blur-xl -z-10 animate-pulse" />
         </div>
 
         <div className="bg-black/50 border border-purple-500/50 p-6 backdrop-blur-md rounded-lg mb-8 relative group">
@@ -126,6 +170,26 @@ export default function CyberGrid({ data }: InvitationProps) {
             <p className="text-4xl font-black text-white tracking-widest">
               {data.discountCode}
             </p>
+            <style jsx>{`
+              @keyframes pulse-slow {
+                0%,
+                100% {
+                  opacity: 0.2;
+                }
+                50% {
+                  opacity: 0.4;
+                }
+              }
+              @keyframes grid-pulse {
+                0%,
+                100% {
+                  opacity: 0.2;
+                }
+                50% {
+                  opacity: 0.4;
+                }
+              }
+            `}</style>
             {data.meetingLink && (
               <a
                 href={data.meetingLink}

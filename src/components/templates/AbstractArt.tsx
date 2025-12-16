@@ -62,14 +62,52 @@ export default function AbstractArt({ data }: InvitationProps) {
         </h1>
         <p className="text-gray-500 text-center">{t("Invitation.subtitle")}</p>
 
-        {/* Product Image */}
-        <div className="relative w-full h-64 my-8 backdrop-blur-sm bg-white/30 rounded-xl overflow-hidden border border-white/50 shadow-inner">
-          <Image
-            src="/images/poincare/poincare-transparent.png"
-            alt="Poincaré Device"
-            fill
-            className="object-contain p-6 hover:scale-105 transition-transform duration-700"
-          />
+        {/* Product Image - Abstract Art Showcase */}
+        <div className="relative w-full h-80 md:h-[28rem] my-12">
+          <div className="absolute inset-0 bg-gradient-to-br from-pink-100 via-purple-50 to-orange-100 border-2 border-white/50 rounded-xl overflow-hidden shadow-2xl backdrop-blur-sm">
+            {/* Abstract Color Blobs */}
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-br from-pink-300/30 to-purple-300/30 rounded-full blur-3xl animate-pulse" />
+            <div
+              className="absolute bottom-1/4 right-1/4 w-56 h-56 bg-gradient-to-br from-orange-300/30 to-yellow-300/30 rounded-full blur-3xl animate-pulse"
+              style={{ animationDelay: "0.5s" }}
+            />
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-gradient-to-br from-purple-300/20 to-blue-300/20 rounded-full blur-2xl animate-pulse"
+              style={{ animationDelay: "1s" }}
+            />
+
+            {/* Abstract Shapes Overlay */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage: `
+                  radial-gradient(circle at 20% 30%, rgba(236, 72, 153, 0.2) 0%, transparent 30%),
+                  radial-gradient(circle at 80% 70%, rgba(249, 115, 22, 0.2) 0%, transparent 30%),
+                  radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.2) 0%, transparent 40%)
+                `,
+              }}
+            />
+
+            {/* Product Image */}
+            <div className="relative w-full h-full flex items-center justify-center z-10">
+              <Image
+                src="/images/poincare/poincare-transparent.png"
+                alt="Poincare Device"
+                fill
+                className="object-contain p-16 hover:scale-110 transition-all duration-1000 drop-shadow-2xl filter brightness-105"
+                priority
+              />
+            </div>
+
+            {/* Artistic Frame Elements */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-pink-400/50 to-transparent" />
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-orange-400/50 to-transparent" />
+            <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-transparent via-purple-400/50 to-transparent" />
+            <div className="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-blue-400/50 to-transparent" />
+          </div>
+
+          {/* Outer Artistic Glow */}
+          <div className="absolute -inset-2 bg-gradient-to-br from-pink-200/30 via-purple-200/30 to-orange-200/30 rounded-xl blur-xl -z-10" />
         </div>
 
         <div className="bg-gradient-to-r from-rose-50 via-violet-50 to-teal-50 rounded-2xl p-6 my-8 text-center">

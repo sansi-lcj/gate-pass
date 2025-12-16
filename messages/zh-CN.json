@@ -1,12 +1,12 @@
 {
   "Invitation": {
     "greeting": "尊敬的 {name} 先生/女士，",
-    "title": "Realsee 内部通道 - Poincaré 首发",
+    "title": "Realsee 内部通道 - Poincare 首发",
     "subtitle": "专属邀请 | 限时特惠 | 新品抢鲜",
     "event_time_label": "活动时间",
     "event_time_local": "（您的当地时间）",
     "highlights": {
-      "item1": "Poincaré 系列新品首次内购",
+      "item1": "Poincare 系列新品首次内购",
       "item2": "专属内购价格",
       "item3": "产品专家在线演示"
     },

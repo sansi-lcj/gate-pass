@@ -13,12 +13,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Realsee 2025 Poincaré Device Purchase Meeting",
-  description: "Please contact your business partner to get an exclusive invitation link.",
-  robots: {
-    index: false, // Default to noindex for safety, override in specific pages if needed (though we want all private mostly)
-    follow: false,
-  }
+  title: "Realsee 2025 Poincare Device Purchase Meeting",
+  description:
+    "Invitation management system for Realsee's exclusive device purchase event.",
+  icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
 export default function RootLayout({
@@ -27,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

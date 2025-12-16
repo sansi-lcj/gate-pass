@@ -6,7 +6,7 @@
     "event_time_label": "Event Time",
     "event_time_local": "(Your Local Time)",
     "highlights": {
-      "item1": "First Purchase Experience of Poincaré Series",
+      "item1": "First Purchase Experience of Poincare Series",
       "item2": "Exclusive Purchase Pricing",
       "item3": "Live Product Expert Demonstration"
     },
@@ -20,7 +20,7 @@
     "meeting_link_label": "Join Meeting",
     "declined_title": "Thank You for Your Response",
     "declined_desc": "We're sorry you can't make it this time.",
-    "declined_miss": "You'll miss: Exclusive Poincaré product experience, Special pricing, Direct interaction with product experts",
+    "declined_miss": "You'll miss: Exclusive Poincare product experience, Special pricing, Direct interaction with product experts",
     "reconsider_btn": "Reconsider?",
     "event_ended": "This event has concluded.",
     "footer": "Realsee Technology"

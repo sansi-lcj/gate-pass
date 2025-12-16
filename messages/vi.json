@@ -1,12 +1,12 @@
 {
   "Invitation": {
     "greeting": "Kính gửi {name},",
-    "title": "Cuộc họp Mua nội bộ Poincaré 2025 của Realsee",
+    "title": "Cuộc họp Mua nội bộ Poincare 2025 của Realsee",
     "subtitle": "Lời mời Độc quyền | Ưu đãi Có hạn | Trải nghiệm Sản phẩm mới",
     "event_time_label": "Thời gian Sự kiện",
     "event_time_local": "(Giờ địa phương của bạn)",
     "highlights": {
-      "item1": "Trải nghiệm Mua nội bộ đầu tiên của Dòng Poincaré",
+      "item1": "Trải nghiệm Mua nội bộ đầu tiên của Dòng Poincare",
       "item2": "Giá Mua nội bộ Độc quyền",
       "item3": "Demo trực tiếp từ Chuyên gia Sản phẩm"
     },
@@ -20,7 +20,7 @@
     "meeting_link_label": "Tham gia Cuộc họp",
     "declined_title": "Cảm ơn Phản hồi của bạn",
     "declined_desc": "Rất tiếc bạn không thể tham dự lần này.",
-    "declined_miss": "Bạn sẽ bỏ lỡ: Trải nghiệm Poincaré độc quyền, Giá đặc biệt, Tương tác trực tiếp với chuyên gia",
+    "declined_miss": "Bạn sẽ bỏ lỡ: Trải nghiệm Poincare độc quyền, Giá đặc biệt, Tương tác trực tiếp với chuyên gia",
     "reconsider_btn": "Xem xét lại?",
     "event_ended": "Sự kiện này đã kết thúc.",
     "footer": "Realsee Technology"

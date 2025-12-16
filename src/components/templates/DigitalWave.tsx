@@ -9,10 +9,11 @@ import { InvitationProps, formatLocalTime, isEventEnded } from "./types";
 export default function DigitalWave({ data }: InvitationProps) {
   const { t } = useTranslation();
   const [status, setStatus] = useState(data.status);
-  const localTime = useMemo(() => { return data.eventTime ? formatLocalTime(data.eventTime, data.language) : ""; }, [data.eventTime, data.language]);
+  const localTime = useMemo(() => {
+    return data.eventTime ? formatLocalTime(data.eventTime, data.language) : "";
+  }, [data.eventTime, data.language]);
   const [loading, setLoading] = useState(false);
   const eventEnded = isEventEnded(data.eventEndTime);
-
 
   const handleAccept = async () => {
     setLoading(true);
@@ -66,16 +67,62 @@ export default function DigitalWave({ data }: InvitationProps) {
               : t("Invitation.title")}
           </h1>
 
-          {/* Product Image */}
-          <div className="relative w-full h-48 md:h-64 my-6 rounded-2xl overflow-hidden border border-white/10 shadow-lg group">
-            <Image
-              src="/images/poincare/poincare-transparent.png"
-              alt="Poincaré Device"
-              fill
-              className="object-contain hover:scale-105 transition-transform duration-700 z-10 relative"
+          {/* Product Image - Digital Wave Showcase */}
+          <div className="relative w-full h-72 md:h-96 my-10 rounded-2xl overflow-hidden border-2 border-cyan-500/30 bg-gradient-to-br from-gray-950 via-cyan-950/20 to-gray-950 shadow-[0_0_60px_rgba(6,182,212,0.3)]">
+            {/* Animated Wave Background */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `
+                  radial-gradient(ellipse 800px 400px at 50% 120%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+                  radial-gradient(ellipse 600px 300px at 50% -20%, rgba(34, 211, 238, 0.1) 0%, transparent 50%)
+                `,
+                animation: "wave-flow 8s ease-in-out infinite",
+              }}
             />
-            {/* Background Glow for Image */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-cyan-500/20 blur-3xl rounded-full"></div>
+
+            {/* Dynamic Glow Centers */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-cyan-500/20 blur-[100px] rounded-full animate-pulse" />
+              <div
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-56 h-56 bg-blue-500/15 blur-[90px] rounded-full animate-pulse"
+                style={{ animationDelay: "0.5s" }}
+              />
+            </div>
+
+            {/* Product Image Container */}
+            <div className="relative w-full h-full flex items-center justify-center z-10">
+              <Image
+                src="/images/poincare/poincare-transparent.png"
+                alt="Poincare Device"
+                fill
+                className="object-contain p-12 hover:scale-110 transition-all duration-1000 drop-shadow-[0_0_50px_rgba(6,182,212,0.6)] filter brightness-110"
+                priority
+              />
+            </div>
+
+            {/* Flow Lines */}
+            <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent" />
+            <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400/40 to-transparent" />
+            <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent" />
+
+            {/* Corner Tech Accents */}
+            <div className="absolute top-6 left-6 w-16 h-16">
+              <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-cyan-400/60 to-transparent" />
+              <div className="absolute top-0 left-0 w-0.5 h-full bg-gradient-to-b from-cyan-400/60 to-transparent" />
+            </div>
+            <div className="absolute top-6 right-6 w-16 h-16">
+              <div className="absolute top-0 right-0 w-full h-0.5 bg-gradient-to-l from-cyan-400/60 to-transparent" />
+              <div className="absolute top-0 right-0 w-0.5 h-full bg-gradient-to-b from-cyan-400/60 to-transparent" />
+            </div>
+            <div className="absolute bottom-6 left-6 w-16 h-16">
+              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-cyan-400/60 to-transparent" />
+              <div className="absolute bottom-0 left-0 w-0.5 h-full bg-gradient-to-t from-cyan-400/60 to-transparent" />
+            </div>
+            <div className="absolute bottom-6 right-6 w-16 h-16">
+              <div className="absolute bottom-0 right-0 w-full h-0.5 bg-gradient-to-l from-cyan-400/60 to-transparent" />
+              <div className="absolute bottom-0 right-0 w-0.5 h-full bg-gradient-to-t from-cyan-400/60 to-transparent" />
+            </div>
           </div>
 
           <p className="text-blue-100 mt-4 text-lg">

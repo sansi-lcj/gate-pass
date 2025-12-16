@@ -1,12 +1,12 @@
 {
   "Invitation": {
     "greeting": "Yang Mulia {name},",
-    "title": "Realsee 2025 Poincaré Purchase Meeting",
+    "title": "Realsee 2025 Poincare Purchase Meeting",
     "subtitle": "Jemputan Eksklusif | Tawaran Terhad | Pengalaman Produk Baharu",
     "event_time_label": "Masa Acara",
     "event_time_local": "(Waktu Tempatan Anda)",
     "highlights": {
-      "item1": "Pengalaman Pembelian Dalaman Pertama Siri Poincaré",
+      "item1": "Pengalaman Pembelian Dalaman Pertama Siri Poincare",
       "item2": "Harga Eksklusif Pembelian Dalaman",
       "item3": "Demonstrasi Pakar Produk Secara Langsung"
     },
@@ -20,7 +20,7 @@
     "meeting_link_label": "Sertai Mesyuarat",
     "declined_title": "Terima Kasih Atas Maklum Balas",
     "declined_desc": "Kami kesal anda tidak dapat hadir kali ini.",
-    "declined_miss": "Anda akan terlepas: Pengalaman produk Poincaré eksklusif, Harga istimewa, Interaksi terus dengan pakar",
+    "declined_miss": "Anda akan terlepas: Pengalaman produk Poincare eksklusif, Harga istimewa, Interaksi terus dengan pakar",
     "reconsider_btn": "Pertimbang Semula?",
     "event_ended": "Acara ini telah berakhir.",
     "footer": "Realsee Technology"

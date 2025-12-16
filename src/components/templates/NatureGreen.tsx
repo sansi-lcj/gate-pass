@@ -9,10 +9,11 @@ import { InvitationProps, formatLocalTime, isEventEnded } from "./types";
 export default function NatureGreen({ data }: InvitationProps) {
   const { t } = useTranslation();
   const [status, setStatus] = useState(data.status);
-  const localTime = useMemo(() => { return data.eventTime ? formatLocalTime(data.eventTime, data.language) : ""; }, [data.eventTime, data.language]);
+  const localTime = useMemo(() => {
+    return data.eventTime ? formatLocalTime(data.eventTime, data.language) : "";
+  }, [data.eventTime, data.language]);
   const [loading, setLoading] = useState(false);
   const eventEnded = isEventEnded(data.eventEndTime);
-
 
   const handleAccept = async () => {
     setLoading(true);
@@ -73,14 +74,44 @@ export default function NatureGreen({ data }: InvitationProps) {
         </h1>
         <p className="text-gray-500">{t("Invitation.subtitle")}</p>
 
-        {/* Product Image */}
-        <div className="relative w-full h-56 my-8 border border-green-100 bg-white/50 rounded-xl">
-          <Image
-            src="/images/poincare/poincare-transparent.png"
-            alt="Poincaré Device"
-            fill
-            className="object-contain p-6 hover:scale-105 transition-transform duration-700 mixture-multiply"
-          />
+        {/* Product Image - Nature Green Showcase */}
+        <div className="relative w-full h-80 md:h-96 my-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-lime-50 border-2 border-green-200 rounded-2xl overflow-hidden shadow-xl">
+            {/* Organic Patterns */}
+            <div
+              className="absolute inset-0 opacity-5"
+              style={{
+                backgroundImage: `
+                  radial-gradient(circle at 20% 30%, rgba(34, 197, 94, 0.3) 0%, transparent 40%),
+                  radial-gradient(circle at 80% 70%, rgba(132, 204, 22, 0.3) 0%, transparent 40%),
+                  radial-gradient(circle at 50% 50%, rgba(22, 163, 74, 0.2) 0%, transparent 50%)
+                `,
+              }}
+            />
+
+            {/* Soft Green Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3 bg-green-300/20 blur-[100px] rounded-full animate-pulse" />
+
+            {/* Product Image */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <Image
+                src="/images/poincare/poincare-transparent.png"
+                alt="Poincare Device"
+                fill
+                className="object-contain p-14 hover:scale-110 transition-all duration-1000 drop-shadow-[0_10px_40px_rgba(34,197,94,0.3)] filter brightness-105"
+                priority
+              />
+            </div>
+
+            {/* Botanical Corner Elements */}
+            <div className="absolute top-6 left-6 w-10 h-10 border-l-3 border-t-3 border-green-400/60 rounded-tl-lg" />
+            <div className="absolute top-6 right-6 w-10 h-10 border-r-3 border-t-3 border-green-400/60 rounded-tr-lg" />
+            <div className="absolute bottom-6 left-6 w-10 h-10 border-l-3 border-b-3 border-green-400/60 rounded-bl-lg" />
+            <div className="absolute bottom-6 right-6 w-10 h-10 border-r-3 border-b-3 border-green-400/60 rounded-br-lg" />
+          </div>
+
+          {/* Outer Natural Glow */}
+          <div className="absolute -inset-1 bg-green-200/40 rounded-2xl blur-sm -z-10" />
         </div>
 
         <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6 my-8">

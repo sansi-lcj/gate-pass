@@ -77,15 +77,43 @@ export default function TechFuture({ data }: InvitationProps) {
         </h1>
         <p className="text-gray-400 text-sm mb-8">{t("Invitation.subtitle")}</p>
 
-        {/* Product Image */}
-        <div className="relative w-full h-48 md:h-64 mb-8 rounded-lg overflow-hidden border border-blue-500/30">
+        {/* Product Image - Enhanced Premium Display */}
+        <div className="relative w-full h-64 md:h-80 mb-8 rounded-xl overflow-hidden border-2 border-blue-500/40 bg-gradient-to-b from-blue-950/50 to-black/80 shadow-[0_0_50px_rgba(59,130,246,0.3)]">
+          {/* Animated Background Grid */}
+          <div className="absolute inset-0 opacity-10">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `
+                  linear-gradient(rgba(59, 130, 246, 0.4) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(59, 130, 246, 0.4) 1px, transparent 1px)
+                `,
+                backgroundSize: "30px 30px",
+                animation: "grid-flow 20s linear infinite",
+              }}
+            />
+          </div>
+
+          {/* Radial Glow Effect */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-blue-500/20 blur-[80px] rounded-full animate-pulse" />
+
+          {/* Product Image */}
           <Image
             src="/images/poincare/poincare-transparent.png"
-            alt="Poincaré Device"
+            alt="Poincare Device"
             fill
-            className="object-contain hover:scale-105 transition-transform duration-700"
+            className="object-contain p-8 hover:scale-110 transition-all duration-700 drop-shadow-[0_0_30px_rgba(59,130,246,0.6)] relative z-10"
+            priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+
+          {/* Scan Line Effect */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-400/5 to-transparent animate-scan pointer-events-none" />
+
+          {/* Corner Accents */}
+          <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-blue-400/50" />
+          <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-blue-400/50" />
+          <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-blue-400/50" />
+          <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-blue-400/50" />
         </div>
 
         {/* [4] Event Details */}
@@ -180,6 +208,22 @@ export default function TechFuture({ data }: InvitationProps) {
           }
           50% {
             opacity: 0.3;
+          }
+        }
+        @keyframes grid-flow {
+          0% {
+            transform: translateY(0);
+          }
+          100% {
+            transform: translateY(30px);
+          }
+        }
+        @keyframes scan {
+          0% {
+            transform: translateY(-100%);
+          }
+          100% {
+            transform: translateY(200%);
           }
         }
       `}</style>

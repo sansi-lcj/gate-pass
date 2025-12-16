@@ -1,12 +1,12 @@
 {
   "Invitation": {
     "greeting": "{name} היקר/ה,",
-    "title": "Realsee 2025 פגישת רכישה פנימית Poincaré",
+    "title": "Realsee 2025 פגישת רכישה פנימית Poincare",
     "subtitle": "הזמנה בלעדית | הצעה מוגבלת | חוויית מוצר חדש",
     "event_time_label": "זמן האירוע",
     "event_time_local": "(השעה המקומית שלך)",
     "highlights": {
-      "item1": "חוויית רכישה פנימית ראשונה של סדרת Poincaré",
+      "item1": "חוויית רכישה פנימית ראשונה של סדרת Poincare",
       "item2": "מחירי רכישה פנימית בלעדיים",
       "item3": "הדגמה חיה של מומחה מוצר"
     },
@@ -20,7 +20,7 @@
     "meeting_link_label": "הצטרף לפגישה",
     "declined_title": "תודה על התגובה",
     "declined_desc": "אנחנו מצטערים שאתה לא יכול להשתתף הפעם.",
-    "declined_miss": "תפספס: חוויית מוצר Poincaré בלעדית, מחירים מיוחדים, אינטראקציה ישירה עם מומחים",
+    "declined_miss": "תפספס: חוויית מוצר Poincare בלעדית, מחירים מיוחדים, אינטראקציה ישירה עם מומחים",
     "reconsider_btn": "לשקול מחדש?",
     "event_ended": "אירוע זה הסתיים.",
     "footer": "Realsee Technology"

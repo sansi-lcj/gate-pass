@@ -72,14 +72,51 @@ export default function OrientalInk({ data }: InvitationProps) {
         </h1>
         <p className="text-stone-500">{t("Invitation.subtitle")}</p>
 
-        {/* Product Image */}
-        <div className="relative w-full h-56 my-8 border border-stone-200">
-          <Image
-            src="/images/poincare/poincare-transparent.png"
-            alt="Poincaré Device"
-            fill
-            className="object-contain p-6 hover:scale-105 transition-transform duration-700 mixture-multiply"
-          />
+        {/* Product Image - Ink Wash Art Display */}
+        <div className="relative w-full h-80 md:h-[28rem] my-12 group">
+          {/* Outer Minimalist Frame */}
+          <div className="absolute inset-0 border border-stone-300 rounded-sm bg-gradient-to-b from-stone-50 via-white to-stone-50">
+            {/* Ink Wash Background Texture */}
+            <div
+              className="absolute inset-0 opacity-5"
+              style={{
+                backgroundImage: `radial-gradient(circle at 30% 40%, rgba(0,0,0,0.03) 0%, transparent 50%),
+                                 radial-gradient(circle at 70% 60%, rgba(0,0,0,0.02) 0%, transparent 50%)`,
+              }}
+            />
+
+            {/* Subtle Ink Diffusion Effect */}
+            <div className="absolute top-0 left-1/4 w-32 h-32 bg-stone-400/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-40 h-40 bg-stone-500/5 rounded-full blur-3xl" />
+
+            {/* Product Image with Ink Effect */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <div className="relative w-full h-full">
+                <Image
+                  src="/images/poincare/poincare-transparent.png"
+                  alt="Poincare Device"
+                  fill
+                  className="object-contain p-16 hover:scale-105 transition-all duration-1000 filter grayscale contrast-110 hover:grayscale-0"
+                  priority
+                />
+              </div>
+
+              {/* Subtle Ink Splash Accents */}
+              <div className="absolute top-8 right-8 w-3 h-3 bg-stone-400/20 rounded-full blur-sm" />
+              <div className="absolute top-12 right-12 w-2 h-2 bg-stone-500/15 rounded-full blur-sm" />
+              <div className="absolute bottom-8 left-8 w-3 h-3 bg-stone-400/20 rounded-full blur-sm" />
+              <div className="absolute bottom-12 left-12 w-2 h-2 bg-stone-500/15 rounded-full blur-sm" />
+            </div>
+
+            {/* Traditional Corner Seals */}
+            <div className="absolute top-6 left-6 w-8 h-8 border-l-2 border-t-2 border-stone-400/40 group-hover:border-stone-500/60 transition-colors duration-500" />
+            <div className="absolute top-6 right-6 w-8 h-8 border-r-2 border-t-2 border-stone-400/40 group-hover:border-stone-500/60 transition-colors duration-500" />
+            <div className="absolute bottom-6 left-6 w-8 h-8 border-l-2 border-b-2 border-stone-400/40 group-hover:border-stone-500/60 transition-colors duration-500" />
+            <div className="absolute bottom-6 right-6 w-8 h-8 border-r-2 border-b-2 border-stone-400/40 group-hover:border-stone-500/60 transition-colors duration-500" />
+          </div>
+
+          {/* Calligraphy-inspired Outer Lines */}
+          <div className="absolute -inset-2 border border-stone-200 rounded-sm pointer-events-none" />
         </div>
 
         <div className="border border-stone-300 bg-stone-50 p-6 my-8">

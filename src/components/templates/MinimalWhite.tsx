@@ -9,10 +9,11 @@ import { InvitationProps, formatLocalTime, isEventEnded } from "./types";
 export default function MinimalWhite({ data }: InvitationProps) {
   const { t } = useTranslation();
   const [status, setStatus] = useState(data.status);
-  const localTime = useMemo(() => { return data.eventTime ? formatLocalTime(data.eventTime, data.language) : ""; }, [data.eventTime, data.language]);
+  const localTime = useMemo(() => {
+    return data.eventTime ? formatLocalTime(data.eventTime, data.language) : "";
+  }, [data.eventTime, data.language]);
   const [loading, setLoading] = useState(false);
   const eventEnded = isEventEnded(data.eventEndTime);
-
 
   const handleAccept = async () => {
     setLoading(true);
@@ -54,14 +55,29 @@ export default function MinimalWhite({ data }: InvitationProps) {
           <div className="w-12 h-0.5 bg-gray-200 mx-auto"></div>
         </div>
 
-        {/* Product Image */}
-        <div className="relative w-full h-64 mb-12 grayscale hover:grayscale-0 transition-all duration-700">
-          <Image
-            src="/images/poincare/poincare-transparent.png"
-            alt="Poincaré Device"
-            fill
-            className="object-contain"
-          />
+        {/* Product Image - Minimalist Showcase */}
+        <div className="relative w-full h-80 md:h-[32rem] my-12 group">
+          <div className="absolute inset-0 bg-white border border-gray-200 shadow-lg">
+            {/* Ultra-subtle Background */}
+            <div className="absolute inset-0 bg-gradient-to-b from-gray-50/30 via-white to-gray-50/30" />
+
+            {/* Product Image */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <Image
+                src="/images/poincare/poincare-transparent.png"
+                alt="Poincare Device"
+                fill
+                className="object-contain p-20 hover:scale-105 transition-all duration-1000 filter grayscale hover:grayscale-0 drop-shadow-xl"
+                priority
+              />
+            </div>
+
+            {/* Minimal Corner Dots */}
+            <div className="absolute top-8 left-8 w-1.5 h-1.5 bg-gray-400 rounded-full" />
+            <div className="absolute top-8 right-8 w-1.5 h-1.5 bg-gray-400 rounded-full" />
+            <div className="absolute bottom-8 left-8 w-1.5 h-1.5 bg-gray-400 rounded-full" />
+            <div className="absolute bottom-8 right-8 w-1.5 h-1.5 bg-gray-400 rounded-full" />
+          </div>
         </div>
 
         <div className="space-y-8 text-center">
