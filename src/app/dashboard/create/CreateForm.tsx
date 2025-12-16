@@ -20,6 +20,14 @@ const CATEGORIES = [
   { key: "regional", label: "地域", labelEn: "Regional" },
 ];
 
+// Recommended templates
+const RECOMMENDED_TEMPLATES = [
+  "TechFuture",
+  "DarkMatter",
+  "LuxuryGold",
+  "OrientalInk",
+];
+
 function getCategory(key: string) {
   if (["TechFuture", "CyberGrid", "DigitalWave"].includes(key)) return "tech";
   if (["Executive", "CorporateBlue", "MinimalWhite"].includes(key))
@@ -29,6 +37,18 @@ function getCategory(key: string) {
   if (["OrientalInk", "ArabicGeometry", "NatureGreen"].includes(key))
     return "regional";
   return "other";
+}
+
+function getTemplateDescription(key: string) {
+  const descriptions: Record<string, string> = {
+    TechFuture: "适合前沿科技产品发布，展示未来感",
+    DarkMatter: "深邃星空背景，适合探索与发现主题",
+    LuxuryGold: "黑金配色，尽显高端与奢华品质",
+    OrientalInk: "极简水墨风格，体现东方美学韵味",
+    CyberGrid: "赛博朋克风格，适合数字化产品",
+    Executive: "稳重商务风格，适合正式会议邀请",
+  };
+  return descriptions[key] || "精美设计的邀请函模板";
 }
 
 function getCategoryColor(key: string) {
@@ -44,36 +64,40 @@ function getCategoryColor(key: string) {
 // Step indicator component
 function StepIndicator({ currentStep }: { currentStep: number }) {
   const steps = [
-    { num: 1, label: "选择模板" },
-    { num: 2, label: "填写信息" },
-    { num: 3, label: "确认生成" },
+    { num: 1, label: "选择模板", desc: "选择适合主题的风格" },
+    { num: 2, label: "填写信息", desc: "输入嘉宾与活动详情" },
+    { num: 3, label: "确认生成", desc: "最后确认并发送" },
   ];
 
   return (
     <div className="flex items-center justify-center gap-4 mb-8">
       {steps.map((step, i) => (
         <div key={step.num} className="flex items-center">
-          <div
-            className={`flex items-center justify-center w-10 h-10 rounded-full font-bold transition-all ${
-              currentStep >= step.num
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 dark:bg-gray-700 text-gray-500"
-            }`}
-          >
-            {currentStep > step.num ? "✓" : step.num}
+          <div className="flex flex-col items-center">
+            <div className="flex items-center gap-2">
+              <div
+                className={`flex items-center justify-center w-8 h-8 rounded-full font-bold transition-all ${
+                  currentStep >= step.num
+                    ? "bg-blue-600 text-white"
+                    : "bg-gray-200 dark:bg-gray-700 text-gray-500"
+                }`}
+              >
+                {currentStep > step.num ? "✓" : step.num}
+              </div>
+              <span
+                className={`text-sm font-medium ${
+                  currentStep >= step.num
+                    ? "text-blue-600 dark:text-blue-400"
+                    : "text-gray-400"
+                }`}
+              >
+                {step.label}
+              </span>
+            </div>
           </div>
-          <span
-            className={`ml-2 text-sm font-medium ${
-              currentStep >= step.num
-                ? "text-blue-600 dark:text-blue-400"
-                : "text-gray-400"
-            }`}
-          >
-            {step.label}
-          </span>
           {i < steps.length - 1 && (
             <div
-              className={`w-16 h-0.5 mx-4 ${
+              className={`w-12 h-0.5 mx-2 ${
                 currentStep > step.num
                   ? "bg-blue-600"
                   : "bg-gray-200 dark:bg-gray-700"
@@ -114,8 +138,19 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
   }, [selectedStyle]);
 
   const filteredStyles = useMemo(() => {
-    if (selectedCategory === "all") return styles;
-    return styles.filter((s) => getCategory(s.key) === selectedCategory);
+    const list =
+      selectedCategory === "all"
+        ? styles
+        : styles.filter((s) => getCategory(s.key) === selectedCategory);
+
+    // Sort: Recommended first
+    return [...list].sort((a, b) => {
+      const aRec = RECOMMENDED_TEMPLATES.includes(a.key);
+      const bRec = RECOMMENDED_TEMPLATES.includes(b.key);
+      if (aRec && !bRec) return -1;
+      if (!aRec && bRec) return 1;
+      return 0;
+    });
   }, [styles, selectedCategory]);
 
   const handleSelectTemplate = (key: string) => {
@@ -154,7 +189,7 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
             选择邀请函模板
           </h1>
           <p className="text-gray-500 dark:text-gray-400">
-            选择一个适合的模板风格开始创建
+            我们为您准备了多种风格的邀请函，请选择最适合的一款
           </p>
         </div>
 
@@ -176,14 +211,23 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
         </div>
 
         {/* Template Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto pb-12">
           {filteredStyles.map((style) => (
             <div
               key={style.key}
-              onClick={() => handleSelectTemplate(style.key)}
-              className="group cursor-pointer"
+              className="group cursor-pointer flex flex-col h-full"
             >
-              <div className="relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105">
+              <div
+                onClick={() => handleSelectTemplate(style.key)}
+                className="relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105 flex-1"
+              >
+                {/* Recommended Badge */}
+                {RECOMMENDED_TEMPLATES.includes(style.key) && (
+                  <div className="absolute top-3 left-3 z-20 bg-yellow-400 text-yellow-950 text-xs font-bold px-2 py-1 rounded shadow-sm">
+                    ✨ 推荐 / Recommended
+                  </div>
+                )}
+
                 {/* Template Preview Card */}
                 <div
                   className={`h-48 bg-gradient-to-br ${getCategoryColor(
@@ -204,19 +248,24 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
                       className="object-contain"
                     />
                   </div>
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">
-                    <span className="text-white font-bold opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0">
-                      选择此模板 →
-                    </span>
+                  {/* Hover overlay with button */}
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-center p-4 text-center">
+                    <p className="text-white text-sm mb-4 line-clamp-2">
+                      {getTemplateDescription(style.key)}
+                    </p>
+                    <button className="bg-white text-black text-sm font-bold py-2 px-6 rounded-full hover:bg-gray-100 transition-colors transform translate-y-4 group-hover:translate-y-0 duration-300">
+                      使用此模板
+                    </button>
                   </div>
                 </div>
                 {/* Template name */}
-                <div className="p-4">
-                  <h3 className="font-bold text-gray-800 dark:text-white">
-                    {style.name}
-                  </h3>
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                <div className="p-4 border-t border-gray-100 dark:border-gray-700">
+                  <div className="flex justify-between items-center mb-1">
+                    <h3 className="font-bold text-gray-800 dark:text-white">
+                      {style.name}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
                     {getCategory(style.key) === "tech" && "科技风格"}
                     {getCategory(style.key) === "business" && "商务风格"}
                     {getCategory(style.key) === "creative" && "创意风格"}
@@ -241,7 +290,7 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
 
         <div className="flex h-[calc(100vh-220px)]">
           {/* Preview Area - 70% */}
-          <div className="flex-1 bg-gray-100 dark:bg-gray-900 overflow-auto">
+          <div className="flex-1 bg-gray-100 dark:bg-gray-900 overflow-auto relative">
             <div className="h-full w-full overflow-auto">
               {PreviewComponent && messages ? (
                 <div dir={getDir(formData.language)} className="min-h-full">
@@ -252,44 +301,48 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
                 </div>
               ) : (
                 <div className="flex items-center justify-center h-full text-gray-400">
-                  加载中...
+                  <div className="text-center">
+                    <div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full mx-auto mb-4"></div>
+                    <p>正在加载模板预览...</p>
+                  </div>
                 </div>
               )}
             </div>
           </div>
 
           {/* Form Panel - 30% */}
-          <div className="w-96 bg-white dark:bg-black border-l border-gray-200 dark:border-gray-800 p-6 overflow-y-auto">
+          <div className="w-96 bg-white dark:bg-black border-l border-gray-200 dark:border-gray-800 p-6 overflow-y-auto z-10 shadow-lg">
             <div className="flex items-center justify-between mb-6">
               <button
                 onClick={() => setStep(1)}
-                className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 flex items-center gap-1"
+                className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 flex items-center gap-1 text-sm font-medium"
               >
-                ← 返回选择模板
+                ← 更换模板
               </button>
             </div>
 
-            <div className="mb-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                当前模板
-              </p>
-              <p className="font-bold text-lg dark:text-white">
-                {selectedStyle?.name}
+            <div className="mb-8">
+              <h2 className="text-xl font-bold mb-1 dark:text-white">
+                填写邀请信息
+              </h2>
+              <p className="text-sm text-gray-500">
+                当前选择：{selectedStyle?.name}
               </p>
             </div>
 
-            <div className="space-y-5">
+            <div className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  嘉宾姓名 *
+                  嘉宾姓名 <span className="text-red-500">*</span>
                 </label>
                 <input
                   name="guestName"
                   type="text"
                   value={formData.guestName}
                   onChange={handleValuesChange}
-                  placeholder="输入嘉宾姓名"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-transparent dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  placeholder="例如：李明 / John Doe"
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-transparent dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
+                  autoFocus
                 />
               </div>
 
@@ -297,38 +350,46 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   邀请函语言
                 </label>
-                <select
-                  name="language"
-                  value={formData.language}
-                  onChange={handleValuesChange}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-transparent dark:text-white focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="zh-CN">🇨🇳 简体中文</option>
-                  <option value="zh-TW">🇹🇼 繁體中文</option>
-                  <option value="en">🇺🇸 English</option>
-                  <option value="ja">🇯🇵 日本語</option>
-                  <option value="ko">🇰🇷 한국어</option>
-                  <option value="ar">🇸🇦 العربية</option>
-                  <option value="id">🇮🇩 Indonesia</option>
-                  <option value="th">🇹🇭 ภาษาไทย</option>
-                  <option value="vi">🇻🇳 Tiếng Việt</option>
-                  <option value="de">🇩🇪 Deutsch</option>
-                  <option value="fr">🇫🇷 Français</option>
-                  <option value="es">🇪🇸 Español</option>
-                </select>
+                <div className="relative">
+                  <select
+                    name="language"
+                    value={formData.language}
+                    onChange={handleValuesChange}
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-transparent dark:text-white focus:ring-2 focus:ring-blue-500 outline-none appearance-none"
+                  >
+                    <option value="zh-CN">🇨🇳 简体中文</option>
+                    <option value="zh-TW">🇹🇼 繁體中文</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="ja">🇯🇵 日本語</option>
+                    <option value="ko">🇰🇷 한국어</option>
+                    <option value="ar">🇸🇦 العربية</option>
+                    <option value="id">🇮🇩 Indonesia</option>
+                    <option value="th">🇹🇭 ภาษาไทย</option>
+                    <option value="vi">🇻🇳 Tiếng Việt</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="es">🇪🇸 Español</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
+                    ▼
+                  </div>
+                </div>
+                <p className="text-xs text-gray-400 mt-1">
+                  预览将即时切换到所选语言
+                </p>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  销售备注 (可选)
+                  销售备注 (仅内部可见)
                 </label>
                 <textarea
                   name="salesNote"
-                  rows={2}
+                  rows={3}
                   value={formData.salesNote}
                   onChange={handleValuesChange}
-                  placeholder="关于此嘉宾的备注..."
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-transparent dark:text-white resize-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="关于此嘉宾的职位、公司或跟进情况..."
+                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-lg bg-transparent dark:text-white resize-none focus:ring-2 focus:ring-blue-500 outline-none"
                 />
               </div>
             </div>
@@ -337,7 +398,7 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
               <button
                 onClick={() => setStep(3)}
                 disabled={!formData.guestName.trim()}
-                className="w-full py-4 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold rounded-lg shadow-lg transition-all"
+                className="w-full py-4 bg-blue-600 hover:bg-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold rounded-lg shadow-lg transition-all transform active:scale-95"
               >
                 下一步：确认生成 →
               </button>
@@ -359,34 +420,44 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
             确认邀请函信息
           </h1>
           <p className="text-gray-500 dark:text-gray-400">
-            请确认以下信息无误后生成邀请函
+            即将生成邀请函，请最后确认一次内容
           </p>
         </div>
 
-        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 mb-6">
+        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 mb-6 border border-gray-100 dark:border-gray-800">
           <div className="space-y-4">
-            <div className="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800">
-              <span className="text-gray-500 dark:text-gray-400">模板</span>
-              <span className="font-medium dark:text-white">
-                {selectedStyle?.name}
-              </span>
+            <div className="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800 items-center">
+              <span className="text-gray-500 dark:text-gray-400">所选模板</span>
+              <div className="flex items-center gap-2">
+                <span className="font-bold dark:text-white text-lg">
+                  {selectedStyle?.name}
+                </span>
+                <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded">
+                  {getCategory(selectedStyleKey || "") === "tech" && "科技"}
+                  {getCategory(selectedStyleKey || "") === "business" && "商务"}
+                  {getCategory(selectedStyleKey || "") === "creative" && "创意"}
+                  {getCategory(selectedStyleKey || "") === "regional" && "地域"}
+                </span>
+              </div>
             </div>
-            <div className="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800">
+            <div className="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800 items-center">
               <span className="text-gray-500 dark:text-gray-400">嘉宾姓名</span>
-              <span className="font-medium dark:text-white">
+              <span className="font-bold text-xl dark:text-white">
                 {formData.guestName}
               </span>
             </div>
-            <div className="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800">
-              <span className="text-gray-500 dark:text-gray-400">语言</span>
+            <div className="flex justify-between py-3 border-b border-gray-100 dark:border-gray-800 items-center">
+              <span className="text-gray-500 dark:text-gray-400">邀请语言</span>
               <span className="font-medium dark:text-white">
                 {formData.language}
               </span>
             </div>
             {formData.salesNote && (
               <div className="flex justify-between py-3">
-                <span className="text-gray-500 dark:text-gray-400">备注</span>
-                <span className="font-medium dark:text-white">
+                <span className="text-gray-500 dark:text-gray-400 min-w-[60px]">
+                  备注
+                </span>
+                <span className="font-medium dark:text-white text-right">
                   {formData.salesNote}
                 </span>
               </div>
@@ -401,7 +472,20 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
           <input type="hidden" name="salesNote" value={formData.salesNote} />
 
           {state?.error && (
-            <div className="mb-4 p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg">
+            <div className="mb-4 p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg flex items-center gap-2">
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
               {state.error}
             </div>
           )}
@@ -410,14 +494,14 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
             <button
               type="button"
               onClick={() => setStep(2)}
-              className="flex-1 py-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-lg transition-all"
+              className="flex-1 py-4 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold rounded-lg transition-all"
             >
               ← 返回修改
             </button>
             <button
               type="submit"
               disabled={isPending}
-              className="flex-1 py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold rounded-lg shadow-lg transition-all disabled:opacity-50"
+              className="flex-1 py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 transform hover:-translate-y-1"
             >
               {isPending ? (
                 <span className="flex items-center justify-center gap-2">
@@ -437,17 +521,17 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                     />
                   </svg>
-                  生成中...
+                  正在从量子云生成...
                 </span>
               ) : (
-                "🎉 生成邀请函"
+                "🚀 生成邀请函"
               )}
             </button>
           </div>
         </form>
 
-        <p className="text-center text-gray-400 text-sm mt-6">
-          生成后将自动跳转到邀请函列表
+        <p className="text-center text-gray-400 text-xs mt-6">
+          生成后可以通过链接分享给嘉宾，支持随时查看访问状态
         </p>
       </div>
     </div>
