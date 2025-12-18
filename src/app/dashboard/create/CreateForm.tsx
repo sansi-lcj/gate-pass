@@ -275,7 +275,7 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
         <PreviewFrame>
           {PreviewComponent && messages ? (
             <div dir={getDir(formData.language)} className="min-h-full">
-              <I18nProvider locale={formData.language} resources={messages}>
+              <I18nProvider key={formData.language} locale={formData.language} resources={messages}>
                 {/* eslint-disable-next-line react-hooks/exhaustive-deps */}
                 <PreviewComponent data={previewData} />
               </I18nProvider>

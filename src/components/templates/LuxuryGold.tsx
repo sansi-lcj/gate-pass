@@ -1,174 +1,153 @@
 "use client";
 
 import Image from "next/image";
-import { InvitationProps } from "./types";
 import {
   useInvitation,
   AcceptedContent,
   ActionButtons,
-  DeclinedContent,
   EventEndedBanner,
 } from "@/components/invitation";
+import { InvitationProps } from "./types";
 
 export default function LuxuryGold({ data }: InvitationProps) {
   const invitation = useInvitation(data);
   const { t, greeting, localTime, status } = invitation;
 
   return (
-    <div className="h-screen bg-stone-950 text-white flex flex-col relative overflow-hidden select-none">
-      {/* 1. Background Layer: Large Device + Gold Aura */}
+    <div className="min-h-screen bg-gradient-to-b from-[#1a1a1a] to-[#0d0d0d] text-white flex flex-col relative overflow-hidden select-none font-serif">
+      {/* Background Layer: Full-screen Device with mysterious reveal */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Ambient Warm Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[120vw] h-[80vh] bg-amber-900/10 blur-[150px] rounded-full" />
+        {/* Gold particle effect simulation */}
+        <div className="absolute inset-0 opacity-20">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-amber-400 rounded-full animate-pulse"
+              style={{
+                left: `${(i * 5) % 100}%`,
+                top: `${(i * 7) % 100}%`,
+                animationDelay: `${i * 0.2}s`,
+                opacity: 0.3 + (i % 5) * 0.1,
+              }}
+            />
+          ))}
+        </div>
 
-        {/* Hero Device Section */}
-        <div className="absolute inset-x-0 top-0 h-[55%] flex items-center justify-center p-12">
-          <div className="relative w-full h-full max-w-4xl transition-transform duration-[4s] group hover:scale-105">
-            {/* Pedestal Shadow */}
-            <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-2/3 h-12 bg-black/60 blur-3xl rounded-full" />
-
+        {/* Full-screen Device Background - "犹抱琵琶半遮面" */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="relative w-[140%] h-[140%] opacity-10 blur-[1px]">
             <Image
               src="/images/poincare/poincare-transparent.png"
               alt="Poincare Device"
               fill
-              className="object-contain filter brightness-110 contrast-110 drop-shadow-[0_20px_60px_rgba(217,119,6,0.2)]"
+              className="object-contain filter drop-shadow-[0_0_60px_rgba(251,191,36,0.2)] sepia-[0.3]"
               priority
             />
-
-            {/* Sparkling Gold Particles */}
-            <div className="absolute inset-0 overflow-hidden">
-              {[...Array(15)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-0.5 h-0.5 bg-amber-400 rounded-full animate-ping opacity-30"
-                  style={{
-                    top: `${Math.random() * 100}%`,
-                    left: `${Math.random() * 100}%`,
-                    animationDelay: `${Math.random() * 5}s`,
-                    animationDuration: `${3 + Math.random() * 4}s`,
-                  }}
-                />
-              ))}
-            </div>
           </div>
         </div>
+
+        {/* Luxury ornamental ring */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vh] border border-amber-500/10 rounded-full" />
+
+        {/* Ambient gold glows */}
+        <div className="absolute top-1/4 left-1/4 w-[50vw] h-[40vh] bg-amber-500/5 blur-[120px] rounded-full" />
+        <div className="absolute bottom-1/4 right-1/4 w-[40vw] h-[30vh] bg-amber-600/5 blur-[100px] rounded-full" />
       </div>
-      {/* 2. Content Layer: Bottom Glass Panels */}
-      <div className="flex-1" /> {/* Spacer for Top Hero */}
-      <div className="relative z-10 w-full flex flex-col items-center">
-        {/* Main Content Panel */}
-        <div className="w-full max-w-2xl bg-stone-900/40 border-t border-amber-500/20 backdrop-blur-3xl rounded-t-[40px] p-6 md:p-10 flex flex-col gap-8 shadow-[0_-30px_100px_rgba(0,0,0,0.9)]">
-          {/* Brand & Title Section */}
+
+      {/* Content Layer */}
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 md:p-10">
+        {/* Main Panel */}
+        <div className="w-full max-w-lg bg-black/60 backdrop-blur-xl border border-amber-500/30 rounded-2xl p-6 md:p-8 flex flex-col gap-6 shadow-[0_0_60px_rgba(251,191,36,0.1)]">
+          {/* Gold corner ornaments */}
+          <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-amber-500/50" />
+          <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-amber-500/50" />
+          <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-amber-500/50" />
+          <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-amber-500/50" />
+
+          {/* Brand Header */}
           <div className="text-center space-y-4">
-            <div className="flex items-center justify-center gap-4 mb-2 opacity-50">
-              <div className="h-[1px] w-12 bg-gradient-to-r from-transparent to-amber-500" />
+            <div className="flex items-center justify-center gap-4 opacity-60">
+              <div className="h-[1px] w-10 bg-gradient-to-r from-transparent to-amber-500" />
               <Image
                 src="/assets/realsee-logo-en-with-brands-wihte.svg"
                 alt="Realsee"
-                width={110}
-                height={28}
-                className="h-6 w-auto"
+                width={90}
+                height={22}
+                className="h-5 w-auto"
               />
-              <div className="h-[1px] w-12 bg-gradient-to-l from-transparent to-amber-500" />
+              <div className="h-[1px] w-10 bg-gradient-to-l from-transparent to-amber-500" />
             </div>
 
-            <p className="text-amber-500/60 text-xs md:text-sm tracking-[0.5em] uppercase font-light">
+            <p className="text-amber-400 text-[10px] md:text-xs tracking-[0.5em] uppercase font-light">
               {greeting}
             </p>
 
-            <div className="space-y-1 px-4">
-              <h1 className="text-2xl md:text-5xl font-light text-transparent bg-clip-text bg-gradient-to-b from-amber-100 via-amber-400 to-amber-200 tracking-tight leading-tight">
+            <div className="space-y-2">
+              <h1 className="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-100 to-amber-300 leading-tight">
                 {status === "ACCEPTED"
                   ? t("Invitation.accepted_title")
                   : t("Invitation.title")}
               </h1>
-              <p className="text-stone-500 text-[10px] md:text-xs tracking-[0.3em] uppercase italic">
+              <p className="text-amber-200/30 text-[10px] md:text-xs tracking-[0.3em] uppercase">
                 {t("Invitation.subtitle")}
               </p>
             </div>
           </div>
 
-          {/* Details Bar */}
-          <div className="bg-amber-950/20 border border-amber-500/10 p-6 rounded-2xl text-center space-y-4 relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-
-            <div>
-              <p className="text-amber-500/40 text-[9px] uppercase tracking-widest mb-1">
-                Exclusive Access
+          {/* Details Section */}
+          <div className="bg-amber-500/5 border border-amber-500/20 p-4 rounded-xl">
+            <div className="text-center">
+              <p className="text-amber-400/40 text-[9px] uppercase tracking-widest mb-1">
+                Exclusive Engagement
               </p>
-              <p className="text-xl md:text-3xl text-amber-100 font-light tracking-tight">
-                {localTime || "PENDING RELEASE"}
+              <p className="text-lg md:text-xl font-bold text-white">
+                {localTime || "PREPARING..."}
               </p>
             </div>
 
-            <div className="flex justify-center gap-8 pt-4 border-t border-amber-500/10 text-[10px] text-amber-300/40 font-light uppercase tracking-widest">
-              <div className="flex items-center gap-2">
-                <svg
-                  width="10"
-                  height="10"
-                  viewBox="0 0 10 10"
-                  className="fill-amber-500/50"
-                >
-                  <circle cx="5" cy="5" r="3" />
-                </svg>
-                <span>{t("Invitation.highlights.item1")}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg
-                  width="10"
-                  height="10"
-                  viewBox="0 0 10 10"
-                  className="fill-amber-500/50"
-                >
-                  <circle cx="5" cy="5" r="3" />
-                </svg>
-                <span>{t("Invitation.highlights.item2")}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <svg
-                  width="10"
-                  height="10"
-                  viewBox="0 0 10 10"
-                  className="fill-amber-500/50"
-                >
-                  <circle cx="5" cy="5" r="3" />
-                </svg>
-                <span>{t("Invitation.highlights.item3")}</span>
-              </div>
+            <div className="flex justify-center gap-6 mt-4">
+              {["item1", "item2", "item3"].map((key) => (
+                <div key={key} className="flex flex-col items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 bg-amber-500 rotate-45" />
+                  <span className="text-[8px] text-amber-200/50 uppercase tracking-tight text-center leading-tight max-w-[50px]">
+                    {t(`Invitation.highlights.${key}`)}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Actions */}
-          <div className="space-y-4">
+          {/* Action Area */}
+          <div className="space-y-3">
             <AcceptedContent
               invitation={invitation}
-              containerClassName="bg-amber-900/20 border border-amber-500/20 p-6 rounded-2xl text-center shadow-inner"
+              containerClassName="bg-amber-500/10 border border-amber-500/20 p-5 rounded-xl text-center"
               waitingTitleClassName="text-amber-400 text-lg font-bold mb-1"
-              waitingHintClassName="text-stone-500 text-[10px] uppercase tracking-widest"
-              joinButtonClassName="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:to-amber-400 text-stone-950 font-black py-5 px-8 rounded-xl transition-all shadow-xl"
-              codeLabelClassName="text-amber-500/40 text-[9px] uppercase tracking-[0.5em] mb-2"
-              codeClassName="text-5xl md:text-6xl font-light text-amber-100 tracking-[0.3em] py-4"
-              meetingLinkClassName="text-amber-400 underline mt-4 inline-block text-[10px] uppercase tracking-widest hover:text-amber-200"
+              waitingHintClassName="text-amber-200/30 text-[10px] uppercase tracking-widest"
+              joinButtonClassName="w-full bg-gradient-to-r from-amber-600 to-amber-500 text-black font-bold py-4 px-6 rounded-lg transition-all shadow-[0_0_30px_rgba(251,191,36,0.3)]"
+              codeLabelClassName="text-amber-400/40 text-[9px] uppercase tracking-[0.4em] mb-1"
+              codeClassName="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-100 tracking-[0.2em] py-2"
+              meetingLinkClassName="text-amber-400 underline mt-3 inline-block text-[11px] hover:text-white"
             />
 
             <EventEndedBanner
               invitation={invitation}
-              className="bg-white/5 border border-white/5 text-stone-500 p-4 rounded-xl text-center text-[10px] uppercase tracking-widest"
+              className="bg-black/40 text-amber-200/30 p-3 rounded-lg text-center text-[10px] uppercase tracking-widest border border-amber-500/10"
             />
 
             <ActionButtons
               invitation={invitation}
-              className="flex gap-4"
-              acceptButtonClassName="flex-1 bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-stone-950 font-black py-5 rounded-2xl shadow-xl transition-all text-sm uppercase tracking-[0.2em]"
-              declineButtonClassName="px-8 border border-amber-500/20 text-stone-500 hover:text-white rounded-2xl transition-all text-[10px] uppercase tracking-widest"
+              className="flex gap-3"
+              acceptButtonClassName="flex-1 bg-gradient-to-r from-amber-600 to-amber-500 text-black font-bold py-4 rounded-xl shadow-xl transition-all text-sm uppercase tracking-wider"
+              declineButtonClassName="px-5 border border-amber-500/30 text-amber-200/50 hover:text-white rounded-xl transition-all text-[10px] uppercase tracking-widest"
             />
           </div>
         </div>
 
         {/* Footer */}
-        <div className="py-4 opacity-20 text-center">
-          <p className="text-[9px] text-stone-500 tracking-[0.5em] uppercase">
-            {t("Invitation.footer")} POINCARE COLLECTION
+        <div className="mt-6 opacity-20 text-center">
+          <p className="text-[9px] text-amber-200/50 tracking-[0.6em] uppercase">
+            {t("Invitation.footer")}
           </p>
         </div>
       </div>

@@ -5,105 +5,124 @@ import {
   useInvitation,
   AcceptedContent,
   ActionButtons,
-  DeclinedContent,
   EventEndedBanner,
 } from "@/components/invitation";
 import { InvitationProps } from "./types";
+import { useMemo } from "react";
 
 export default function AbstractArt({ data }: InvitationProps) {
   const invitation = useInvitation(data);
   const { t, greeting, localTime, status } = invitation;
 
+  // Generate stable abstract shapes
+  const shapes = useMemo(
+    () =>
+      Array.from({ length: 8 }).map((_, i) => ({
+        size: 80 + (i * 30) % 100,
+        left: (i * 12) % 100,
+        top: (i * 15) % 100,
+        rotate: i * 45,
+        color: i % 3 === 0 ? "rose" : i % 3 === 1 ? "violet" : "cyan",
+      })),
+    []
+  );
+
   return (
-    <div className="h-screen bg-[#FFF9FB] text-slate-900 flex flex-col relative overflow-hidden select-none font-sans">
-      {/* 1. Background Layer: Organic Shapes & Hero Device */}
+    <div className="min-h-screen bg-[#fafafa] text-stone-900 flex flex-col relative overflow-hidden select-none font-sans">
+      {/* Background Layer: Full-screen Device with mysterious reveal */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Soft Organic Shapes */}
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-rose-200/40 rounded-full blur-[100px]" />
-        <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] bg-violet-200/40 rounded-full blur-[100px]" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[60vw] h-[40vw] bg-teal-200/30 rounded-full blur-[120px]" />
+        {/* Abstract geometric shapes */}
+        {shapes.map((shape, i) => (
+          <div
+            key={i}
+            className={`absolute rounded-full blur-[80px] opacity-20 ${
+              shape.color === "rose"
+                ? "bg-rose-400"
+                : shape.color === "violet"
+                ? "bg-violet-400"
+                : "bg-cyan-400"
+            }`}
+            style={{
+              width: `${shape.size}px`,
+              height: `${shape.size}px`,
+              left: `${shape.left}%`,
+              top: `${shape.top}%`,
+              transform: `rotate(${shape.rotate}deg)`,
+            }}
+          />
+        ))}
 
-        {/* Hero Device Section */}
-        <div className="absolute inset-x-0 top-0 h-[55%] flex items-center justify-center p-12">
-          <div className="relative w-full h-full max-w-2xl group transition-all duration-1000">
-            {/* Floating Glassmorphism Orbs around Device */}
-            <div
-              className="absolute top-[10%] left-[10%] w-12 h-12 bg-white/40 backdrop-blur-md rounded-full border border-white/50 animate-bounce"
-              style={{ animationDuration: "3s" }}
-            />
-            <div
-              className="absolute bottom-[20%] right-[10%] w-16 h-16 bg-white/40 backdrop-blur-md rounded-full border border-white/50 animate-bounce"
-              style={{ animationDuration: "4s" }}
-            />
-
+        {/* Full-screen Device Background - "犹抱琵琶半遮面" */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="relative w-[130%] h-[130%] opacity-[0.06] mix-blend-multiply">
             <Image
               src="/images/poincare/poincare-transparent.png"
               alt="Poincare Device"
               fill
-              className="object-contain filter drop-shadow-[0_20px_60px_rgba(168,85,247,0.15)] transition-transform duration-[4s] group-hover:rotate-2 group-hover:scale-105"
+              className="object-contain filter grayscale"
               priority
             />
           </div>
         </div>
+
+        {/* Artistic frame */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[40vh] border border-stone-200/50 rounded-3xl rotate-3" />
       </div>
 
-      {/* 2. Content Layer: Bottom Glass Panel */}
-      <div className="flex-1" />
-
-      <div className="relative z-10 w-full flex flex-col items-center">
+      {/* Content Layer */}
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 md:p-10">
         {/* Main Panel */}
-        <div className="w-full max-w-3xl bg-white/40 border-t border-white/80 backdrop-blur-3xl rounded-t-[50px] p-6 md:p-10 flex flex-col gap-8 shadow-[0_-30px_100px_rgba(168,85,247,0.08)]">
-          {/* Brand & Title */}
+        <div className="w-full max-w-lg bg-white/80 backdrop-blur-xl border border-stone-200 rounded-3xl p-6 md:p-8 flex flex-col gap-6 shadow-[0_20px_60px_rgba(0,0,0,0.06)]">
+          {/* Brand Header */}
           <div className="text-center space-y-4">
-            <div className="flex items-center justify-center gap-4 opacity-40">
-              <div className="h-[2px] w-8 bg-rose-300" />
-              <div className="h-[2px] w-8 bg-violet-300" />
-              <div className="h-[2px] w-8 bg-teal-300" />
+            <div className="flex items-center justify-center gap-4 opacity-50">
+              <div className="w-8 h-[2px] bg-gradient-to-r from-rose-400 via-violet-400 to-cyan-400" />
+              <Image
+                src="/assets/realsee-logo-en-with-brands-color.svg"
+                alt="Realsee"
+                width={90}
+                height={22}
+                className="h-5 w-auto"
+              />
+              <div className="w-8 h-[2px] bg-gradient-to-r from-cyan-400 via-violet-400 to-rose-400" />
             </div>
 
-            <p className="text-violet-600/60 text-xs md:text-sm tracking-[0.4em] uppercase font-black">
+            <p className="text-violet-500 text-[10px] md:text-xs tracking-[0.4em] uppercase font-medium">
               {greeting}
             </p>
 
-            <div className="space-y-2 px-8">
-              <h1 className="text-2xl md:text-5xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-tr from-rose-500 via-violet-600 to-teal-500 leading-tight">
+            <div className="space-y-2">
+              <h1 className="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-violet-500 to-cyan-500 leading-tight">
                 {status === "ACCEPTED"
                   ? t("Invitation.accepted_title")
                   : t("Invitation.title")}
               </h1>
-              <p className="text-slate-400 text-[10px] md:text-xs tracking-[0.3em] uppercase font-bold px-4">
+              <p className="text-stone-400 text-[10px] md:text-xs tracking-[0.2em] uppercase">
                 {t("Invitation.subtitle")}
               </p>
             </div>
           </div>
 
           {/* Details Section */}
-          <div className="bg-white/60 border border-white p-6 rounded-[30px] flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm group">
-            <div className="text-center md:text-left">
-              <p className="text-slate-400 text-[9px] uppercase tracking-widest mb-1 font-bold">
-                Event Launch
+          <div className="bg-gradient-to-r from-rose-50 via-violet-50 to-cyan-50 border border-stone-100 p-4 rounded-xl">
+            <div className="text-center">
+              <p className="text-violet-400 text-[9px] uppercase tracking-widest mb-1">
+                Creative Session
               </p>
-              <p className="text-xl md:text-2xl font-black text-slate-800">
-                {localTime || "PREPARING..."}
+              <p className="text-lg md:text-xl font-bold text-stone-800">
+                {localTime || "COMPOSING..."}
               </p>
             </div>
 
-            <div className="flex gap-4 md:gap-8">
+            <div className="flex justify-center gap-6 mt-4">
               {["item1", "item2", "item3"].map((key, i) => (
-                <div
-                  key={key}
-                  className="flex flex-col items-center gap-1 group/icon"
-                >
+                <div key={key} className="flex flex-col items-center gap-1.5">
                   <div
-                    className={`w-2 h-2 rounded-full transform group-hover/icon:scale-150 transition-transform ${
-                      i === 0
-                        ? "bg-rose-400"
-                        : i === 1
-                        ? "bg-violet-400"
-                        : "bg-teal-400"
+                    className={`w-2 h-2 rounded-full ${
+                      i === 0 ? "bg-rose-400" : i === 1 ? "bg-violet-400" : "bg-cyan-400"
                     }`}
                   />
-                  <span className="text-[9px] text-slate-400 uppercase tracking-tighter text-center leading-[1.1] max-w-[70px]">
+                  <span className="text-[8px] text-stone-500 uppercase tracking-tight text-center leading-tight max-w-[50px]">
                     {t(`Invitation.highlights.${key}`)}
                   </span>
                 </div>
@@ -112,36 +131,36 @@ export default function AbstractArt({ data }: InvitationProps) {
           </div>
 
           {/* Action Area */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <AcceptedContent
               invitation={invitation}
-              containerClassName="bg-white/80 border border-white p-8 rounded-3xl text-center shadow-md"
-              waitingTitleClassName="text-violet-600 text-xl font-black mb-2 uppercase tracking-wide"
-              waitingHintClassName="text-slate-400 text-[10px] uppercase tracking-[0.2em]"
-              joinButtonClassName="w-full bg-gradient-to-tr from-rose-500 via-violet-600 to-teal-500 text-white font-black py-5 px-8 rounded-2xl transition-all shadow-xl hover:scale-[1.02]"
-              codeLabelClassName="text-slate-400 text-[9px] uppercase tracking-[0.5em] mb-2"
-              codeClassName="text-5xl md:text-7xl font-black text-slate-900 tracking-[0.2em] py-4"
-              meetingLinkClassName="text-violet-500 underline mt-4 inline-block text-[11px] font-bold hover:text-rose-500"
+              containerClassName="bg-gradient-to-r from-rose-50 via-violet-50 to-cyan-50 border border-stone-100 p-5 rounded-xl text-center"
+              waitingTitleClassName="text-violet-600 text-lg font-bold mb-1"
+              waitingHintClassName="text-stone-400 text-[10px] uppercase tracking-widest"
+              joinButtonClassName="w-full bg-gradient-to-r from-rose-500 via-violet-500 to-cyan-500 text-white font-bold py-4 px-6 rounded-lg transition-all shadow-lg"
+              codeLabelClassName="text-violet-400 text-[9px] uppercase tracking-[0.4em] mb-1"
+              codeClassName="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-violet-500 to-cyan-500 tracking-[0.2em] py-2"
+              meetingLinkClassName="text-violet-500 underline mt-3 inline-block text-[11px] hover:text-violet-700"
             />
 
             <EventEndedBanner
               invitation={invitation}
-              className="bg-slate-100 text-slate-400 p-4 rounded-xl text-center text-[10px] uppercase tracking-widest"
+              className="bg-stone-50 text-stone-400 p-3 rounded-lg text-center text-[10px] uppercase tracking-widest border border-stone-100"
             />
 
             <ActionButtons
               invitation={invitation}
-              className="flex gap-4"
-              acceptButtonClassName="flex-1 bg-slate-900 text-white font-black py-5 rounded-3xl shadow-2xl hover:bg-violet-600 transition-all text-sm uppercase tracking-[0.2em]"
-              declineButtonClassName="px-8 border border-slate-200 text-slate-400 hover:text-slate-900 rounded-3xl transition-all text-[11px] uppercase tracking-widest"
+              className="flex gap-3"
+              acceptButtonClassName="flex-1 bg-gradient-to-r from-rose-500 via-violet-500 to-cyan-500 text-white font-bold py-4 rounded-xl shadow-xl transition-all text-sm uppercase tracking-wider"
+              declineButtonClassName="px-5 border border-stone-200 text-stone-400 hover:text-stone-900 rounded-xl transition-all text-[10px] uppercase tracking-widest"
             />
           </div>
         </div>
 
         {/* Footer */}
-        <div className="py-4 opacity-30 text-center">
-          <p className="text-[9px] text-slate-400 tracking-[0.6em] uppercase">
-            {t("Invitation.footer")} · ARTISTIC INTERFACE
+        <div className="mt-6 opacity-30 text-center">
+          <p className="text-[9px] text-stone-400 tracking-[0.5em] uppercase">
+            {t("Invitation.footer")}
           </p>
         </div>
       </div>
