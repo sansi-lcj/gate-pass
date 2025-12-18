@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "prisma generate && next dev --port 9898",
+    "dev:init": "npm run db:start && sleep 2 && npm run db:migrate && npm run db:seed",
+    "dev:full": "npm run dev:init && npm run dev",
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
