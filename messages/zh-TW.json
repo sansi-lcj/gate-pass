@@ -1,29 +1,29 @@
 {
   "Invitation": {
-    "greeting": "親愛的 {name}，",
-    "title": "如視 2025 龐加萊線上內購會",
+    "greeting": "{name}，",
+    "title": "Realsee 內部通道 - Poincare 首發",
     "subtitle": "專屬邀請 | 限時優惠 | 新品體驗",
     "event_time_label": "活動時間",
     "event_time_local": "(您當地時間)",
     "highlights": {
-      "item1": "首次龐加萊系列內購體驗",
-      "item2": "獨家內購價格",
-      "item3": "產品專家現場演示"
+      "item1": "首次 Poincare 系列體驗",
+      "item2": "專屬限時優惠",
+      "item3": "產品專家深度解析"
     },
     "benefits_title": "專屬權益",
-    "benefits_desc": "接受邀請解鎖您的專屬折扣碼",
-    "accept_btn": "接受邀請",
+    "benefits_desc": "立即搶佔名額，解鎖專屬折扣",
+    "accept_btn": "立即搶佔名額",
     "decline_btn": "暫時無法參加",
-    "accepted_title": "感謝您的確認！",
-    "accepted_desc": "您的專屬折扣碼已生成。",
-    "code_label": "您的折扣碼",
-    "meeting_link_label": "加入會議",
+    "accepted_title": "名額已確認！",
+    "accepted_desc": "您的專屬邀請碼已生成。",
+    "code_label": "專屬折扣碼",
+    "meeting_link_label": "進入會議",
     "declined_title": "感謝您的回覆",
     "declined_desc": "很遺憾這次未能參加。",
-    "declined_miss": "您將錯過：獨家龐加萊產品體驗、特惠價格、產品專家直接互動",
+    "declined_miss": "您將錯過：Poincare 產品專屬體驗、限時優惠價格、產品專家直接交流",
     "reconsider_btn": "重新考慮？",
     "event_ended": "本次活動已結束。",
-    "footer": "如視科技"
+    "footer": "Realsee Technology"
   },
   "Dashboard": {
     "title": "儀表板",

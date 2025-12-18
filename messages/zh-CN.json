@@ -1,6 +1,6 @@
 {
   "Invitation": {
-    "greeting": "尊敬的 {name} 先生/女士，",
+    "greeting": "{name}，",
     "title": "Realsee 内部通道 - Poincare 首发",
     "subtitle": "专属邀请 | 限时特惠 | 新品抢鲜",
     "event_time_label": "活动时间",
@@ -18,12 +18,14 @@
     "accepted_desc": "您的专属邀请码已生成。",
     "code_label": "专属折扣码",
     "meeting_link_label": "进入会议",
+    "waiting_hint": "会议开始前30分钟将显示入会按钮",
+    "meeting_starting_hint": "会议即将开始，点击上方按钮进入",
     "declined_title": "感谢您的回复",
     "declined_desc": "很遗憾您此次无法参与。",
-    "declined_miss": "您将错过：庞加莱系列新品专属体验、内购会专属优惠价格、与产品专家直接交流的机会",
+    "declined_miss": "您将错过：Poincare 系列新品专属体验、限时优惠价格、与产品专家直接交流的机会",
     "reconsider_btn": "重新考虑？",
     "event_ended": "本次活动已结束。",
-    "footer": "如视海外科技"
+    "footer": "Realsee Technology"
   },
   "Dashboard": {
     "title": "控制台",

@@ -19,8 +19,9 @@ function createPrismaClient(): PrismaClient {
     !connectionString ||
     connectionString.startsWith("file:")
   ) {
-    console.log("Using local SQLite configuration with adapter");
     const dbPath = path.join(process.cwd(), "prisma", "dev.db");
+    console.log("Database absolute path:", dbPath);
+
     // Use the same initialization as seed.ts
     const adapter = new PrismaBetterSqlite3({ url: dbPath });
     return new PrismaClient({

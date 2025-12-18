@@ -21,6 +21,7 @@ export async function createInvitationAction(
   const styleKey = formData.get("styleKey") as string;
   const language = (formData.get("language") as string) || "en";
   const salesNote = formData.get("salesNote") as string;
+  const discountCode = formData.get("discountCode") as string;
 
   if (!guestName || !styleKey) {
     return { error: "Missing required fields" };
@@ -33,8 +34,6 @@ export async function createInvitationAction(
 
   try {
     const uniqueToken = nanoid(10);
-    // Discount code logic? Random for now.
-    const discountCode = "RS-" + nanoid(6).toUpperCase();
 
     await prisma.invitation.create({
       data: {
@@ -44,7 +43,7 @@ export async function createInvitationAction(
         salesNote,
         userId: user.id,
         uniqueToken,
-        discountCode,
+        discountCode: discountCode || null,
       },
     });
   } catch (e) {

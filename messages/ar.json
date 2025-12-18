@@ -1,18 +1,18 @@
 {
   "Invitation": {
     "greeting": "عزيزي {name}،",
-    "title": "اجتماع الشراء الداخلي لـ Poincare 2025",
+    "title": "Realsee Insider Access - Poincare Premiere",
     "subtitle": "دعوة حصرية | عرض محدود | تجربة المنتج الجديد",
     "event_time_label": "وقت الحدث",
     "event_time_local": "(التوقيت المحلي)",
     "highlights": {
-      "item1": "أول تجربة شراء داخلية لسلسلة Poincare",
-      "item2": "أسعار شراء داخلية حصرية",
+      "item1": "أول تجربة لسلسلة Poincare",
+      "item2": "أسعار حصرية",
       "item3": "عرض مباشر من خبراء المنتج"
     },
     "benefits_title": "المزايا الحصرية",
-    "benefits_desc": "اقبل الدعوة للحصول على رمز الخصم الخاص بك",
-    "accept_btn": "قبول الدعوة",
+    "benefits_desc": "احجز مكانك الآن للحصول على رمز الخصم الخاص بك",
+    "accept_btn": "احجز مكاني الآن",
     "decline_btn": "لا أستطيع الحضور",
     "accepted_title": "شكراً لتأكيدك!",
     "accepted_desc": "تم إنشاء رمز الدعوة الخاص بك.",

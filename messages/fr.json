@@ -1,18 +1,18 @@
 {
   "Invitation": {
     "greeting": "Cher(e) {name},",
-    "title": "Realsee 2025 Réunion d'Achat Interne Poincare",
+    "title": "Realsee Insider Access - Poincare Premiere",
     "subtitle": "Invitation Exclusive | Offre Limitée | Expérience Nouveau Produit",
     "event_time_label": "Heure de l'Événement",
     "event_time_local": "(Votre Heure Locale)",
     "highlights": {
-      "item1": "Première expérience d'achat interne de la série Poincare",
-      "item2": "Tarifs exclusifs d'achat interne",
+      "item1": "Première expérience de la série Poincare",
+      "item2": "Tarifs exclusifs",
       "item3": "Démonstration en direct par un expert produit"
     },
     "benefits_title": "Avantages Exclusifs",
-    "benefits_desc": "Acceptez l'invitation pour débloquer votre code de réduction exclusif",
-    "accept_btn": "Accepter l'Invitation",
+    "benefits_desc": "Réservez votre place maintenant pour débloquer votre code de réduction",
+    "accept_btn": "Réserver Ma Place Maintenant",
     "decline_btn": "Impossible de Participer",
     "accepted_title": "Merci pour Votre Confirmation!",
     "accepted_desc": "Votre code d'invitation exclusif a été généré.",

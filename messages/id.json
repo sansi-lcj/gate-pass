@@ -1,18 +1,18 @@
 {
   "Invitation": {
     "greeting": "Yth. {name},",
-    "title": "Rapat Pembelian Poincare 2025 Realsee",
+    "title": "Realsee Insider Access - Poincare Premiere",
     "subtitle": "Undangan Eksklusif | Penawaran Terbatas | Pengalaman Produk Baru",
     "event_time_label": "Waktu Acara",
     "event_time_local": "(Waktu Lokal Anda)",
     "highlights": {
-      "item1": "Pengalaman Pembelian Pertama Seri Poincare",
-      "item2": "Harga Pembelian Eksklusif",
+      "item1": "Pengalaman Pertama Seri Poincare",
+      "item2": "Harga Eksklusif",
       "item3": "Demo Langsung dari Pakar Produk"
     },
     "benefits_title": "Manfaat Eksklusif",
-    "benefits_desc": "Terima undangan untuk mendapatkan kode diskon eksklusif Anda",
-    "accept_btn": "Terima Undangan",
+    "benefits_desc": "Klaim tempat Anda sekarang untuk mendapatkan kode diskon",
+    "accept_btn": "Klaim Tempat Saya Sekarang",
     "decline_btn": "Tidak Bisa Hadir",
     "accepted_title": "Terima Kasih atas Konfirmasi Anda!",
     "accepted_desc": "Kode undangan eksklusif Anda telah dibuat.",

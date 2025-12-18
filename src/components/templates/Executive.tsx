@@ -1,227 +1,138 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import Image from "next/image";
-import { respondInvitation } from "@/app/invite/[uniqueToken]/action";
-import { useTranslation } from "react-i18next";
-import { InvitationProps, formatLocalTime, isEventEnded } from "./types";
+import { InvitationProps } from "./types";
+import {
+  useInvitation,
+  AcceptedContent,
+  ActionButtons,
+  DeclinedContent,
+  EventEndedBanner,
+} from "@/components/invitation";
 
 export default function Executive({ data }: InvitationProps) {
-  const { t } = useTranslation();
-  const [status, setStatus] = useState(data.status);
-  const localTime = useMemo(() => {
-    return data.eventTime ? formatLocalTime(data.eventTime, data.language) : "";
-  }, [data.eventTime, data.language]);
-  const [loading, setLoading] = useState(false);
-  const eventEnded = isEventEnded(data.eventEndTime);
-
-  const handleAccept = async () => {
-    setLoading(true);
-    await respondInvitation(data.uniqueToken, "ACCEPTED");
-    setStatus("ACCEPTED");
-    setLoading(false);
-  };
-  const handleReconsider = async () => {
-    setLoading(true);
-    await respondInvitation(data.uniqueToken, "OPENED");
-    setStatus("OPENED");
-    setLoading(false);
-  };
-
-  const greeting = t("Invitation.greeting", { name: data.guestName });
+  const invitation = useInvitation(data);
+  const { t, greeting, localTime, status } = invitation;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-200 flex flex-col items-center justify-center p-4">
-      <div className="relative z-10 w-full max-w-2xl bg-white shadow-2xl overflow-hidden flex flex-col">
-        {/* Header */}
-        <div className="bg-slate-900 text-white p-8 md:p-12 text-center">
-          <div className="flex justify-center items-center gap-3 mb-6">
+    <div className="h-screen bg-[#0F172A] text-slate-100 flex flex-col relative overflow-hidden select-none font-serif">
+      {/* 1. Background Layer: Executive Hero Device */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Soft Ambient Gold Glows */}
+        <div className="absolute top-1/3 left-1/4 w-[90vw] h-[60vh] bg-amber-500/5 blur-[150px] rounded-full" />
+        <div className="absolute bottom-1/4 right-1/4 w-[70vw] h-[50vh] bg-slate-400/5 blur-[120px] rounded-full" />
+
+        {/* Hero Device Section */}
+        <div className="absolute inset-x-0 top-0 h-[55%] flex items-center justify-center p-12">
+          <div className="relative w-full h-full max-w-2xl group transition-all duration-1000">
+            {/* Serif Frame Elements */}
+            <div className="absolute top-[-5%] left-[-5%] w-[110%] h-[110%] border border-slate-700/30 rounded-full" />
+
             <Image
-              src="/assets/realsee-logo-en-with-brands-wihte.svg"
-              alt="Realsee"
-              width={120}
-              height={32}
-              className="h-6 w-auto"
+              src="/images/poincare/poincare-transparent.png"
+              alt="Poincare Device"
+              fill
+              className="object-contain filter drop-shadow-[0_40px_100px_rgba(0,0,0,0.5)] contrast-[1.05] brightness-110 transition-transform duration-[5s] group-hover:scale-[1.02]"
+              priority
             />
-            <div className="h-4 w-px bg-slate-600 mx-4"></div>
-            <span className="text-slate-400 text-xs tracking-[0.2em] text-end">
-              POINCARE
-            </span>
           </div>
-
-          <h1 className="text-2xl md:text-4xl font-serif text-white mb-3">
-            {status === "ACCEPTED"
-              ? t("Invitation.accepted_title")
-              : t("Invitation.title")}
-          </h1>
-          <p className="text-slate-400 font-light italic">
-            {t("Invitation.subtitle")}
-          </p>
         </div>
+      </div>
 
-        {/* Product Image - Executive Showcase */}
-        <div className="relative w-full h-80 md:h-96 my-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-50 via-white to-slate-50 border-2 border-slate-300 shadow-2xl">
-            {/* Subtle Professional Grid */}
-            <div
-              className="absolute inset-0 opacity-5"
-              style={{
-                backgroundImage: `linear-gradient(rgba(51, 65, 85, 0.1) 1px, transparent 1px),
-                                 linear-gradient(90deg, rgba(51, 65, 85, 0.1) 1px, transparent 1px)`,
-                backgroundSize: "60px 60px",
-              }}
-            />
+      {/* 2. Content Layer: Bottom Glass Panel */}
+      <div className="flex-1" />
 
-            {/* Soft Gradient Overlay */}
-            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-slate-100/50 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-100/50 to-transparent" />
-
-            {/* Product Image */}
-            <div className="relative w-full h-full flex items-center justify-center">
+      <div className="relative z-10 w-full flex flex-col items-center">
+        {/* Main Panel */}
+        <div className="w-full max-w-3xl bg-slate-900/60 border-t border-slate-700/50 backdrop-blur-3xl rounded-t-[40px] p-6 md:p-10 flex flex-col gap-8 shadow-[0_-40px_120px_rgba(0,0,0,0.9)]">
+          {/* Brand & Header */}
+          <div className="text-center space-y-4">
+            <div className="flex items-center justify-center gap-4 opacity-40">
+              <div className="h-[1px] w-12 bg-amber-500" />
               <Image
-                src="/images/poincare/poincare-transparent.png"
-                alt="Poincare Device"
-                fill
-                className="object-contain p-16 hover:scale-105 transition-all duration-700 filter drop-shadow-2xl"
-                priority
+                src="/assets/realsee-logo-en-with-brands-wihte.svg"
+                alt="Realsee"
+                width={110}
+                height={28}
+                className="h-6 w-auto"
               />
+              <div className="h-[1px] w-12 bg-amber-500" />
             </div>
 
-            {/* Professional Corner Elements */}
-            <div className="absolute top-8 left-8 w-12 h-12 border-l-2 border-t-2 border-slate-400/50" />
-            <div className="absolute top-8 right-8 w-12 h-12 border-r-2 border-t-2 border-slate-400/50" />
-            <div className="absolute bottom-8 left-8 w-12 h-12 border-l-2 border-b-2 border-slate-400/50" />
-            <div className="absolute bottom-8 right-8 w-12 h-12 border-r-2 border-b-2 border-slate-400/50" />
+            <p className="text-amber-500/80 text-xs md:text-sm tracking-[0.6em] uppercase font-bold">
+              {greeting}
+            </p>
+
+            <div className="space-y-1 px-8">
+              <h1 className="text-2xl md:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+                {status === "ACCEPTED"
+                  ? t("Invitation.accepted_title")
+                  : t("Invitation.title")}
+              </h1>
+              <p className="text-slate-400 text-[10px] md:text-xs tracking-[0.4em] uppercase font-bold">
+                {t("Invitation.subtitle")}
+              </p>
+            </div>
           </div>
 
-          {/* Outer Shadow Frame */}
-          <div className="absolute -inset-1 bg-slate-200 -z-10 blur-sm" />
+          {/* Details Row */}
+          <div className="bg-slate-800/50 border border-slate-700/30 p-6 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl group">
+            <div className="text-center md:text-left">
+              <p className="text-amber-500/40 text-[9px] uppercase tracking-widest mb-1 italic font-sans">
+                Premium Engagement
+              </p>
+              <p className="text-xl md:text-2xl font-bold text-slate-100 tracking-tight">
+                {localTime || "ASCERTAINING..."}
+              </p>
+            </div>
+
+            <div className="flex gap-4 md:gap-8">
+              {["item1", "item2", "item3"].map((key) => (
+                <div
+                  key={key}
+                  className="flex flex-col items-center gap-1.5 group/icon"
+                >
+                  <div className="w-1.5 h-1.5 bg-amber-500 rounded-sm rotate-45 group-hover/icon:scale-150 transition-transform" />
+                  <span className="text-[9px] text-slate-400 uppercase tracking-tighter text-center leading-[1.1] max-w-[80px] font-sans">
+                    {t(`Invitation.highlights.${key}`)}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Actions Area */}
+          <div className="space-y-4">
+            <AcceptedContent
+              invitation={invitation}
+              containerClassName="bg-slate-900 border border-slate-800 p-8 rounded-2xl text-center shadow-inner"
+              waitingTitleClassName="text-amber-400 text-xl font-black mb-1 uppercase tracking-widest"
+              waitingHintClassName="text-slate-500 text-[10px] uppercase tracking-widest"
+              joinButtonClassName="w-full bg-amber-600 hover:bg-amber-500 text-white font-black py-5 px-8 rounded-xl transition-all shadow-xl hover:scale-[1.01]"
+              codeLabelClassName="text-amber-500/30 text-[9px] uppercase tracking-[0.6em] mb-2"
+              codeClassName="text-5xl md:text-7xl font-black text-white tracking-[0.4em] py-4"
+              meetingLinkClassName="text-amber-500 underline mt-4 inline-block text-[11px] font-bold hover:text-white"
+            />
+
+            <EventEndedBanner
+              invitation={invitation}
+              className="bg-black/40 text-slate-700 p-4 rounded-xl text-center text-[10px] uppercase tracking-widest border border-slate-800"
+            />
+
+            <ActionButtons
+              invitation={invitation}
+              className="flex gap-4"
+              acceptButtonClassName="flex-1 bg-white text-slate-900 font-black py-5 rounded-2xl shadow-[0_20px_60px_rgba(255,255,255,0.1)] transition-all text-sm uppercase tracking-[0.2em] hover:bg-amber-50"
+              declineButtonClassName="px-8 border border-slate-700 text-slate-500 hover:text-white rounded-2xl transition-all text-[11px] uppercase tracking-widest"
+            />
+          </div>
         </div>
 
-        {/* Content */}
-        <div className="p-8 md:p-12 flex-1 bg-white relative">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900 text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg whitespace-nowrap">
-            {t("Invitation.greeting", { name: data.guestName })}
-          </div>
-
-          {/* Event Details */}
-          <div className="mt-8 border border-slate-200 p-6 bg-slate-50">
-            <p className="text-slate-500 text-xs uppercase tracking-widest mb-1">
-              {t("Invitation.event_time_label")}
-            </p>
-            <p className="text-xl font-serif text-slate-900">
-              {localTime || "Calculating..."}
-            </p>
-            <p className="text-slate-400 text-xs text-right mt-1">
-              {t("Invitation.event_time_local")}
-            </p>
-          </div>
-
-          <div className="mt-8 space-y-3">
-            <div className="flex items-start gap-3">
-              <span className="text-amber-600 mt-1">✦</span>
-              <p className="text-slate-600">
-                {t("Invitation.highlights.item1")}
-              </p>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-amber-600 mt-1">✦</span>
-              <p className="text-slate-600">
-                {t("Invitation.highlights.item2")}
-              </p>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="text-amber-600 mt-1">✦</span>
-              <p className="text-slate-600">
-                {t("Invitation.highlights.item3")}
-              </p>
-            </div>
-          </div>
-
-          {/* Event Ended Banner */}
-          {eventEnded && (
-            <div className="mt-8 bg-slate-100 text-slate-500 p-4 text-center border border-slate-200 font-serif italic">
-              {t("Invitation.event_ended")}
-            </div>
-          )}
-
-          {/* Benefits / Code Section */}
-          {status === "ACCEPTED" && data.discountCode && (
-            <div className="mt-8 bg-amber-50 border border-amber-200 p-6 text-center">
-              <p className="text-amber-800 text-sm mb-2 font-serif italic">
-                {t("Invitation.code_label")}
-              </p>
-              <p className="text-3xl font-mono font-bold text-slate-900 tracking-widest">
-                {data.discountCode}
-              </p>
-              {data.meetingLink && (
-                <a
-                  href={data.meetingLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block mt-4 text-amber-700 hover:text-amber-900 underline font-serif italic"
-                >
-                  {t("Invitation.meeting_link_label")} →
-                </a>
-              )}
-            </div>
-          )}
-
-          {/* Declined State */}
-          {status === "DECLINED" && (
-            <div className="mt-8 bg-red-50 border border-red-100 p-6 text-center">
-              <p className="text-red-800 font-serif mb-2">
-                {t("Invitation.declined_title")}
-              </p>
-              <p className="text-slate-500 text-sm italic">
-                {t("Invitation.declined_desc")}
-              </p>
-              {!eventEnded && (
-                <button
-                  onClick={handleReconsider}
-                  disabled={loading}
-                  className="mt-4 text-slate-600 hover:text-slate-900 underline text-sm"
-                >
-                  {t("Invitation.reconsider_btn")}
-                </button>
-              )}
-            </div>
-          )}
-
-          {/* Action Buttons */}
-          {(status === "PENDING" || status === "OPENED") && !eventEnded && (
-            <div className="flex justify-center mt-10 border-t border-slate-100 pt-8">
-              <button
-                onClick={handleAccept}
-                disabled={loading}
-                className="bg-slate-900 hover:bg-slate-800 text-white font-medium py-4 px-12 transition-all hover:shadow-lg disabled:opacity-50 min-w-[200px]"
-              >
-                {t("Invitation.accept_btn")}
-              </button>
-            </div>
-          )}
-
-          {/* Accepted Badge */}
-          {status === "ACCEPTED" && (
-            <div className="text-center mt-8">
-              <span className="inline-block text-green-700 font-serif italic border-b-2 border-green-200 pb-1">
-                ✓ {t("Invitation.accepted_desc")}
-              </span>
-            </div>
-          )}
-
-          <div className="mt-12 text-center">
-            <Image
-              src="/assets/realsee-logo-en-with-brands-color.svg"
-              alt="Realsee"
-              width={80}
-              height={20}
-              className="h-4 w-auto mx-auto opacity-30"
-            />
-            <p className="text-slate-300 text-[10px] mt-2 tracking-widest">
-              {t("Invitation.footer")} © 2025
-            </p>
-          </div>
+        {/* Footer */}
+        <div className="py-4 opacity-10 text-center">
+          <p className="text-[9px] text-slate-400 tracking-[1em] uppercase">
+            {t("Invitation.footer")} · EXECUTIVE ORIGIN
+          </p>
         </div>
       </div>
     </div>

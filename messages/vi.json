@@ -1,18 +1,18 @@
 {
   "Invitation": {
     "greeting": "Kính gửi {name},",
-    "title": "Cuộc họp Mua nội bộ Poincare 2025 của Realsee",
+    "title": "Realsee Insider Access - Poincare Premiere",
     "subtitle": "Lời mời Độc quyền | Ưu đãi Có hạn | Trải nghiệm Sản phẩm mới",
     "event_time_label": "Thời gian Sự kiện",
     "event_time_local": "(Giờ địa phương của bạn)",
     "highlights": {
-      "item1": "Trải nghiệm Mua nội bộ đầu tiên của Dòng Poincare",
-      "item2": "Giá Mua nội bộ Độc quyền",
+      "item1": "Trải nghiệm đầu tiên của Dòng Poincare",
+      "item2": "Giá Độc quyền",
       "item3": "Demo trực tiếp từ Chuyên gia Sản phẩm"
     },
     "benefits_title": "Quyền lợi Độc quyền",
-    "benefits_desc": "Chấp nhận lời mời để nhận mã giảm giá độc quyền",
-    "accept_btn": "Chấp nhận Lời mời",
+    "benefits_desc": "Đăng ký ngay để nhận mã giảm giá độc quyền",
+    "accept_btn": "Đăng Ký Ngay",
     "decline_btn": "Không thể Tham dự",
     "accepted_title": "Cảm ơn bạn đã Xác nhận!",
     "accepted_desc": "Mã mời độc quyền của bạn đã được tạo.",

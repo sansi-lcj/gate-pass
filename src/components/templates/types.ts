@@ -28,6 +28,42 @@ export function isEventEnded(eventEndTime: string | null | undefined): boolean {
   return new Date() > new Date(eventEndTime);
 }
 
+// Helper to check if event has started
+export function isEventStarted(eventTime: string | null | undefined): boolean {
+  if (!eventTime) return false;
+  return new Date() >= new Date(eventTime);
+}
+
+// Helper to check if we're within 30 minutes before event start
+export function isWithin30MinutesOfStart(
+  eventTime: string | null | undefined
+): boolean {
+  if (!eventTime) return false;
+  const now = new Date();
+  const eventDate = new Date(eventTime);
+  const thirtyMinBefore = new Date(eventDate.getTime() - 30 * 60 * 1000);
+  return now >= thirtyMinBefore && now < eventDate;
+}
+
+// Determine what to show in the accepted state
+export type AcceptedDisplayMode = "waiting" | "join_meeting" | "show_code";
+
+export function getAcceptedDisplayMode(
+  eventTime: string | null | undefined,
+  eventEndTime: string | null | undefined
+): AcceptedDisplayMode {
+  if (isEventEnded(eventEndTime)) {
+    return "show_code"; // Event ended, show code
+  }
+  if (isEventStarted(eventTime)) {
+    return "show_code"; // Event started, show code
+  }
+  if (isWithin30MinutesOfStart(eventTime)) {
+    return "join_meeting"; // 30 min before, show join button
+  }
+  return "waiting"; // Before 30 min window, show waiting message
+}
+
 // Helper to format time for user's locale
 export function formatLocalTime(isoTime: string, locale: string): string {
   try {

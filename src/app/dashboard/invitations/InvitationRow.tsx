@@ -40,7 +40,7 @@ const statusConfig: Record<string, { bg: string; text: string; icon: string }> =
 
 const languageFlags: Record<string, string> = {
   "zh-CN": "🇨🇳",
-  "zh-TW": "🇹🇼",
+  "zh-TW": "🇨🇳",
   en: "🇺🇸",
   ja: "🇯🇵",
   ko: "🇰🇷",

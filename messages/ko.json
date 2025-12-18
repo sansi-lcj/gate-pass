@@ -1,18 +1,18 @@
 {
   "Invitation": {
     "greeting": "{name}님께",
-    "title": "Realsee 해외 2025년 푸앵카레 온라인 내부 구매 미팅",
+    "title": "Realsee 인사이더 액세스 - Poincare 프리미어",
     "subtitle": "특별 초대 | 한정 혜택 | 신제품 체험",
     "event_time_label": "행사 시간",
     "event_time_local": "(현지 시간)",
     "highlights": {
-      "item1": "푸앵카레 시리즈 신제품 최초 내부 구매 체험",
+      "item1": "Poincare 시리즈 신제품 최초 체험",
       "item2": "특별 내부 구매 가격",
       "item3": "제품 전문가 라이브 데모"
     },
     "benefits_title": "특별 혜택",
-    "benefits_desc": "초대를 수락하여 할인 코드를 받으세요",
-    "accept_btn": "초대 수락",
+    "benefits_desc": "지금 자리를 확보하고 할인 코드를 받으세요",
+    "accept_btn": "지금 자리 확보하기",
     "decline_btn": "참석 불가",
     "accepted_title": "확인해 주셔서 감사합니다!",
     "accepted_desc": "전용 초대 코드가 생성되었습니다.",

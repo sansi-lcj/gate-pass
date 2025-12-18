@@ -1,213 +1,199 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import Image from "next/image";
-import { respondInvitation } from "@/app/invite/[uniqueToken]/action";
-import { useTranslation } from "react-i18next";
-import { InvitationProps, formatLocalTime, isEventEnded } from "./types";
+import {
+  useInvitation,
+  AcceptedContent,
+  ActionButtons,
+  EventEndedBanner,
+} from "@/components/invitation";
+import { InvitationProps } from "./types";
 
 export default function NatureGreen({ data }: InvitationProps) {
-  const { t } = useTranslation();
-  const [status, setStatus] = useState(data.status);
-  const localTime = useMemo(() => {
-    return data.eventTime ? formatLocalTime(data.eventTime, data.language) : "";
-  }, [data.eventTime, data.language]);
-  const [loading, setLoading] = useState(false);
-  const eventEnded = isEventEnded(data.eventEndTime);
-
-  const handleAccept = async () => {
-    setLoading(true);
-    await respondInvitation(data.uniqueToken, "ACCEPTED");
-    setStatus("ACCEPTED");
-    setLoading(false);
-  };
-  const handleReconsider = async () => {
-    setLoading(true);
-    await respondInvitation(data.uniqueToken, "OPENED");
-    setStatus("OPENED");
-    setLoading(false);
-  };
-
-  const greeting = t("Invitation.greeting", { name: data.guestName });
+  const invitation = useInvitation(data);
+  const { t, greeting, localTime, status } = invitation;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 via-emerald-50 to-teal-50 flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Leaf Pattern */}
-      <svg
-        className="absolute bottom-0 left-0 w-32 h-32 text-green-200 opacity-50"
-        viewBox="0 0 100 100"
-      >
-        <path
-          fill="currentColor"
-          d="M50,10 Q80,30 80,60 Q80,90 50,90 Q20,90 20,60 Q20,30 50,10"
-        />
-      </svg>
-      <svg
-        className="absolute top-20 right-10 w-24 h-24 text-emerald-200 opacity-40 rotate-45"
-        viewBox="0 0 100 100"
-      >
-        <path
-          fill="currentColor"
-          d="M50,10 Q80,30 80,60 Q80,90 50,90 Q20,90 20,60 Q20,30 50,10"
-        />
-      </svg>
+    <div className="h-screen bg-[#F7F9F7] text-emerald-900 flex flex-col relative overflow-hidden select-none">
+      {/* 1. Background Layer: Large Device + Organic Elements */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Ambient Sunlight & Foliage Glows */}
+        <div className="absolute top-0 right-0 w-[80vw] h-[60vh] bg-yellow-100/30 blur-[120px] rounded-full" />
+        <div className="absolute -bottom-20 -left-20 w-[60vw] h-[60vh] bg-emerald-100/40 blur-[100px] rounded-full" />
 
-      <div className="relative z-10 bg-white rounded-2xl shadow-xl p-8 md:p-12 max-w-2xl w-full border-l-4 border-green-500">
-        <div className="flex items-center justify-between mb-8">
-          <Image
-            src="/assets/realsee-logo-en-with-brands-color.svg"
-            alt="Realsee"
-            width={120}
-            height={32}
-            className="h-6 w-auto"
-          />
-          <span className="text-green-600 bg-green-100 px-3 py-1 rounded-full text-xs">
-            🌿 POINCARE
-          </span>
-        </div>
-
-        <p className="text-green-600 text-lg">{greeting}</p>
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 my-4">
-          {status === "ACCEPTED"
-            ? t("Invitation.accepted_title")
-            : t("Invitation.title")}
-        </h1>
-        <p className="text-gray-500">{t("Invitation.subtitle")}</p>
-
-        {/* Product Image - Nature Green Showcase */}
-        <div className="relative w-full h-80 md:h-96 my-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-lime-50 border-2 border-green-200 rounded-2xl overflow-hidden shadow-xl">
-            {/* Organic Patterns */}
-            <div
-              className="absolute inset-0 opacity-5"
-              style={{
-                backgroundImage: `
-                  radial-gradient(circle at 20% 30%, rgba(34, 197, 94, 0.3) 0%, transparent 40%),
-                  radial-gradient(circle at 80% 70%, rgba(132, 204, 22, 0.3) 0%, transparent 40%),
-                  radial-gradient(circle at 50% 50%, rgba(22, 163, 74, 0.2) 0%, transparent 50%)
-                `,
-              }}
+        {/* Hero Device Section (Top Half) */}
+        <div className="absolute inset-x-0 top-0 h-[55%] flex items-center justify-center p-12">
+          <div className="relative w-full h-full max-w-2xl transition-transform duration-[3s] group hover:scale-110">
+            <Image
+              src="/images/poincare/poincare-transparent.png"
+              alt="Poincare Device"
+              fill
+              className="object-contain filter saturate-[0.9] contrast-[1.05] drop-shadow-[0_20px_50px_rgba(16,185,129,0.1)]"
+              priority
             />
 
-            {/* Soft Green Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2/3 h-2/3 bg-green-300/20 blur-[100px] rounded-full animate-pulse" />
+            {/* Floating Leaves (SVG) */}
+            <div className="absolute inset-0">
+              {[...Array(8)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute animate-float opacity-30"
+                  style={{
+                    top: `${10 + Math.random() * 80}%`,
+                    left: `${-10 + Math.random() * 110}%`,
+                    animationDelay: `${i * 1.5}s`,
+                    animationDuration: `${12 + Math.random() * 8}s`,
+                  }}
+                >
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="text-emerald-400"
+                  >
+                    <path d="M17,8C8,10 5.9,16.17 3.82,21.34L5.71,22L5.66,22C8.32,15.19 12.03,11.81 17,11.5V15L21,10L17,5V8Z" />
+                  </svg>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
 
-            {/* Product Image */}
-            <div className="relative w-full h-full flex items-center justify-center">
+      {/* 2. Content Layer: Bottom Glass Panel */}
+      <div className="flex-1" />
+
+      <div className="relative z-10 w-full flex flex-col items-center">
+        {/* Glass Content Panel */}
+        <div className="w-full max-w-2xl bg-white/40 border-t border-emerald-100 backdrop-blur-3xl rounded-t-[40px] p-6 md:p-10 flex flex-col gap-8 shadow-[0_-20px_60px_rgba(6,78,59,0.08)]">
+          {/* Header Section */}
+          <div className="text-center space-y-4">
+            <div className="flex items-center justify-center gap-4 opacity-50">
+              <div className="h-[1px] w-10 bg-emerald-600/30" />
               <Image
-                src="/images/poincare/poincare-transparent.png"
-                alt="Poincare Device"
-                fill
-                className="object-contain p-14 hover:scale-110 transition-all duration-1000 drop-shadow-[0_10px_40px_rgba(34,197,94,0.3)] filter brightness-105"
-                priority
+                src="/assets/realsee-logo-en-with-brands-black.svg"
+                alt="Realsee"
+                width={100}
+                height={26}
+                className="h-5 w-auto"
               />
+              <div className="h-[1px] w-10 bg-emerald-600/30" />
             </div>
 
-            {/* Botanical Corner Elements */}
-            <div className="absolute top-6 left-6 w-10 h-10 border-l-3 border-t-3 border-green-400/60 rounded-tl-lg" />
-            <div className="absolute top-6 right-6 w-10 h-10 border-r-3 border-t-3 border-green-400/60 rounded-tr-lg" />
-            <div className="absolute bottom-6 left-6 w-10 h-10 border-l-3 border-b-3 border-green-400/60 rounded-bl-lg" />
-            <div className="absolute bottom-6 right-6 w-10 h-10 border-r-3 border-b-3 border-green-400/60 rounded-br-lg" />
+            <p className="text-emerald-700/60 text-xs md:text-sm tracking-[0.3em] uppercase font-medium">
+              {greeting}
+            </p>
+
+            <div className="space-y-1 px-4">
+              <h1 className="text-2xl md:text-4xl font-bold text-emerald-950 leading-tight">
+                {status === "ACCEPTED"
+                  ? t("Invitation.accepted_title")
+                  : t("Invitation.title")}
+              </h1>
+              <p className="text-emerald-600/50 text-[10px] md:text-xs tracking-widest uppercase italic font-light">
+                {t("Invitation.subtitle")}
+              </p>
+            </div>
           </div>
 
-          {/* Outer Natural Glow */}
-          <div className="absolute -inset-1 bg-green-200/40 rounded-2xl blur-sm -z-10" />
+          {/* Details Section */}
+          <div className="bg-emerald-500/5 border border-emerald-600/10 rounded-2xl p-6 text-center space-y-4">
+            <div>
+              <p className="text-emerald-600/40 text-[9px] uppercase tracking-widest mb-1">
+                Time & Venue
+              </p>
+              <p className="text-xl md:text-2xl text-emerald-800 font-semibold tracking-tight">
+                {localTime || "PREPARING EVENT"}
+              </p>
+            </div>
+
+            <div className="flex justify-center gap-6 px-4 pt-4 border-t border-emerald-900/5 text-[10px] text-emerald-700/50 uppercase tracking-[0.1em] font-medium">
+              <div className="flex items-center gap-2">
+                <svg
+                  width="6"
+                  height="6"
+                  viewBox="0 0 6 6"
+                  className="fill-emerald-400"
+                >
+                  <circle cx="3" cy="3" r="3" />
+                </svg>
+                <span>{t("Invitation.highlights.item1")}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg
+                  width="6"
+                  height="6"
+                  viewBox="0 0 6 6"
+                  className="fill-emerald-400"
+                >
+                  <circle cx="3" cy="3" r="3" />
+                </svg>
+                <span>{t("Invitation.highlights.item2")}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg
+                  width="6"
+                  height="6"
+                  viewBox="0 0 6 6"
+                  className="fill-emerald-400"
+                >
+                  <circle cx="3" cy="3" r="3" />
+                </svg>
+                <span>{t("Invitation.highlights.item3")}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Area */}
+          <div className="space-y-4">
+            <AcceptedContent
+              invitation={invitation}
+              containerClassName="bg-emerald-600/5 border border-emerald-600/10 p-6 rounded-2xl text-center shadow-sm"
+              waitingTitleClassName="text-emerald-800 text-lg font-bold mb-1"
+              waitingHintClassName="text-emerald-600/40 text-[9px] uppercase tracking-widest"
+              joinButtonClassName="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 px-8 rounded-xl shadow-lg shadow-emerald-900/10 transition-all"
+              codeLabelClassName="text-emerald-700/30 text-[9px] uppercase tracking-[0.3em] mb-2"
+              codeClassName="text-5xl md:text-6xl font-black text-emerald-950 tracking-[0.2em] py-2"
+              meetingLinkClassName="text-emerald-600 underline mt-4 inline-block text-xs hover:text-emerald-400"
+            />
+
+            <EventEndedBanner
+              invitation={invitation}
+              className="bg-emerald-50 text-emerald-300 p-4 rounded-xl text-center text-[10px] uppercase tracking-widest"
+            />
+
+            <ActionButtons
+              invitation={invitation}
+              className="flex gap-4"
+              acceptButtonClassName="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-black py-4 rounded-2xl transition-all shadow-xl text-sm uppercase tracking-widest"
+              declineButtonClassName="px-8 border border-emerald-200 text-emerald-400 hover:text-emerald-600 rounded-2xl transition-all text-[11px] uppercase tracking-widest"
+            />
+          </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6 my-8">
-          <p className="text-green-700 text-sm">
-            {t("Invitation.event_time_label")}
-          </p>
-          <p className="text-2xl text-gray-800 font-medium mt-1">
-            {localTime || "..."}
-          </p>
-          <p className="text-gray-400 text-xs">
-            {t("Invitation.event_time_local")}
-          </p>
-          <div className="flex flex-wrap gap-2 mt-4">
-            <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-              🌱 {t("Invitation.highlights.item1")}
-            </span>
-            <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm">
-              💚 {t("Invitation.highlights.item2")}
-            </span>
-            <span className="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-sm">
-              🌿 {t("Invitation.highlights.item3")}
-            </span>
-          </div>
-        </div>
-
-        {eventEnded && (
-          <div className="bg-gray-100 text-gray-500 p-4 rounded-xl mb-6 text-center">
-            {t("Invitation.event_ended")}
-          </div>
-        )}
-
-        {status === "ACCEPTED" && data.discountCode && (
-          <div className="bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl p-8 mb-8 text-center">
-            <p className="text-green-100 text-sm">
-              {t("Invitation.code_label")}
-            </p>
-            <p className="text-3xl font-bold tracking-widest mt-2">
-              {data.discountCode}
-            </p>
-            {data.meetingLink && (
-              <a
-                href={data.meetingLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-green-100 underline mt-4 inline-block"
-              >
-                {t("Invitation.meeting_link_label")}
-              </a>
-            )}
-          </div>
-        )}
-
-        {status === "DECLINED" && (
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-8 text-center">
-            <p className="text-red-600">{t("Invitation.declined_title")}</p>
-            <p className="text-gray-500 text-sm">
-              {t("Invitation.declined_desc")}
-            </p>
-            {!eventEnded && (
-              <button
-                onClick={handleReconsider}
-                disabled={loading}
-                className="text-green-600 underline mt-4"
-              >
-                {t("Invitation.reconsider_btn")}
-              </button>
-            )}
-          </div>
-        )}
-
-        {(status === "PENDING" || status === "OPENED") && !eventEnded && (
-          <div className="flex justify-center mt-8 pt-8 border-t border-gray-100">
-            <button
-              onClick={handleAccept}
-              disabled={loading}
-              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-white font-bold py-4 px-12 rounded-full transition-all shadow-lg disabled:opacity-50 min-w-[200px]"
-            >
-              {t("Invitation.accept_btn")}
-            </button>
-          </div>
-        )}
-
-        {status === "ACCEPTED" && (
-          <div className="text-center mt-4">
-            <span className="inline-block bg-green-100 text-green-600 font-bold px-6 py-3 rounded-full">
-              🌿 {t("Invitation.accepted_desc")}
-            </span>
-          </div>
-        )}
-
-        <div className="mt-12 pt-6 border-t border-gray-200 text-center">
-          <p className="text-gray-400 text-xs">
-            {t("Invitation.footer")} © 2025
+        {/* Footer */}
+        <div className="py-4 opacity-30 text-center">
+          <p className="text-[9px] text-emerald-800/60 tracking-[0.5em] uppercase">
+            {t("Invitation.footer")} · NATURE GREEN
           </p>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%,
+          100% {
+            transform: translateY(0) rotate(0);
+          }
+          50% {
+            transform: translateY(-30px) rotate(15deg);
+          }
+        }
+        .animate-float {
+          animation: float 12s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }
