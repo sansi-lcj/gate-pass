@@ -39,7 +39,14 @@ export async function generateMetadata({
     openGraph: {
       title: `Invitation for ${invitation.guestName}`,
       description: "Realsee 2025 Poincare Device Purchase Meeting",
-      // images: ['/assets/event-cover.png'], // TODO: Add actual image URL
+      images: [
+        {
+          url: "/images/poincare/hero.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Realsee Poincare Device",
+        },
+      ],
     },
   };
 }

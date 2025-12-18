@@ -148,7 +148,7 @@ export default function TemplateSelector({
             </div>
             <div className="flex-1 text-left">
               <p className="font-semibold text-gray-900 dark:text-white">
-                {selectedStyle.name}
+                {selectedStyle.nameZh}
               </p>
               <span
                 className={`text-[10px] font-bold px-1.5 py-0.5 rounded border ${
@@ -246,7 +246,7 @@ export default function TemplateSelector({
 
                   {/* Name */}
                   <p className="text-xs font-medium text-gray-700 dark:text-gray-300 truncate">
-                    {style.name}
+                    {style.nameZh}
                   </p>
                 </button>
               ))}

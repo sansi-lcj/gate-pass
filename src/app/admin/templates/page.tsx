@@ -32,8 +32,8 @@ export default async function AdminTemplatesPage() {
               <div className="h-32 bg-gray-800 rounded-md mb-4 flex items-center justify-center">
                 <span className="text-gray-500 text-sm">{style.key}</span>
               </div>
-              <h3 className="font-bold">{style.name}</h3>
-              <p className="text-sm text-gray-400">{style.previewUrl}</p>
+              <h3 className="font-bold">{style.nameZh}</h3>
+              <p className="text-sm text-gray-400">{style.name}</p>
             </div>
           ))}
         </div>

@@ -16,28 +16,29 @@ import { InvitationProps } from './types';
 export interface StyleConfig {
   key: string;
   name: string;
+  nameZh: string;
   previewUrl: string;
 }
 
 // All available styles with metadata
 export const STYLES: StyleConfig[] = [
   // Tech Series (1-3)
-  { key: 'TechFuture', name: 'Tech Future', previewUrl: '/styles/tech-future.png' },
-  { key: 'CyberGrid', name: 'Cyber Grid', previewUrl: '/styles/cyber-grid.png' },
-  { key: 'DigitalWave', name: 'Digital Wave', previewUrl: '/styles/digital-wave.png' },
+  { key: 'TechFuture', name: 'Tech Future', nameZh: '科技未来', previewUrl: '/styles/tech-future.png' },
+  { key: 'CyberGrid', name: 'Cyber Grid', nameZh: '赛博网格', previewUrl: '/styles/cyber-grid.png' },
+  { key: 'DigitalWave', name: 'Digital Wave', nameZh: '数字浪潮', previewUrl: '/styles/digital-wave.png' },
   // Business Series (4-6)
-  { key: 'Executive', name: 'Executive', previewUrl: '/styles/executive.png' },
-  { key: 'CorporateBlue', name: 'Corporate Blue', previewUrl: '/styles/corporate-blue.png' },
-  { key: 'MinimalWhite', name: 'Minimal White', previewUrl: '/styles/minimal-white.png' },
+  { key: 'Executive', name: 'Executive', nameZh: '行政精英', previewUrl: '/styles/executive.png' },
+  { key: 'CorporateBlue', name: 'Corporate Blue', nameZh: '商务蓝调', previewUrl: '/styles/corporate-blue.png' },
+  { key: 'MinimalWhite', name: 'Minimal White', nameZh: '极简白', previewUrl: '/styles/minimal-white.png' },
   // Creative Series (7-8)
-  { key: 'LuxuryGold', name: 'Luxury Gold', previewUrl: '/styles/luxury-gold.png' },
-  { key: 'AbstractArt', name: 'Abstract Art', previewUrl: '/styles/abstract-art.png' },
+  { key: 'LuxuryGold', name: 'Luxury Gold', nameZh: '奢华金', previewUrl: '/styles/luxury-gold.png' },
+  { key: 'AbstractArt', name: 'Abstract Art', nameZh: '抽象艺术', previewUrl: '/styles/abstract-art.png' },
   // Regional Series (9-10)
-  { key: 'OrientalInk', name: 'Oriental Ink', previewUrl: '/styles/oriental-ink.png' },
-  { key: 'ArabicGeometry', name: 'Arabic Geometry', previewUrl: '/styles/arabic-geometry.png' },
+  { key: 'OrientalInk', name: 'Oriental Ink', nameZh: '东方水墨', previewUrl: '/styles/oriental-ink.png' },
+  { key: 'ArabicGeometry', name: 'Arabic Geometry', nameZh: '阿拉伯几何', previewUrl: '/styles/arabic-geometry.png' },
   // Other Series (11-12)
-  { key: 'NatureGreen', name: 'Nature Green', previewUrl: '/styles/nature-green.png' },
-  { key: 'DarkMatter', name: 'Dark Matter', previewUrl: '/styles/dark-matter.png' },
+  { key: 'NatureGreen', name: 'Nature Green', nameZh: '自然绿', previewUrl: '/styles/nature-green.png' },
+  { key: 'DarkMatter', name: 'Dark Matter', nameZh: '暗物质', previewUrl: '/styles/dark-matter.png' },
 ];
 
 // Template registry - maps style keys to React components

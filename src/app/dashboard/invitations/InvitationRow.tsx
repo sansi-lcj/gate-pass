@@ -51,6 +51,10 @@ const languageFlags: Record<string, string> = {
   de: "🇩🇪",
   fr: "🇫🇷",
   es: "🇪🇸",
+  pt: "🇧🇷",
+  ru: "🇷🇺",
+  ms: "🇲🇾",
+  he: "🇮🇱",
 };
 
 export default function InvitationRow({
@@ -73,7 +77,7 @@ export default function InvitationRow({
       const data = await res.json();
       setQrDataUrl(data.qrCode);
       setShowQR(true);
-    } catch (_error) {
+    } catch {
       console.error("Failed to load QR code");
     }
   };
@@ -233,6 +237,7 @@ export default function InvitationRow({
           >
             <div className="flex items-center gap-6">
               <div className="p-2 bg-white dark:bg-zinc-900 rounded-xl shadow-lg border border-gray-100 dark:border-zinc-800">
+                {/* eslint-disable-next-line @next/next/no-img-element -- QR code is a data URL */}
                 <img src={qrDataUrl} alt="QR Code" className="w-28 h-28" />
               </div>
               <div>

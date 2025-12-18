@@ -4,14 +4,12 @@ import { decrypt } from '@/lib/auth';
 
 // 1. Specify protected and public routes
 const protectedRoutes = ['/dashboard', '/admin'];
-const publicRoutes = ['/login', '/invite', '/'];
 
 // Next.js 16: proxy replaces middleware
 export default async function proxy(req: NextRequest) {
   // 2. Check if the current route is protected or public
   const path = req.nextUrl.pathname;
   const isProtectedRoute = protectedRoutes.some((route) => path.startsWith(route));
-  const isPublicRoute = publicRoutes.some((route) => path.startsWith(route));
 
   if (!isProtectedRoute) {
     return NextResponse.next();

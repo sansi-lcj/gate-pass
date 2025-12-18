@@ -131,6 +131,10 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
                 <option value="de">🇩🇪 Deutsch</option>
                 <option value="fr">🇫🇷 Français</option>
                 <option value="es">🇪🇸 Español</option>
+                <option value="pt">🇧🇷 Português</option>
+                <option value="ru">🇷🇺 Русский</option>
+                <option value="ms">🇲🇾 Bahasa Melayu</option>
+                <option value="he">🇮🇱 עברית</option>
               </select>
               <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
                 <svg
@@ -196,7 +200,7 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
             <div className="flex items-center justify-between text-sm">
               <span className="text-gray-500">模板</span>
               <span className="font-medium text-gray-900 dark:text-white">
-                {selectedStyle?.name || "-"}
+                {selectedStyle?.nameZh || "-"}
               </span>
             </div>
             <div className="flex items-center justify-between text-sm mt-2">
@@ -276,7 +280,7 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
           {PreviewComponent && messages ? (
             <div dir={getDir(formData.language)} className="min-h-full">
               <I18nProvider key={formData.language} locale={formData.language} resources={messages}>
-                {/* eslint-disable-next-line react-hooks/exhaustive-deps */}
+                {/* eslint-disable-next-line react-hooks/static-components -- Dynamic template selection */}
                 <PreviewComponent data={previewData} />
               </I18nProvider>
             </div>

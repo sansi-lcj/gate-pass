@@ -23,7 +23,7 @@ export default function I18nProvider({
     instance
       .use(initReactI18next)
       .use(
-        resourcesToBackend((language: string, _namespace: string) => {
+        resourcesToBackend((language: string) => {
           // This is primarily for lazy loading if needed, but we hydration with resources
           return import(`../../../messages/${language}.json`);
         })

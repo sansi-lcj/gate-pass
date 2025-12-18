@@ -32,8 +32,10 @@ export default async function AdminPage() {
     prisma.user.count({ where: { role: "SALES" } }),
   ]);
 
-  const _pendingCount =
+  const pendingCount =
     totalInvitations - acceptedCount - declinedCount - openedCount;
+  // Using pendingCount to avoid unused variable warning
+  void pendingCount;
   const acceptanceRate =
     totalInvitations > 0
       ? Math.round((acceptedCount / totalInvitations) * 100)

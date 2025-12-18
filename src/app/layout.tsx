@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Realsee 2025 Poincare Device Purchase Meeting",
+  title: "Realsee Insider Access - Poincare Premiere",
   description:
-    "Invitation management system for Realsee's exclusive device purchase event.",
+    "Exclusive premiere event for the Poincare Device. An invitation-only experience for Realsee's valued partners.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
