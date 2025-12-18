@@ -7,7 +7,7 @@ generator client {
   output   = "./generated/prisma"
 }
 
-// Prisma 7: URL moved to prisma.config.ts (Override for Vercel/Postgres)
+// Database configuration (URL managed in prisma.config.ts for Prisma 7)
 datasource db {
   provider = "postgresql"
 }

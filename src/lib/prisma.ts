@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../prisma/generated/prisma/client.js";
 import { PrismaNeon } from "@prisma/adapter-neon";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
-import path from "path";
+import { PrismaPg } from "@prisma/adapter-pg";
 
 // Prevent multiple instances in development with hot reloading
 const globalForPrisma = global as unknown as {
@@ -9,39 +8,30 @@ const globalForPrisma = global as unknown as {
 };
 
 function createPrismaClient(): PrismaClient {
-  const connectionString =
-    process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL;
-
-  // Local Development Override for SQLite
-  // Check if we are in development or if the connection string implies SQLite
-  if (
-    process.env.NODE_ENV === "development" ||
-    !connectionString ||
-    connectionString.startsWith("file:")
-  ) {
-    const dbPath = path.join(process.cwd(), "prisma", "dev.db");
-    console.log("Database absolute path:", dbPath);
-
-    // Use the same initialization as seed.ts
-    const adapter = new PrismaBetterSqlite3({ url: dbPath });
+  // Production: Use Neon adapter for Vercel Postgres
+  const neonUrl = process.env.POSTGRES_PRISMA_URL;
+  
+  if (neonUrl) {
+    const adapter = new PrismaNeon({ connectionString: neonUrl });
     return new PrismaClient({
       adapter,
-      log: ["query", "info", "warn", "error"],
+      log: [], // Production: no query logging
     });
   }
 
-  if (!connectionString) {
-    throw new Error(
-      "Database connection string not found. Set POSTGRES_PRISMA_URL or DATABASE_URL environment variable."
-    );
+  // Local development: Use PrismaPg adapter for PostgreSQL
+  const databaseUrl = process.env.DATABASE_URL;
+  if (!databaseUrl) {
+    throw new Error("DATABASE_URL environment variable is required");
   }
 
-  // Use Neon adapter for Vercel Postgres (powered by Neon)
-  const adapter = new PrismaNeon({ connectionString });
-
+  const adapter = new PrismaPg({ connectionString: databaseUrl });
   return new PrismaClient({
     adapter,
-    log: [], // Production: no query logging
+    log:
+      process.env.NODE_ENV === "development"
+        ? ["query", "info", "warn", "error"]
+        : [],
   });
 }
 

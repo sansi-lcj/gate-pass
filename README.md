@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gate Pass - 庞加莱邀请函管理系统
 
-## Getting Started
+如视海外 2025 年庞加莱线上内购会邀请函管理系统。
 
-First, run the development server:
+## 技术栈
+
+- **框架**: Next.js 15 (App Router)
+- **数据库**: PostgreSQL (本地 Docker / 生产 Vercel Postgres)
+- **ORM**: Prisma 7
+- **样式**: Tailwind CSS
+- **国际化**: i18next (16 种语言)
+
+## 本地开发
+
+### 前置要求
+
+- Node.js 18+
+- Docker Desktop
+
+### 1. 安装依赖
+
+```bash
+npm install
+```
+
+### 2. 配置环境变量
+
+```bash
+cp .env.example .env.local
+```
+
+编辑 `.env.local`，确保 `DATABASE_URL` 配置正确：
+
+```
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/gate_pass"
+```
+
+### 3. 启动数据库
+
+```bash
+npm run db:start
+```
+
+这会启动一个 Docker PostgreSQL 容器。
+
+### 4. 初始化数据库
+
+```bash
+# 创建数据库表
+npm run db:migrate
+
+# 填充初始数据（管理员和测试用户）
+npm run db:seed
+```
+
+### 5. 启动开发服务器
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+访问 [http://localhost:9898](http://localhost:9898) 查看应用。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 默认账号
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| 角色 | 用户名 | 密码 |
+|------|--------|------|
+| 超管 | admin | 123456 |
+| 销售 | S001 | 123456 |
+| 销售 | S002 | 123456 |
 
-## Learn More
+## 数据库命令
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run db:start    # 启动 PostgreSQL 容器
+npm run db:stop     # 停止 PostgreSQL 容器
+npm run db:migrate  # 运行数据库迁移
+npm run db:seed     # 填充种子数据
+npm run db:reset    # 重置数据库（删除所有数据并重新迁移）
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 生产部署
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+项目配置为部署到 Vercel，使用 Vercel Postgres (Neon) 作为数据库。
 
-## Deploy on Vercel
+1. 在 Vercel 创建 Postgres 数据库
+2. 设置环境变量 `POSTGRES_PRISMA_URL`
+3. 部署到 Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 文档
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [用户手册](docs/USER_MANUAL.md) - 系统使用说明
+- [OpenSpec](openspec/) - 项目规范和变更提案

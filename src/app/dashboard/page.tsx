@@ -65,7 +65,7 @@ export default async function DashboardPage() {
             Start your campaign
           </h3>
           <p className="text-gray-500 max-w-sm mx-auto mb-8">
-            You haven't created any invitations yet. Create your first one to
+            You haven&apos;t created any invitations yet. Create your first one to
             start tracking results.
           </p>
           <div className="mt-4">

@@ -1,10 +1,14 @@
-import { PrismaClient } from '@prisma/client'
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
-import path from 'node:path'
+import { PrismaClient } from './generated/prisma/client.js'
+import { PrismaPg } from '@prisma/adapter-pg'
 import * as bcrypt from 'bcryptjs'
 
-const dbPath = path.join(process.cwd(), 'prisma', 'dev.db')
-const adapter = new PrismaBetterSqlite3({ url: dbPath })
+// Load environment variables
+import 'dotenv/config'
+import dotenv from 'dotenv'
+dotenv.config({ path: '.env.local' })
+
+// Use PrismaPg adapter for PostgreSQL connection (Prisma 7)
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL })
 const prisma = new PrismaClient({ adapter })
 
 async function main() {
