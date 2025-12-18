@@ -19,7 +19,7 @@
     "accepted_desc": "您的专属邀请码已生成。",
     "code_label": "专属折扣码",
     "meeting_link_label": "进入会议",
-    "waiting_hint": "会议开始前30分钟将显示入会按钮",
+    "waiting_hint": "会议开始前1小时将显示入会按钮",
     "meeting_starting_hint": "会议即将开始，点击上方按钮进入",
     "declined_title": "感谢您的回复",
     "declined_desc": "很遗憾您此次无法参与。",
