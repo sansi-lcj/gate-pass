@@ -17,6 +17,27 @@ export const metadata: Metadata = {
   description:
     "Exclusive premiere event for the Poincare Device. An invitation-only experience for Realsee's valued partners.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  openGraph: {
+    title: "Realsee Insider Access - Poincare Premiere",
+    description:
+      "Exclusive premiere event for the Poincare Device. An invitation-only experience for Realsee's valued partners.",
+    images: [
+      {
+        url: "/images/og-share.jpg",
+        width: 512,
+        height: 512,
+        alt: "Realsee Poincare Device",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Realsee Insider Access - Poincare Premiere",
+    description:
+      "Exclusive premiere event for the Poincare Device. An invitation-only experience for Realsee's valued partners.",
+    images: ["/images/og-share.jpg"],
+  },
 };
 
 export default function RootLayout({

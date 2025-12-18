@@ -1,7 +1,8 @@
 {
   "Invitation": {
+    "honorific": "敬愛的",
     "greeting": "{name}，",
-    "title": "Realsee 內部通道 - Poincare 首發",
+    "title": "Poincare Premiere",
     "subtitle": "專屬邀請 | 限時優惠 | 新品體驗",
     "event_time_label": "活動時間",
     "event_time_local": "(您當地時間)",
@@ -18,6 +19,8 @@
     "accepted_desc": "您的專屬邀請碼已生成。",
     "code_label": "專屬折扣碼",
     "meeting_link_label": "進入會議",
+    "waiting_hint": "會議開始前30分鐘將顯示入會按鈕",
+    "meeting_starting_hint": "會議即將開始，點擊上方按鈕進入",
     "declined_title": "感謝您的回覆",
     "declined_desc": "很遺憾這次未能參加。",
     "declined_miss": "您將錯過：Poincare 產品專屬體驗、限時優惠價格、產品專家直接交流",

@@ -1,7 +1,8 @@
 {
   "Invitation": {
+    "honorific": "Kính gửi",
     "greeting": "Kính gửi {name},",
-    "title": "Realsee Insider Access - Poincare Premiere",
+    "title": "Poincare Premiere",
     "subtitle": "Lời mời Độc quyền | Ưu đãi Có hạn | Trải nghiệm Sản phẩm mới",
     "event_time_label": "Thời gian Sự kiện",
     "event_time_local": "(Giờ địa phương của bạn)",

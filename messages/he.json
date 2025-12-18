@@ -1,7 +1,8 @@
 {
   "Invitation": {
+    "honorific": "היקר/ה",
     "greeting": "{name} היקר/ה,",
-    "title": "Realsee 2025 פגישת רכישה פנימית Poincare",
+    "title": "Poincare Premiere",
     "subtitle": "הזמנה בלעדית | הצעה מוגבלת | חוויית מוצר חדש",
     "event_time_label": "זמן האירוע",
     "event_time_local": "(השעה המקומית שלך)",
@@ -11,8 +12,8 @@
       "item3": "הדגמה חיה של מומחה מוצר"
     },
     "benefits_title": "הטבות בלעדיות",
-    "benefits_desc": "קבל את ההזמנה כדי לפתוח את קוד ההנחה הבלעדי שלך",
-    "accept_btn": "קבל הזמנה",
+    "benefits_desc": "הבטח את מקומך כדי לקבל את קוד ההנחה הבלעדי שלך",
+    "accept_btn": "הבטח את מקומי עכשיו",
     "decline_btn": "לא יכול להשתתף",
     "accepted_title": "תודה על האישור!",
     "accepted_desc": "קוד ההזמנה הבלעדי שלך נוצר.",

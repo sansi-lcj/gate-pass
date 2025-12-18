@@ -3,7 +3,6 @@
 import { I18nextProvider } from "react-i18next";
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
-import resourcesToBackend from "i18next-resources-to-backend";
 import { useMemo } from "react";
 
 type I18nProviderProps = {
@@ -17,34 +16,28 @@ export default function I18nProvider({
   locale,
   resources,
 }: I18nProviderProps) {
+  // Create a unique key based on locale and resources to force re-creation
+  const resourcesKey = useMemo(() => JSON.stringify(resources), [resources]);
+
   const i18n = useMemo(() => {
     const instance = i18next.createInstance();
-
-    instance
-      .use(initReactI18next)
-      .use(
-        resourcesToBackend((language: string) => {
-          // This is primarily for lazy loading if needed, but we hydration with resources
-          return import(`../../../messages/${language}.json`);
-        })
-      )
-      .init({
-        lng: locale,
-        resources: {
-          [locale]: {
-            translation: resources, // 'translation' is default namespace
-          },
+    instance.use(initReactI18next).init({
+      lng: locale,
+      resources: {
+        [locale]: {
+          translation: resources,
         },
-        fallbackLng: "en",
-        interpolation: {
-          escapeValue: false, // React already safes from xss
-          prefix: "{",
-          suffix: "}",
-        },
-      });
-
+      },
+      fallbackLng: "en",
+      interpolation: {
+        escapeValue: false,
+        prefix: "{",
+        suffix: "}",
+      },
+    });
     return instance;
-  }, [locale, resources]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale, resourcesKey]);
 
   return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
 }

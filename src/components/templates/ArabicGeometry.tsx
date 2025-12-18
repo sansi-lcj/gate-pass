@@ -1,116 +1,106 @@
 "use client";
 
-import Image from "next/image";
+import { InvitationProps } from "./types";
 import {
   useInvitation,
   AcceptedContent,
   ActionButtons,
   EventEndedBanner,
+  SharedBackground,
+  GlassCard,
+  DiamondDivider,
+  BadgeGroup,
+  BrandHeader,
+  ProductPreview,
+  InvitationFooter,
 } from "@/components/invitation";
-import { InvitationProps } from "./types";
 
 export default function ArabicGeometry({ data }: InvitationProps) {
   const invitation = useInvitation(data);
-  const { t, greeting, localTime, status } = invitation;
+  const { t, honorific, guestName, localTime, status } = invitation;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1a1f2e] to-[#0f1318] text-white flex flex-col relative overflow-hidden select-none">
-      {/* Background Layer: Full-screen Device with mysterious reveal */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Geometric Islamic Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="islamicPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M10 0L20 10L10 20L0 10Z" fill="none" stroke="rgba(212,175,55,0.3)" strokeWidth="0.5" />
-                <circle cx="10" cy="10" r="3" fill="none" stroke="rgba(212,175,55,0.2)" strokeWidth="0.3" />
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#islamicPattern)" />
-          </svg>
-        </div>
+    <div className="min-h-screen bg-gradient-to-b from-[#1a1f2e] to-[#0f1318] text-white flex flex-col items-center justify-center relative overflow-hidden select-none">
+      {/* Background Layer */}
+      <SharedBackground
+        starCount={40}
+        primaryColor="amber-500"
+        secondaryColor="teal-500"
+        accentColor="amber-400"
+        showScanLine={false}
+        showDeviceImage={true}
+      />
 
-        {/* Full-screen Device Background - "犹抱琵琶半遮面" */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-[130%] h-[130%] opacity-10 blur-[2px]">
-            <Image
-              src="/images/poincare/poincare-transparent.png"
-              alt="Poincare Device"
-              fill
-              className="object-contain filter drop-shadow-[0_0_60px_rgba(212,175,55,0.2)]"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* Ornamental rings */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vh] border border-amber-500/10 rounded-full" />
-
-        {/* Ambient glows */}
-        <div className="absolute top-1/4 right-1/4 w-[40vw] h-[40vh] bg-amber-500/5 blur-[100px] rounded-full" />
-        <div className="absolute bottom-1/4 left-1/4 w-[30vw] h-[30vh] bg-teal-500/5 blur-[80px] rounded-full" />
+      {/* Geometric Islamic Pattern Overlay */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-10">
+        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <defs>
+            <pattern id="islamicPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M10 0L20 10L10 20L0 10Z" fill="none" stroke="rgba(212,175,55,0.3)" strokeWidth="0.5" />
+              <circle cx="10" cy="10" r="3" fill="none" stroke="rgba(212,175,55,0.2)" strokeWidth="0.3" />
+            </pattern>
+          </defs>
+          <rect width="100" height="100" fill="url(#islamicPattern)" />
+        </svg>
       </div>
 
       {/* Content Layer */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 md:p-10">
-        {/* Main Panel */}
-        <div className="w-full max-w-lg bg-[#1a1f2e]/80 backdrop-blur-xl border border-amber-500/30 rounded-2xl p-6 md:p-8 flex flex-col gap-6 shadow-[0_0_60px_rgba(212,175,55,0.1)]">
-          {/* Geometric corner ornaments */}
-          <div className="absolute top-2 left-2 w-8 h-8 border-t-2 border-l-2 border-amber-500/40 rounded-tl-lg" />
-          <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-amber-500/40 rounded-tr-lg" />
-          <div className="absolute bottom-2 left-2 w-8 h-8 border-b-2 border-l-2 border-amber-500/40 rounded-bl-lg" />
-          <div className="absolute bottom-2 right-2 w-8 h-8 border-b-2 border-r-2 border-amber-500/40 rounded-br-lg" />
-
+      <div className="relative z-10 flex flex-col items-center justify-center p-6 md:p-10 w-full max-w-2xl">
+        <GlassCard
+          topAccentColor="amber-500"
+          bottomAccentColor="teal-500"
+          glowColor="rgba(212,175,55,0.15)"
+        >
           {/* Brand Header */}
-          <div className="text-center space-y-4">
-            <div className="flex items-center justify-center gap-4 opacity-60">
-              <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-amber-500" />
-              <Image
-                src="/assets/realsee-logo-en-with-brands-wihte.svg"
-                alt="Realsee"
-                width={90}
-                height={22}
-                className="h-5 w-auto"
-              />
-              <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-amber-500" />
+          <div className="text-center space-y-6">
+            <BrandHeader lineColor="amber-500" logoVariant="white" />
+
+            <div className="space-y-3">
+              {honorific && (
+                <p className="text-amber-400/60 text-[10px] md:text-xs tracking-[0.5em] uppercase font-light">
+                  — {honorific} —
+                </p>
+              )}
+              <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-white to-amber-300 tracking-wide">
+                {guestName}
+              </h2>
             </div>
 
-            <p className="text-amber-400 text-[10px] md:text-xs tracking-[0.4em] uppercase font-light">
-              {greeting}
-            </p>
-
-            <div className="space-y-2">
-              <h1 className="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 to-amber-100 leading-tight">
+            <div className="space-y-3">
+              <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-white to-amber-300 leading-tight">
                 {status === "ACCEPTED"
                   ? t("Invitation.accepted_title")
                   : t("Invitation.title")}
               </h1>
-              <p className="text-amber-200/30 text-[10px] md:text-xs tracking-[0.2em] uppercase">
+              <p className="text-amber-200/30 text-[10px] md:text-xs tracking-[0.4em] uppercase">
                 {t("Invitation.subtitle")}
               </p>
             </div>
           </div>
 
-          {/* Details Section */}
-          <div className="bg-amber-500/5 border border-amber-500/20 p-4 rounded-xl">
-            <div className="text-center">
+          {/* Decorative Divider */}
+          <DiamondDivider diamondColor="teal-500" lineColor="white" />
+
+          {/* Badge Group */}
+          <div className="bg-amber-500/5 border border-amber-500/20 rounded-2xl p-6 text-center space-y-4">
+            <BadgeGroup
+              primaryColor="amber"
+              secondaryColor="teal"
+              accentColor="amber"
+              labels={[
+                t("Invitation.highlights.item1"),
+                t("Invitation.highlights.item2"),
+                t("Invitation.highlights.item3"),
+              ]}
+            />
+
+            <div className="pt-2">
               <p className="text-amber-400/40 text-[9px] uppercase tracking-widest mb-1">
                 Scheduled Session
               </p>
               <p className="text-lg md:text-xl font-bold text-white">
                 {localTime || "PREPARING..."}
               </p>
-            </div>
-
-            <div className="flex justify-center gap-6 mt-4">
-              {["item1", "item2", "item3"].map((key, i) => (
-                <div key={key} className="flex flex-col items-center gap-1.5">
-                  <div className={`w-2 h-2 rotate-45 ${i === 1 ? "bg-teal-400" : "bg-amber-500"}`} />
-                  <span className="text-[8px] text-amber-200/50 uppercase tracking-tight text-center leading-tight max-w-[50px]">
-                    {t(`Invitation.highlights.${key}`)}
-                  </span>
-                </div>
-              ))}
             </div>
           </div>
 
@@ -139,14 +129,13 @@ export default function ArabicGeometry({ data }: InvitationProps) {
               declineButtonClassName="px-5 border border-amber-500/30 text-amber-200/50 hover:text-white rounded-xl transition-all text-[10px] uppercase tracking-widest"
             />
           </div>
-        </div>
+
+          {/* Product Preview */}
+          <ProductPreview glowColor="rgba(212,175,55,0.3)" />
+        </GlassCard>
 
         {/* Footer */}
-        <div className="mt-6 opacity-20 text-center">
-          <p className="text-[9px] text-amber-200/50 tracking-[0.5em] uppercase">
-            {t("Invitation.footer")}
-          </p>
-        </div>
+        <InvitationFooter text={t("Invitation.footer")} />
       </div>
     </div>
   );

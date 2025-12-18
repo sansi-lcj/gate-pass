@@ -1,7 +1,8 @@
 {
   "Invitation": {
+    "honorific": "Prezado(a)",
     "greeting": "Prezado(a) {name},",
-    "title": "Realsee 2025 Reunião de Compra Interna Poincare",
+    "title": "Poincare Premiere",
     "subtitle": "Convite Exclusivo | Oferta Limitada | Experiência de Novo Produto",
     "event_time_label": "Hora do Evento",
     "event_time_local": "(Seu Horário Local)",
@@ -11,8 +12,8 @@
       "item3": "Demonstração ao vivo do especialista em produtos"
     },
     "benefits_title": "Benefícios Exclusivos",
-    "benefits_desc": "Aceite o convite para desbloquear seu código de desconto exclusivo",
-    "accept_btn": "Aceitar Convite",
+    "benefits_desc": "Reserve seu lugar para desbloquear seu código de desconto exclusivo",
+    "accept_btn": "Reservar Meu Lugar Agora",
     "decline_btn": "Não Posso Comparecer",
     "accepted_title": "Obrigado pela Confirmação!",
     "accepted_desc": "Seu código de convite exclusivo foi gerado.",

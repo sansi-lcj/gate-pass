@@ -1,7 +1,8 @@
 {
   "Invitation": {
+    "honorific": "尊敬的",
     "greeting": "{name}，",
-    "title": "Realsee 内部通道 - Poincare 首发",
+    "title": "Poincare Premiere",
     "subtitle": "专属邀请 | 限时特惠 | 新品抢鲜",
     "event_time_label": "活动时间",
     "event_time_local": "（您的当地时间）",

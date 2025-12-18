@@ -1,7 +1,8 @@
 {
   "Invitation": {
+    "honorific": "เรียน",
     "greeting": "เรียน {name},",
-    "title": "Realsee Insider Access - Poincare Premiere",
+    "title": "Poincare Premiere",
     "subtitle": "คำเชิญพิเศษ | ข้อเสนอจำกัดเวลา | ประสบการณ์ผลิตภัณฑ์ใหม่",
     "event_time_label": "เวลากิจกรรม",
     "event_time_local": "(เวลาท้องถิ่นของคุณ)",

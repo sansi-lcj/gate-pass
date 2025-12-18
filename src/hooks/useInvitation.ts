@@ -39,6 +39,8 @@ export interface UseInvitationReturn {
   // i18n
   t: ReturnType<typeof useTranslation>["t"];
   greeting: string;
+  honorific: string;
+  guestName: string;
 }
 
 export function useInvitation(data: InvitationData): UseInvitationReturn {
@@ -109,6 +111,8 @@ export function useInvitation(data: InvitationData): UseInvitationReturn {
 
   // Greeting with name substitution
   const greeting = t("Invitation.greeting", { name: data.guestName });
+  const honorific = t("Invitation.honorific");
+  const guestName = data.guestName;
 
   return {
     // State
@@ -138,5 +142,7 @@ export function useInvitation(data: InvitationData): UseInvitationReturn {
     // i18n
     t,
     greeting,
+    honorific,
+    guestName,
   };
 }

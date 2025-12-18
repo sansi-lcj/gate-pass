@@ -1,80 +1,87 @@
 "use client";
 
-import Image from "next/image";
 import { InvitationProps } from "./types";
 import {
   useInvitation,
   AcceptedContent,
   ActionButtons,
   EventEndedBanner,
+  SharedBackground,
+  GlassCard,
+  DiamondDivider,
+  BadgeGroup,
+  BrandHeader,
+  ProductPreview,
+  InvitationFooter,
 } from "@/components/invitation";
 
 export default function Executive({ data }: InvitationProps) {
   const invitation = useInvitation(data);
-  const { t, greeting, localTime, status } = invitation;
+  const { t, honorific, guestName, localTime, status } = invitation;
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-slate-100 flex flex-col relative overflow-hidden select-none font-serif">
-      {/* Background Layer: Full-screen Device with mysterious reveal */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Soft Ambient Gold Glows */}
-        <div className="absolute top-1/4 left-1/4 w-[60vw] h-[50vh] bg-amber-500/5 blur-[150px] rounded-full" />
-        <div className="absolute bottom-1/4 right-1/4 w-[50vw] h-[40vh] bg-slate-400/5 blur-[120px] rounded-full" />
-
-        {/* Full-screen Device Background - "犹抱琵琶半遮面" */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-[140%] h-[140%] opacity-10 blur-[1px]">
-            <Image
-              src="/images/poincare/poincare-transparent.png"
-              alt="Poincare Device"
-              fill
-              className="object-contain filter drop-shadow-[0_40px_100px_rgba(0,0,0,0.5)] contrast-[1.05] brightness-110"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* Serif Frame Element */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vh] border border-slate-700/20 rounded-full" />
-      </div>
+    <div className="min-h-screen bg-[#0F172A] text-slate-100 flex flex-col items-center justify-center relative overflow-hidden font-serif select-none">
+      {/* Background Layer */}
+      <SharedBackground
+        starCount={30}
+        primaryColor="amber-500"
+        secondaryColor="slate-400"
+        accentColor="amber-600"
+        showScanLine={false}
+        showDeviceImage={true}
+      />
 
       {/* Content Layer */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center p-6 md:p-10">
-        {/* Main Panel */}
-        <div className="w-full max-w-lg bg-slate-900/70 border border-slate-700/50 backdrop-blur-xl rounded-3xl p-6 md:p-8 flex flex-col gap-6 shadow-[0_20px_80px_rgba(0,0,0,0.6)]">
-          {/* Brand & Header */}
-          <div className="text-center space-y-4">
-            <div className="flex items-center justify-center gap-4 opacity-40">
-              <div className="h-[1px] w-10 bg-amber-500" />
-              <Image
-                src="/assets/realsee-logo-en-with-brands-wihte.svg"
-                alt="Realsee"
-                width={90}
-                height={22}
-                className="h-5 w-auto"
-              />
-              <div className="h-[1px] w-10 bg-amber-500" />
+      <div className="relative z-10 flex flex-col items-center justify-center p-6 md:p-10 w-full max-w-2xl">
+        <GlassCard
+          topAccentColor="amber-500"
+          bottomAccentColor="slate-500"
+          glowColor="rgba(251,191,36,0.1)"
+        >
+          {/* Brand Header */}
+          <div className="text-center space-y-6">
+            <BrandHeader lineColor="amber-500" logoVariant="white" />
+
+            <div className="space-y-3">
+              {honorific && (
+                <p className="text-amber-500/60 text-[10px] md:text-xs tracking-[0.5em] uppercase font-bold">
+                  — {honorific} —
+                </p>
+              )}
+              <h2 className="text-3xl md:text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-white to-amber-200 tracking-wide">
+                {guestName}
+              </h2>
             </div>
 
-            <p className="text-amber-500/80 text-[10px] md:text-xs tracking-[0.5em] uppercase font-bold">
-              {greeting}
-            </p>
-
-            <div className="space-y-1 px-4">
-              <h1 className="text-xl md:text-3xl font-black uppercase tracking-tight text-white leading-tight">
+            <div className="space-y-3">
+              <h1 className="text-4xl md:text-5xl font-black uppercase bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-white to-amber-200 leading-tight tracking-tight">
                 {status === "ACCEPTED"
                   ? t("Invitation.accepted_title")
                   : t("Invitation.title")}
               </h1>
-              <p className="text-slate-400 text-[10px] md:text-xs tracking-[0.3em] uppercase font-bold">
+              <p className="text-slate-400 text-[10px] md:text-xs tracking-[0.4em] uppercase font-bold">
                 {t("Invitation.subtitle")}
               </p>
             </div>
           </div>
 
-          {/* Details Row */}
-          <div className="bg-slate-800/50 border border-slate-700/30 p-4 rounded-xl shadow-lg">
-            <div className="text-center">
+          {/* Decorative Divider */}
+          <DiamondDivider diamondColor="amber-500" lineColor="white" />
+
+          {/* Badge Group */}
+          <div className="bg-slate-800/50 border border-slate-700/30 rounded-2xl p-6 text-center space-y-4 shadow-lg">
+            <BadgeGroup
+              primaryColor="amber"
+              secondaryColor="slate"
+              accentColor="amber"
+              labels={[
+                t("Invitation.highlights.item1"),
+                t("Invitation.highlights.item2"),
+                t("Invitation.highlights.item3"),
+              ]}
+            />
+
+            <div className="pt-2">
               <p className="text-amber-500/40 text-[9px] uppercase tracking-widest mb-1 italic font-sans">
                 Premium Engagement
               </p>
@@ -82,20 +89,9 @@ export default function Executive({ data }: InvitationProps) {
                 {localTime || "ASCERTAINING..."}
               </p>
             </div>
-
-            <div className="flex justify-center gap-6 mt-4">
-              {["item1", "item2", "item3"].map((key) => (
-                <div key={key} className="flex flex-col items-center gap-1.5 group/icon">
-                  <div className="w-1.5 h-1.5 bg-amber-500 rounded-sm rotate-45 group-hover/icon:scale-150 transition-transform" />
-                  <span className="text-[8px] text-slate-400 uppercase tracking-tight text-center leading-tight max-w-[60px] font-sans">
-                    {t(`Invitation.highlights.${key}`)}
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Actions Area */}
+          {/* Action Area */}
           <div className="space-y-3">
             <AcceptedContent
               invitation={invitation}
@@ -120,14 +116,13 @@ export default function Executive({ data }: InvitationProps) {
               declineButtonClassName="px-5 border border-slate-700 text-slate-500 hover:text-white rounded-xl transition-all text-[10px] uppercase tracking-widest"
             />
           </div>
-        </div>
+
+          {/* Product Preview */}
+          <ProductPreview glowColor="rgba(251,191,36,0.3)" />
+        </GlassCard>
 
         {/* Footer */}
-        <div className="mt-6 opacity-10 text-center">
-          <p className="text-[9px] text-slate-400 tracking-[0.8em] uppercase">
-            {t("Invitation.footer")}
-          </p>
-        </div>
+        <InvitationFooter text={t("Invitation.footer")} />
       </div>
     </div>
   );

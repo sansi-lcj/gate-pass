@@ -1,7 +1,8 @@
 {
   "Invitation": {
+    "honorific": "Yang Mulia",
     "greeting": "Yang Mulia {name},",
-    "title": "Realsee 2025 Poincare Purchase Meeting",
+    "title": "Poincare Premiere",
     "subtitle": "Jemputan Eksklusif | Tawaran Terhad | Pengalaman Produk Baharu",
     "event_time_label": "Masa Acara",
     "event_time_local": "(Waktu Tempatan Anda)",
@@ -11,8 +12,8 @@
       "item3": "Demonstrasi Pakar Produk Secara Langsung"
     },
     "benefits_title": "Manfaat Eksklusif",
-    "benefits_desc": "Terima jemputan untuk membuka kod diskaun eksklusif anda",
-    "accept_btn": "Terima Jemputan",
+    "benefits_desc": "Klaim tempat anda untuk membuka kod diskaun eksklusif anda",
+    "accept_btn": "Klaim Tempat Saya Sekarang",
     "decline_btn": "Tidak Dapat Hadir",
     "accepted_title": "Terima Kasih Atas Pengesahan!",
     "accepted_desc": "Kod jemputan eksklusif anda telah dijana.",

@@ -26,13 +26,26 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
     salesNote: "",
     discountCode: "",
   });
-  const [messages, setMessages] = useState<Record<string, unknown> | null>(
-    null
-  );
+  const [messagesState, setMessagesState] = useState<{
+    language: string;
+    data: Record<string, unknown>;
+  } | null>(null);
 
   useEffect(() => {
-    getMessagesAction(formData.language).then(setMessages);
+    let cancelled = false;
+    const targetLanguage = formData.language;
+    
+    getMessagesAction(targetLanguage).then((msgs) => {
+      if (!cancelled) {
+        setMessagesState({ language: targetLanguage, data: msgs });
+      }
+    });
+    
+    return () => { cancelled = true; };
   }, [formData.language]);
+  
+  // Only render preview when messages match the current language
+  const messages = messagesState?.language === formData.language ? messagesState.data : null;
 
   const selectedStyle = styles.find((s) => s.key === selectedStyleKey);
 
@@ -279,7 +292,7 @@ export default function CreateForm({ styles }: { styles: StyleConfig[] }) {
         <PreviewFrame>
           {PreviewComponent && messages ? (
             <div dir={getDir(formData.language)} className="min-h-full">
-              <I18nProvider key={formData.language} locale={formData.language} resources={messages}>
+              <I18nProvider locale={formData.language} resources={messages}>
                 {/* eslint-disable-next-line react-hooks/static-components -- Dynamic template selection */}
                 <PreviewComponent data={previewData} />
               </I18nProvider>

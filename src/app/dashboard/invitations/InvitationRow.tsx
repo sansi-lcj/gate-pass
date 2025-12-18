@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import StyledQRCode from "@/components/StyledQRCode";
 
 interface Invitation {
   id: string;
@@ -63,23 +64,10 @@ export default function InvitationRow({
   invitation: Invitation;
 }) {
   const [showQR, setShowQR] = useState(false);
-  const [qrDataUrl, setQrDataUrl] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
-  const handleShowQR = async () => {
-    if (showQR) {
-      setShowQR(false);
-      return;
-    }
-
-    try {
-      const res = await fetch(`/api/qr/${inv.uniqueToken}`);
-      const data = await res.json();
-      setQrDataUrl(data.qrCode);
-      setShowQR(true);
-    } catch {
-      console.error("Failed to load QR code");
-    }
+  const handleShowQR = () => {
+    setShowQR(!showQR);
   };
 
   const handleCopy = () => {
@@ -229,23 +217,25 @@ export default function InvitationRow({
           })}
         </td>
       </tr>
-      {showQR && qrDataUrl && (
+      {showQR && (
         <tr>
           <td
             colSpan={7}
             className="bg-purple-50/50 dark:bg-purple-900/10 p-6 border-t border-purple-100 dark:border-purple-900/30"
           >
             <div className="flex items-center gap-6">
-              <div className="p-2 bg-white dark:bg-zinc-900 rounded-xl shadow-lg border border-gray-100 dark:border-zinc-800">
-                {/* eslint-disable-next-line @next/next/no-img-element -- QR code is a data URL */}
-                <img src={qrDataUrl} alt="QR Code" className="w-28 h-28" />
+              <div className="p-3 bg-white dark:bg-zinc-900 rounded-xl shadow-lg border border-gray-100 dark:border-zinc-800">
+                <StyledQRCode
+                  data={`${typeof window !== "undefined" ? window.location.origin : ""}/invite/${inv.uniqueToken}`}
+                  size={140}
+                />
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   📱 Scan to open invitation
                 </p>
                 <code className="text-xs text-gray-500 bg-gray-100 dark:bg-zinc-800 px-3 py-1.5 rounded-lg block">
-                  {window.location.origin}/invite/{inv.uniqueToken}
+                  {typeof window !== "undefined" ? window.location.origin : ""}/invite/{inv.uniqueToken}
                 </code>
               </div>
             </div>

@@ -30,23 +30,29 @@ export async function generateMetadata({
   }
 
   return {
-    title: `Invitation for ${invitation.guestName} | Realsee Overseas`,
+    title: `Poincare Premiere - ${invitation.guestName} | Realsee`,
     description: `You are cordially invited to the Realsee 2025 Poincare Device Purchase Meeting.`,
     robots: {
       index: true,
       follow: true,
     },
     openGraph: {
-      title: `Invitation for ${invitation.guestName}`,
+      title: `Poincare Premiere - ${invitation.guestName}`,
       description: "Realsee 2025 Poincare Device Purchase Meeting",
       images: [
         {
-          url: "/images/poincare/hero.jpg",
-          width: 1200,
-          height: 630,
+          url: "/images/og-share.jpg",
+          width: 512,
+          height: 512,
           alt: "Realsee Poincare Device",
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Poincare Premiere - ${invitation.guestName}`,
+      description: "Realsee 2025 Poincare Device Purchase Meeting",
+      images: ["/images/og-share.jpg"],
     },
   };
 }

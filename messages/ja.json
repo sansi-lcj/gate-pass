@@ -1,7 +1,8 @@
 {
   "Invitation": {
+    "honorific": "",
     "greeting": "{name} 様",
-    "title": "Realsee インサイダーアクセス - Poincare プレミア",
+    "title": "Poincare Premiere",
     "subtitle": "特別ご招待 | 期間限定特典 | 新製品体験",
     "event_time_label": "開催日時",
     "event_time_local": "（現地時間）",

@@ -1,7 +1,8 @@
 {
   "Invitation": {
+    "honorific": "Dear",
     "greeting": "Dear {name},",
-    "title": "Realsee Insider Access - Poincare Premiere",
+    "title": "Poincare Premiere",
     "subtitle": "Exclusive Invitation | Limited Time Offer | New Product Experience",
     "event_time_label": "Event Time",
     "event_time_local": "(Your Local Time)",
@@ -21,7 +22,7 @@
     "waiting_hint": "Join button will appear 30 minutes before the meeting",
     "meeting_starting_hint": "Meeting is about to start, click the button above to join",
     "declined_title": "Thank You for Your Response",
-    "declined_desc": "We're sorry you can't make it this time.",
+    "declined_desc": "We're sorry you cannot make it this time.",
     "declined_miss": "You'll miss: Exclusive Poincare product experience, Special pricing, Direct interaction with product experts",
     "reconsider_btn": "Reconsider?",
     "event_ended": "This event has concluded.",

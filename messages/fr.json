@@ -1,7 +1,8 @@
 {
   "Invitation": {
+    "honorific": "Cher(e)",
     "greeting": "Cher(e) {name},",
-    "title": "Realsee Insider Access - Poincare Premiere",
+    "title": "Poincare Premiere",
     "subtitle": "Invitation Exclusive | Offre Limitée | Expérience Nouveau Produit",
     "event_time_label": "Heure de l'Événement",
     "event_time_local": "(Votre Heure Locale)",
