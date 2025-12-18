@@ -170,12 +170,12 @@ export async function exportAcceptedGuestsCSV() {
 
   const header = "Guest Name,Discount Code,Language,Accepted At,Created By\n";
   const rows = invitations
-    .map(
-      (inv) =>
-        `"${inv.guestName}","${inv.discountCode}","${inv.language}","${
-          inv.acceptedAt?.toISOString() || ""
-        }","${inv.createdBy.name || inv.createdBy.username}"`
-    )
+    .map((inv: (typeof invitations)[number]) => {
+      const createdByName = inv.createdBy?.name ?? inv.createdBy?.username ?? "";
+      return `"${inv.guestName}","${inv.discountCode ?? ""}","${inv.language}","${
+        inv.acceptedAt?.toISOString() ?? ""
+      }","${createdByName}"`;
+    })
     .join("\n");
 
   return header + rows;
