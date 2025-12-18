@@ -19,6 +19,8 @@
     "accepted_desc": "Mã mời độc quyền của bạn đã được tạo.",
     "code_label": "Mã Giảm giá",
     "meeting_link_label": "Tham gia Cuộc họp",
+    "waiting_hint": "Nút tham gia sẽ xuất hiện 1 giờ trước cuộc họp",
+    "meeting_starting_hint": "Cuộc họp sắp bắt đầu, nhấp vào nút phía trên để tham gia",
     "declined_title": "Cảm ơn Phản hồi của bạn",
     "declined_desc": "Rất tiếc bạn không thể tham dự lần này.",
     "declined_miss": "Bạn sẽ bỏ lỡ: Trải nghiệm Poincare độc quyền, Giá đặc biệt, Tương tác trực tiếp với chuyên gia",

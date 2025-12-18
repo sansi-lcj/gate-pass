@@ -19,6 +19,8 @@
     "accepted_desc": "Ihr exklusiver Einladungscode wurde generiert.",
     "code_label": "Ihr Rabattcode",
     "meeting_link_label": "Meeting Beitreten",
+    "waiting_hint": "Der Beitritts-Button erscheint 1 Stunde vor dem Meeting",
+    "meeting_starting_hint": "Das Meeting beginnt gleich, klicken Sie oben um beizutreten",
     "declined_title": "Vielen Dank für Ihre Rückmeldung",
     "declined_desc": "Es tut uns leid, dass Sie diesmal nicht dabei sein können.",
     "declined_miss": "Sie verpassen: Exklusives Poincare-Produkterlebnis, Sonderpreise, Direkte Interaktion mit Experten",

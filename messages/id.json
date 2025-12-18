@@ -19,6 +19,8 @@
     "accepted_desc": "Kode undangan eksklusif Anda telah dibuat.",
     "code_label": "Kode Diskon",
     "meeting_link_label": "Gabung Rapat",
+    "waiting_hint": "Tombol bergabung akan muncul 1 jam sebelum rapat",
+    "meeting_starting_hint": "Rapat akan segera dimulai, klik tombol di atas untuk bergabung",
     "declined_title": "Terima Kasih atas Respons Anda",
     "declined_desc": "Sayang sekali Anda tidak bisa hadir kali ini.",
     "declined_miss": "Anda akan melewatkan: Pengalaman eksklusif Poincare, Harga khusus, Interaksi langsung dengan pakar",

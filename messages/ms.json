@@ -19,6 +19,8 @@
     "accepted_desc": "Kod jemputan eksklusif anda telah dijana.",
     "code_label": "Kod Diskaun Anda",
     "meeting_link_label": "Sertai Mesyuarat",
+    "waiting_hint": "Butang sertai akan muncul 1 jam sebelum mesyuarat",
+    "meeting_starting_hint": "Mesyuarat akan bermula, klik butang di atas untuk menyertai",
     "declined_title": "Terima Kasih Atas Maklum Balas",
     "declined_desc": "Kami kesal anda tidak dapat hadir kali ini.",
     "declined_miss": "Anda akan terlepas: Pengalaman produk Poincare eksklusif, Harga istimewa, Interaksi terus dengan pakar",

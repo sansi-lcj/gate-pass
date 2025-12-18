@@ -19,6 +19,8 @@
     "accepted_desc": "お客様専用の招待コードが発行されました。",
     "code_label": "割引コード",
     "meeting_link_label": "会議に参加",
+    "waiting_hint": "開始1時間前に入室ボタンが表示されます",
+    "meeting_starting_hint": "まもなく開始です、上のボタンをクリックして参加してください",
     "declined_title": "ご返答ありがとうございます",
     "declined_desc": "今回ご参加いただけず残念です。",
     "declined_miss": "お見逃しになるもの：ポンカレシリーズ限定体験、特別価格、製品専門家との交流",

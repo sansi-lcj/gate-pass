@@ -19,6 +19,8 @@
     "accepted_desc": "전용 초대 코드가 생성되었습니다.",
     "code_label": "할인 코드",
     "meeting_link_label": "미팅 참여",
+    "waiting_hint": "미팅 시작 1시간 전에 입장 버튼이 표시됩니다",
+    "meeting_starting_hint": "미팅이 곧 시작됩니다, 위 버튼을 클릭하여 참여하세요",
     "declined_title": "응답해 주셔서 감사합니다",
     "declined_desc": "이번에 참석하지 못해 아쉽습니다.",
     "declined_miss": "놓치게 될 것: 푸앵카레 독점 체험, 특별 가격, 제품 전문가와의 직접 소통",

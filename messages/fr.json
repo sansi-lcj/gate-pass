@@ -19,6 +19,8 @@
     "accepted_desc": "Votre code d'invitation exclusif a été généré.",
     "code_label": "Votre Code de Réduction",
     "meeting_link_label": "Rejoindre la Réunion",
+    "waiting_hint": "Le bouton pour rejoindre apparaîtra 1 heure avant la réunion",
+    "meeting_starting_hint": "La réunion va bientôt commencer, cliquez sur le bouton ci-dessus pour rejoindre",
     "declined_title": "Merci pour Votre Réponse",
     "declined_desc": "Nous sommes désolés que vous ne puissiez pas participer cette fois.",
     "declined_miss": "Vous allez manquer: Expérience exclusive produit Poincare, Tarifs spéciaux, Interaction directe avec les experts",
