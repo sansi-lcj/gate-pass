@@ -266,3 +266,4 @@ export function InvitationFooter({
 }
 
 // Named exports are preferred, default export removed to avoid warning
+
